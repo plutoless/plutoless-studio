@@ -2,12 +2,11 @@
 
 $this->title = "My Posts";
 $this->headTitle($this->title);
+$this->headLink()->prependStylesheet($this->baseUrl().'/css/post.css');
+$this->headScript()->appendFile($this->baseUrl().'/../library/js/post.js');
+$this->headScript()->appendFile($this->baseUrl().'/../library/js/common.js');
 ?>
-<head>
-  <?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/post.css');?>
-  <?php echo $this->headScript()->appendFile($this->baseUrl().'/../library/js/post.js');?>
-  <?php echo $this->headScript()->appendFile($this->baseUrl().'/../library/js/common.js');?>
-</head>
+
 <div id="view-content">
   <div class="right-column">
     <div class="post-header">

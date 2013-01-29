@@ -7,7 +7,7 @@
 */
 
 body{
-  background: #E2E0E0;
+  background: #eaeaea;
   margin: 0;
   color: #121314;
   font-family: "Times New Roman", Verdana, "SimSun", sans-serif;
@@ -33,7 +33,7 @@ ul{
 #content{
   width: 960px;
   overflow: auto;
-  background: #E2E0E0;
+  background: #eaeaea;
   margin: auto auto auto auto;
 }
 

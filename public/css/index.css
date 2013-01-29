@@ -13,38 +13,49 @@ root {
 #index-wrap{
     margin: 50px auto auto auto;
     overflow: auto;    
-    width: 340px;
+    width: 800px;
 }
 
 
 #index-wrap .medium-block{
     float: left;
     opacity: 0;
-    width: 160px;
-    height: 160px;
+    width: 25%;
     position: relative;
-    margin: 5px;
 }
 
 
 .medium-block .bg-layer{
     position: relative;
-    background: yellow;
-    width: 160px;
-    height: 160px;
+    overflow: hidden;
+    padding: 10px;
+    
+}
+
+.medium-block .bg-layer .content-layer{
+    position: relative;
     font-weight: bold;
     font-size: 15px;
     z-index: 1;
     overflow: hidden;
+    background-color: #fff;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.05);
+    -moz-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.05);
+    box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.05);
 }
 
-.medium-block .bg-layer .content-layer{
-    position: absolute;
-    width: 160px;
-    height: 160px;
-    font-weight: bold;
-    font-size: 15px;
-    z-index: 1;
+.medium-block .bg-layer .content-layer img{
+    width: 48px;
+    height: 48px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 100px 0;
 }
 
 .medium-block .bg-layer .hover-layer{
@@ -77,20 +88,18 @@ root {
 .clickable-block:hover{
 }
 
-#index-wrap .posts{
-    background:#FFB11B;
+#index-wrap .color1{
+    background-color: #5b3c26;
 }
 
-#index-wrap .blog{
-    background: white;
+#index-wrap .color2{
+    background-color: #8ac5d4;
 }
 
-#index-wrap .recent-works{
-    background:#E16B8C;
+#index-wrap .color3{
 }
 
-#index-wrap .contact{
-    background:#FFB11B;
+#index-wrap .color4{
 }
 
 #index-wrap .admin-login{
