@@ -17,65 +17,62 @@ $this->headTitle($this->title);
         <div class="bg-layer clickable-block posts">
             
             <div class="content-layer color1">
+                <div class="hover-layer">
+                    #posts
+                </div>
+                
+                <div class="ctrl-layer">
+                </div>
                 <img src="<?php echo $this->baseUrl().'/images/articles.png';?>"/>
             </div>
-            <!--
-            <div class="hover-layer">
-                #posts
-            </div>
             
-            <div class="ctrl-layer">
-            </div>-->
         </div>
         
     </div>
     
-    <div class="medium-block index-object" name="blog">
-        <div class="bg-layer blog">
+    <div class="medium-block index-object" name="projects">
+        <div class="bg-layer recent-works">
             
             <div class="content-layer color2">
+                <div class="hover-layer">
+                    #projects
+                </div>
+                
+                <div class="ctrl-layer">
+                </div>
                 <img src="<?php echo $this->baseUrl().'/images/projects.png';?>"/>
             </div>
-            <!--
-            <div class="content-layer">
-            </div>
-            
-            <div class="hover-layer">
-                #blog
-            </div>
-            
-            <div class="ctrl-layer">
-            </div>
-            -->
         </div>
     </div>
-<!--
-    <div class="medium-block index-object" name="projects">
-        <div class="bg-layer clickable-block recent-works">
-            <div class="content-layer">
+
+    <div class="medium-block index-object" name="fun">
+        <div class="bg-layer clickable-block fun">
+            <div class="content-layer color3">
+                
+                <div class="hover-layer">
+                #fun
+                </div>
+                <div class="ctrl-layer">
+                </div>
+                <img src="<?php echo $this->baseUrl().'/images/fun.png';?>"/>
             </div>
             
-            <div class="hover-layer">
-              #recent works
-            </div>
-            
-            <div class="ctrl-layer">
-            </div>
             
             
         </div>
     </div>
     <div class="medium-block index-object" name="contact">
         <div class="bg-layer clickable-block contact">
-            <div class="content-layer">
+            <div class="content-layer color4">
+                <div class="hover-layer">
+                #contact
+                </div>
+
+                <div class="ctrl-layer">
+                </div>
+                <img src="<?php echo $this->baseUrl().'/images/contacts.png';?>"/>
             </div>
             
-            <div class="hover-layer">
-              #contact
-            </div>
-            
-            <div class="ctrl-layer">
-            </div>
         </div>
     </div>
     <?php
@@ -99,7 +96,5 @@ $this->headTitle($this->title);
         <a href="' . $this->url(array('controller'=>'index','action'=>'logout')) . '">Sign Out</a>
       </div>
       ';
-    }
-    
-    ?>-->
+    }?>
 </div>

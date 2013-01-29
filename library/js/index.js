@@ -16,7 +16,7 @@ var index = {
         var indexObjects = $('#index-wrap .index-object');
         var inputBox = $('#index-wrap .admin-login .input-box');
         var posts = $('#index-wrap .posts');
-        var blog = $('#index-wrap .blog');
+        var fun = $('#index-wrap .fun');
         var works = $('#index-wrap .recent-works');
         var contact = $('#index-wrap .contact');
         var login = $('#index-wrap .admin-login');
@@ -24,7 +24,7 @@ var index = {
         
         
         //show up animation
-        index.appear(posts, blog, works, contact, login);
+        index.appear(posts, works, fun, contact, login);
         
         //attach relevant listeners
         index.attachListeners(menuBlocks, indexObjects, clickBlockCtrl, inputBox);
@@ -33,7 +33,7 @@ var index = {
     },
     
     
-    appear : function(posts, blog, works, contact, login)
+    appear : function(posts, works, fun, contact, login)
     {
         setTimeout(function(){
           posts.parent().animate({
@@ -42,13 +42,13 @@ var index = {
         }, 100);
         
         setTimeout(function(){
-          blog.parent().animate({
+          works.parent().animate({
             opacity:1
           }, 800);
         }, 200);
         
         setTimeout(function(){
-          works.parent().animate({
+          fun.parent().animate({
             opacity:1
           }, 800);
         }, 400);
@@ -91,14 +91,14 @@ var index = {
       clickBlockCtrl.hover(
         function(){
           var hoverLayer = $(this).siblings('.hover-layer');
-          hoverLayer.animate({
-            top: 130
+          hoverLayer.stop().animate({
+            'top': $(this).height()*0.9
           }, 300);
         },
         function(){
           var hoverLayer = $(this).siblings('.hover-layer');
-          hoverLayer.animate({
-            top: 160
+          hoverLayer.stop().animate({
+            'top': $(this).height()
           }, 300);
         }
       );

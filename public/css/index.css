@@ -59,13 +59,12 @@ root {
 }
 
 .medium-block .bg-layer .hover-layer{
-    top: 280px;
+    top: 100%;
     position: absolute;
     background: white;
-    width: 160px;
-    height: 160px;
+    width: 100%;
+    height: 100%;
     z-index: 1;
-    padding: 5px;
     color: #aaa;
     font-style: italic;
 }
@@ -73,10 +72,9 @@ root {
 .medium-block .bg-layer .ctrl-layer{
     position: absolute;
     opacity: 0;
-    background: yellow;
-    width: 160px;
-    height: 160px;
     z-index: 10;
+    width: 100%;
+    height: 100%;
 }
 
 
@@ -97,9 +95,11 @@ root {
 }
 
 #index-wrap .color3{
+    background-color: #ffef84;
 }
 
 #index-wrap .color4{
+    background-color: #d7e8b2;
 }
 
 #index-wrap .admin-login{
