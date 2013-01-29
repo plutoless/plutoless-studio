@@ -1,0 +1,125 @@
+/* 
+    Document   : index
+    Created on : 10-Apr-2012, 20:17:12
+    Author     : plutoless
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+#index-wrap{
+    margin: 50px auto auto auto;
+    overflow: auto;    
+    width: 340px;
+}
+
+
+#index-wrap .medium-block{
+    float: left;
+    opacity: 0;
+    width: 160px;
+    height: 160px;
+    position: relative;
+    margin: 5px;
+}
+
+
+.medium-block .bg-layer{
+    position: relative;
+    background: yellow;
+    width: 160px;
+    height: 160px;
+    font-weight: bold;
+    font-size: 15px;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.medium-block .bg-layer .content-layer{
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    font-weight: bold;
+    font-size: 15px;
+    z-index: 1;
+}
+
+.medium-block .bg-layer .hover-layer{
+    top: 280px;
+    position: absolute;
+    background: white;
+    width: 160px;
+    height: 160px;
+    z-index: 1;
+    padding: 5px;
+    color: #aaa;
+    font-style: italic;
+}
+
+.medium-block .bg-layer .ctrl-layer{
+    position: absolute;
+    opacity: 0;
+    background: yellow;
+    width: 160px;
+    height: 160px;
+    z-index: 10;
+}
+
+
+
+.clickable-block{
+    cursor: pointer;
+}
+
+.clickable-block:hover{
+}
+
+#index-wrap .posts{
+    background:#FFB11B;
+}
+
+#index-wrap .blog{
+    background: white;
+}
+
+#index-wrap .recent-works{
+    background:#E16B8C;
+}
+
+#index-wrap .contact{
+    background:#FFB11B;
+}
+
+#index-wrap .admin-login{
+  float: left;
+  text-align: right;
+  margin: 10px 0 0 5px;
+  opacity: 0;
+}
+
+#index-wrap .admin-login .input-box{
+  width: 120px;
+  height: 25px;
+  background: #C0E0EC;
+  border: 2px solid #D0E3EC;
+  color: #7993B4;
+  padding: 3px 5px;
+  display: inline;
+  font-size: 12px;
+  margin-right: 2px;
+}
+
+#index-wrap .admin-login .signup{
+  width: 50px;
+  height: 32px;
+  background: #E34E50;
+  border: 2px solid #E34E50;
+  color: white;
+  padding: 3px 2px;
+  padding: 4px 0 4px;
+  margin-left: 1px;
+  text-transform: uppercase;
+}

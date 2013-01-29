@@ -1,0 +1,43 @@
+﻿<?php
+
+$this->title = "My Posts";
+$this->headTitle($this->title);
+?>
+<head>
+  <?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/post.css');?>
+  <?php echo $this->headScript()->appendFile($this->baseUrl().'/../library/js/post.js');?>
+  <?php echo $this->headScript()->appendFile($this->baseUrl().'/../library/js/common.js');?>
+</head>
+<div id="view-content">
+  <div class="right-column">
+    <div class="post-header">
+      <a href="<?php echo $this->url(array('controller'=>'post','action'=>'add'));?>">add</a>
+    </div>
+    <div class="post-list">
+      <ul>
+        <?php foreach($this->pagePosts as $post) : ?>
+          <li>
+            <div class="time"><?php echo date("M d, Y", strtotime($this->escape($post->ts)));?></div>
+            <div class="titleBar">
+              <div class="title inline"><?php echo $this->escape($post->title);?></div>
+              <div class="info inline"><?php echo $this->escape($post->category);?></div>
+            </div>
+            <div class="content"><?php echo $this->escape($post->text);?></div>
+          </li>
+        <?php endforeach; ?>
+      </ul>
+    </div>
+  </div>
+  <!--
+  <div class="menu-column">
+    <div class="menu-block">
+      <div class="return menu-content">
+      </div>
+    </div>
+    <div class="menu-block">
+      <div class="refresh menu-content">
+      </div>
+    </div>
+  </div>
+  -->
+</div>

@@ -1,0 +1,17 @@
+<?php
+session_start();
+?>
+
+<br /><br />
+<meta http-equiv="refresh" content="3; URL=<?php echo $this->url(array('controller'=>'index','action'=>'index'));?>">
+<div id="view-content">
+  <?php
+    if($this->success)
+      echo 'Log in Successful, will turn to index page in 3 sec';
+    else
+      echo 'Password Error, will turn to index page in 3 sec';
+      
+    $_SESSION['username'] = $this->username;
+  ?>
+  
+</div>

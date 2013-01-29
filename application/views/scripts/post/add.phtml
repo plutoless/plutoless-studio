@@ -1,0 +1,12 @@
+<?php
+
+$this->title = "My Posts";
+$this->headTitle($this->title);
+?>
+<head>
+  <?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/post.css');?>
+  <?php echo $this->headScript()->appendFile($this->baseUrl().'/../library/js/post.js');?>
+</head>
+<div id="view-content">
+	<?php echo $this->form; ?>
+</div>
