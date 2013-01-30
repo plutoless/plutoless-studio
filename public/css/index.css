@@ -11,7 +11,7 @@ root {
 }
 
 #index-wrap{
-    margin: 50px auto auto auto;
+    margin: 20px auto auto auto;
     overflow: auto;    
     width: 800px;
 }
@@ -38,7 +38,6 @@ root {
     font-size: 15px;
     z-index: 1;
     overflow: hidden;
-    background-color: #fff;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     -ms-border-radius: 2px;
@@ -67,6 +66,7 @@ root {
     z-index: 1;
     color: #aaa;
     font-style: italic;
+    padding: 5px;
 }
 
 .medium-block .bg-layer .ctrl-layer{
@@ -86,30 +86,14 @@ root {
 .clickable-block:hover{
 }
 
-#index-wrap .color1{
-    background-color: #5b3c26;
-}
-
-#index-wrap .color2{
-    background-color: #8ac5d4;
-}
-
-#index-wrap .color3{
-    background-color: #ffef84;
-}
-
-#index-wrap .color4{
-    background-color: #d7e8b2;
-}
-
-#index-wrap .admin-login{
-  float: left;
+#admin-login{
+  position: absolute;
   text-align: right;
   margin: 10px 0 0 5px;
   opacity: 0;
 }
 
-#index-wrap .admin-login .input-box{
+#admin-login .input-box{
   width: 120px;
   height: 25px;
   background: #C0E0EC;
@@ -121,7 +105,7 @@ root {
   margin-right: 2px;
 }
 
-#index-wrap .admin-login .signup{
+#admin-login .signup{
   width: 50px;
   height: 32px;
   background: #E34E50;

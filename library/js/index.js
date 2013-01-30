@@ -33,7 +33,7 @@ var index = {
     },
     
     
-    appear : function(posts, works, fun, contact, login)
+    appear : function(posts, works, fun, contact)
     {
         setTimeout(function(){
           posts.parent().animate({
@@ -51,19 +51,14 @@ var index = {
           fun.parent().animate({
             opacity:1
           }, 800);
-        }, 400);
+        }, 300);
         
         setTimeout(function(){
           contact.parent().animate({
             opacity:1
           }, 800);
-        }, 300);
+        }, 400);
         
-        setTimeout(function(){
-          login.animate({
-            opacity:1
-          }, 800);
-        }, 500);
     },
     
     attachListeners : function(menuBlocks, indexObjects, clickBlockCtrl, inputBox)
@@ -92,7 +87,7 @@ var index = {
         function(){
           var hoverLayer = $(this).siblings('.hover-layer');
           hoverLayer.stop().animate({
-            'top': $(this).height()*0.9
+            'top': $(this).height()*0.87
           }, 300);
         },
         function(){

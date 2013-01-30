@@ -31,7 +31,7 @@ $this->headTitle($this->title);
     </div>
     
     <div class="medium-block index-object" name="projects">
-        <div class="bg-layer recent-works">
+        <div class="bg-layer clickable-block recent-works">
             
             <div class="content-layer color2">
                 <div class="hover-layer">
@@ -79,7 +79,7 @@ $this->headTitle($this->title);
     if(!isset($_SESSION['username']))
     {
       echo '
-      <div class="admin-login index-object">
+      <div id="admin-login" class="index-object">
         <form action="' . $this->url(array('controller'=>'index','action'=>'login')) . '" method="post">
           <div>
             <input type="text" name="cm-name" class="input-box" value="username">
