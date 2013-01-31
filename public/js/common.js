@@ -3,7 +3,8 @@ var common = {
     dom : {
       msgBoxWrapper : 0,
       idleCounter : 0,
-      busyCounter : 0
+      busyCounter : 0,
+      navFocused : false
     },
     
     init : function()
@@ -19,6 +20,7 @@ var common = {
     {
       navLinks.mouseenter(function(){
         var name = $(this).attr("name");
+        common.dom.navFocused = true;
         if(name=="index")
           common.showMessage(122);
         else if(name=="post")
@@ -29,6 +31,9 @@ var common = {
           common.showMessage(110);
         else if(name=="contact")
           common.showMessage(138);
+      });
+      navLinks.mouseleave(function(){
+        common.dom.navFocused = false;
       });
       
     },
@@ -78,29 +83,32 @@ var common = {
       var msgBoxWrapper = common.dom.msgBoxWrapper;
       var rtime = Math.floor(Math.random()*6*1000);
       var rpic = Math.floor(Math.random()*244+1);
-      if(!msgBoxWrapper.hasClass('inDisplay'))
+      if(!common.dom.navFocused)
       {
-        /* if idle */
-        if(common.dom.idleCounter>0)
+        if(!msgBoxWrapper.hasClass('inDisplay'))
         {
-          common.showMessage(rpic);
-          common.dom.busyCounter = 0;
-          common.dom.idleCounter = 0;
+          /* if idle */
+          if(common.dom.idleCounter>0)
+          {
+            common.showMessage(rpic);
+            common.dom.busyCounter = 0;
+            common.dom.idleCounter = 0;
+          }
+          common.dom.idleCounter++;
+        }else{
+          if(common.dom.busyCounter>1)
+          {
+            common.hideMessage();
+            common.dom.busyCounter = 0;
+            common.dom.idleCounter = 0;
+          }
+          common.dom.busyCounter++;
         }
-        common.dom.idleCounter++;
-      }else{
-        if(common.dom.busyCounter>1)
-        {
-          common.hideMessage();
-          common.dom.busyCounter = 0;
-          common.dom.idleCounter = 0;
-        }
-        common.dom.busyCounter++;
+      
       }
       /* self call after random time */
       setTimeout(function() {
         common.dynamicMessage();
       }, rtime);
-      
     }
 }

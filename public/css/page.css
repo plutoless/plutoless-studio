@@ -40,12 +40,14 @@ ul{
     left: -42px;
     top: 24px;
     z-index: 0;
+    text-align: center;
 }
 
 #header .msg-box img{
     display:inline-block;
     height: 16px;
     margin-top: 8px;
+    margin-right: 2px;
 }
 
 #header .logo{
