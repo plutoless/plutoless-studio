@@ -6,8 +6,8 @@ $this->title = "My Posts";
 $this->headTitle($this->title);
 ?>
 <head>
-    <?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/index.css');?>
-    <?php echo $this->headScript()->appendFile($this->baseUrl().'/../library/js/index.js');?>
+    <?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/public/css/index.css');?>
+    <?php echo $this->headScript()->appendFile($this->baseUrl().'/public/js/index.js');?>
 </head>
 <div id="index-wrap">
 
@@ -23,7 +23,7 @@ $this->headTitle($this->title);
                 
                 <div class="ctrl-layer">
                 </div>
-                <img src="<?php echo $this->baseUrl().'/images/articles.png';?>"/>
+                <img src="<?php echo $this->baseUrl().'/public/images/articles.png';?>"/>
             </div>
             
         </div>
@@ -40,7 +40,7 @@ $this->headTitle($this->title);
                 
                 <div class="ctrl-layer">
                 </div>
-                <img src="<?php echo $this->baseUrl().'/images/projects.png';?>"/>
+                <img src="<?php echo $this->baseUrl().'/public/images/projects.png';?>"/>
             </div>
         </div>
     </div>
@@ -54,7 +54,7 @@ $this->headTitle($this->title);
                 </div>
                 <div class="ctrl-layer">
                 </div>
-                <img src="<?php echo $this->baseUrl().'/images/fun.png';?>"/>
+                <img src="<?php echo $this->baseUrl().'/public/images/fun.png';?>"/>
             </div>
             
             
@@ -70,7 +70,7 @@ $this->headTitle($this->title);
 
                 <div class="ctrl-layer">
                 </div>
-                <img src="<?php echo $this->baseUrl().'/images/contacts.png';?>"/>
+                <img src="<?php echo $this->baseUrl().'/public/images/contacts.png';?>"/>
             </div>
             
         </div>

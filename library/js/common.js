@@ -1,8 +1,0 @@
-var common = {
-    
-    
-    init : function()
-    {
-    
-    }
-}
