@@ -22,11 +22,12 @@ echo $this->doctype();
         
         <div id="header">
           <div class="logo">
-              
-            <div id="msg-box" class="msg-box rounded color5">
-                <img src="<?php echo ($this->baseUrl().'/public/images/msg2/headphones.png'); ?>"/>
+            <div id="msg-box-wrapper">
+              <div class="msg-box rounded color5">
+                <img src="<?php echo ($this->baseUrl().'/public/images/msg3/25.png'); ?>"/>
+              </div>
+              <div class="tip"></div>
             </div>
-            <div class="tip"></div>
             <img src="<?php echo ($this->baseUrl().'/public/images/logo.png'); ?>"></img>
           </div>
         </div>
@@ -34,7 +35,7 @@ echo $this->doctype();
             <ul>
                 <li>
                     <div class="holding color5"></div>
-                    <div class="nav-link">
+                    <div class="nav-link" name="index">
                       <a href="<?php echo $this->baseURL();?>">
                           <span>Index</span>
                       </a>
@@ -43,7 +44,7 @@ echo $this->doctype();
                 |
                 <li>
                     <div class="holding color5"></div>
-                    <div class="nav-link">
+                    <div class="nav-link" name="post">
                       <a href="post">
                           <span>Posts</span>
                       </a>
@@ -52,7 +53,7 @@ echo $this->doctype();
                 |
                 <li>
                     <div class="holding color5"></div>
-                    <div class="nav-link">
+                    <div class="nav-link" name="project">
                       <a href="projects">
                           <span>Projects</span>
                       </a>
@@ -61,7 +62,7 @@ echo $this->doctype();
                 |
                 <li>
                     <div class="holding color5"></div>
-                    <div class="nav-link">
+                    <div class="nav-link" name="fun">
                       <a href="fun">
                           <span>Fun</span>
                       </a>
@@ -70,7 +71,7 @@ echo $this->doctype();
                 |
                 <li>
                     <div class="holding color5"></div>
-                    <div class="nav-link">
+                    <div class="nav-link" name="contact">
                       <a href="contact">
                           <span>Contact</span>
                       </a>
@@ -82,7 +83,7 @@ echo $this->doctype();
             <?php echo $this->layout()->content; ?>
         </div>
         <div id="bottom">
-            © 2013 plutoless-studio
+            <span>© 2013 plutoless-studio</span>
         </div>
     </body>
 </html>
