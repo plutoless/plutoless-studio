@@ -12,6 +12,8 @@ var index = {
     
     init : function()
     {
+        common.init();
+        
         var menuBlocks = $('#index-wrap .medium-block');
         var indexObjects = $('#index-wrap .index-object');
         var inputBox = $('#index-wrap .admin-login .input-box');
