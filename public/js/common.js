@@ -1,0 +1,8 @@
+var common = {
+    
+    
+    init : function()
+    {
+    
+    }
+}
