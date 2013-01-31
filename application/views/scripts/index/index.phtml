@@ -6,8 +6,8 @@ $this->title = "My Posts";
 $this->headTitle($this->title);
 ?>
 <head>
-    <?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/public/css/index.css');?>
-    <?php echo $this->headScript()->appendFile($this->baseUrl().'/public/js/index.js');?>
+    <?php $this->headLink()->prependStylesheet($this->baseUrl().'/public/css/index.css');?>
+    <?php $this->headScript()->appendFile($this->baseUrl().'/public/js/index.js');?>
 </head>
 <div id="index-wrap">
 
