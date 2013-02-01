@@ -43,17 +43,20 @@ var common = {
     prepareMessageInput : function(msgInput){
         var msgInputField = msgInput.find('.input-wrapper input');
         var msgInputSubmitButton = msgInput.find('.submit-button');
+        var defaultStr = "Say something?";
         msgInputField.focus(function(){
-            if(msgInputField.val()=="Say something?")
+            if(msgInputField.val()==defaultStr)
                 msgInputField.val("");
         });
         msgInputField.blur(function(){
             if(msgInputField.val()=="")
-                msgInputField.val("Say something?");
+                msgInputField.val(defaultStr);
         });
         msgInputSubmitButton.click(function(){
-            
+            if(msgInputField.val()=="" || msgInputField.val()==defaultStr)
                 common.showMessage(1,"Fill in something then:(");
+            else{
+            }
         });
     },
     
