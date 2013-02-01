@@ -11,9 +11,11 @@ class IndexController extends Zend_Controller_Action
     public function indexAction()
     {
         // action body
-        $posts = new Application_Model_DbTable_Posts();
+        /*
+        $posts = new Application_Model_DbTable_Post();
         $this->view->posts = $posts->fetchAll();
         $this->view->recentPost = $posts->getRecentPost();
+        */
     }
 
     public function addAction()

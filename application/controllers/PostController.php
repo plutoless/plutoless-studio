@@ -8,7 +8,7 @@ class PostController extends Zend_Controller_Action
     public function init()
     {
         /* Initialize action controller here */
-        $this->posts = new Application_Model_DbTable_Posts();
+        $this->posts = new Application_Model_DbTable_Post();
     }
 
     public function indexAction()

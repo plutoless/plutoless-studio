@@ -43,17 +43,22 @@ var common = {
       var msgBoxWrapper = common.dom.msgBoxWrapper;
       if(msgBoxWrapper.hasClass('inDisplay'))
       {
-        /* already in display, dim the msg box & show again with new pic */
-        msgBoxWrapper.stop().fadeOut(
-        { 
-          duration: 200,
-          complete: function(){
-            var htmlStr = '<img src="public/images/msg3/'+ n + '.png"/>';
-            msgBoxWrapper.find('.msg-box').html(htmlStr);
-            msgBoxWrapper.fadeIn();
-          }
-        });
-        
+        var original = msgBoxWrapper.find('.msg-box').html();
+        var noStr = n+'.png';
+        var originalFile = original.match(/[0-9]{1,3}.png/);
+        if(noStr!=originalFile)
+        {
+          /* already in display & not same, dim the msg box & show again with new pic */
+          msgBoxWrapper.stop().fadeOut(
+          { 
+            duration: 200,
+            complete: function(){
+              var htmlStr = '<img src="public/images/msg3/'+ n + '.png"/>';
+              msgBoxWrapper.find('.msg-box').html(htmlStr);
+              msgBoxWrapper.fadeIn();
+            }
+          });
+        }
       }else{
         var htmlStr = '<img src="public/images/msg3/'+ n + '.png"/>';
         msgBoxWrapper.find('.msg-box').html(htmlStr);

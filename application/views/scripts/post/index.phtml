@@ -1,12 +1,9 @@
 ﻿<?php
 
-$this->title = "My Posts";
 $this->headTitle($this->title);
-$this->headLink()->prependStylesheet($this->baseUrl().'/css/post.css');
-$this->headScript()->appendFile($this->baseUrl().'/../library/js/post.js');
-$this->headScript()->appendFile($this->baseUrl().'/../library/js/common.js');
+$this->headLink()->prependStylesheet($this->baseUrl().'/public/css/post.css');
+$this->headScript()->prependFile($this->baseUrl().'/public/js/post.js');
 ?>
-
 <div id="view-content">
   <div class="right-column">
     <div class="post-header">
@@ -27,7 +24,7 @@ $this->headScript()->appendFile($this->baseUrl().'/../library/js/common.js');
       </ul>
     </div>
   </div>
-  <!--
+  
   <div class="menu-column">
     <div class="menu-block">
       <div class="return menu-content">
@@ -38,5 +35,5 @@ $this->headScript()->appendFile($this->baseUrl().'/../library/js/common.js');
       </div>
     </div>
   </div>
-  -->
+  
 </div>
