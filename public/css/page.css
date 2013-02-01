@@ -11,7 +11,7 @@ html{
 }
 
 body{
-  background: #eaeaea;
+  /*background: #eaeaea;*/
   margin: 0;
   color: #121314;
   font-family: "Times New Roman", Verdana, "SimSun", sans-serif;
@@ -24,7 +24,9 @@ ul{
 
 #header{
   height: 80px;
-  text-align: center;
+  width: 800px;
+  margin-left: auto;
+  margin-right: auto;
   position: relative;
 }
 
@@ -33,12 +35,13 @@ ul{
 }
 
 #header .msg-box{
-    overflow: hidden;
     position:absolute;
-    height: 32px;
-    width: 32px;
-    left: -42px;
-    top: 24px;
+    min-height: 32px;
+    min-width: 32px;
+    width: auto;
+    max-width: 500px;
+    right: 176px;
+    top: 28px;
     z-index: 0;
     text-align: center;
 }
@@ -48,6 +51,13 @@ ul{
     height: 16px;
     margin-top: 8px;
     margin-right: 2px;
+}
+
+#header .msg-box span{
+    text-align: left;
+    display: inline-block;
+    padding: 2px 10px;
+    color: white;
 }
 
 #header .logo{
@@ -64,9 +74,9 @@ ul{
     height: 0; 
     border-top: 0px solid transparent;
     border-bottom: 10px solid transparent;
-    border-left:10px solid #D0104C;
+    border-left:10px solid #E34E50;
     left: -12px;
-    top: 36px;
+    top: 40px;
     z-index: 1;
 }
 
@@ -75,11 +85,11 @@ ul{
 }
 
 #navigation{
-    padding: 20px;
 }
 
 #navigation ul{
     text-align: center;
+    margin-right: 50px;
 }
 
 #navigation ul li{
@@ -118,7 +128,7 @@ ul{
 #content{
   width: 960px;
   overflow: auto;
-  background: #eaeaea;
+  /*background: #eaeaea;*/
   margin: auto auto auto auto;
 }
 
@@ -127,10 +137,15 @@ ul{
   padding-top: 50px;
   text-align: center;
   color: #505050;
+  font-size: 12px;
 }
 
 .inline{
   display: inline;
+}
+
+.inline-block{
+  display: inline-block;
 }
 
 .rounded{
@@ -159,3 +174,50 @@ ul{
     background-color: #D0104C;
 }
 
+.color6{
+    background-color: #E34E50
+}
+
+.shadow{
+    -webkit-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.05);
+    -moz-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.05);
+    box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.05);
+}
+
+#say-something{
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 4px;
+  width: 180px;
+  text-align: center;
+  overflow: auto;
+}
+
+#say-something .input-wrapper{ 
+  position: relative;
+  float: left;
+  margin-right: 5px;
+}
+
+#say-something .input-box{
+  width: 100px;
+  background: #C0E0EC;
+  color: #7993B4;
+  font-family: "Times New Roman", Verdana, "SimSun", sans-serif;
+  border: 0;
+  font-size: 12px;
+  padding: 7px;
+  margin: 0;
+}
+
+#say-something .submit-button{
+  position: relative;
+  float: left;
+  background: #E34E50;
+  border: 0;
+  color: white;
+  clear: right;
+  padding: 7px;
+  cursor: pointer;
+}
