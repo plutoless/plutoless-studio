@@ -43,9 +43,6 @@ root {
     -ms-border-radius: 2px;
     -o-border-radius: 2px;
     border-radius: 2px;
-    -webkit-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.05);
-    -moz-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.05);
-    box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.05);
 }
 
 .medium-block .bg-layer .content-layer img{
@@ -67,6 +64,7 @@ root {
     color: #aaa;
     font-style: italic;
     padding: 5px;
+    font-family: "Times New Roman", Verdana, "SimSun", sans-serif;
 }
 
 .medium-block .bg-layer .ctrl-layer{

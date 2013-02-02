@@ -50,6 +50,7 @@ class Application_Model_DbTable_Post extends Zend_Db_Table_Abstract
     
     public function addPost($title, $text)
     {
+    
         $data = array(
             'ts' => new Zend_Db_Expr('NOW()'),
             'title' => $title,

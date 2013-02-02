@@ -4,7 +4,8 @@ var common = {
       msgBoxWrapper : 0,
       idleCounter : 0,
       busyCounter : 0,
-      navFocused : false
+      navFocused : false,
+      msgList : 0
     },
     
     init : function()
@@ -16,6 +17,7 @@ var common = {
       common.prepareMessageInput(msgInput);
       common.appear(navLinks, msgBox);
       common.dynamicMessage();
+      common.getMessage();
     },
     
     appear : function(navLinks)
@@ -44,7 +46,14 @@ var common = {
         var msgInputField = msgInput.find('.input-wrapper input');
         var msgInputSubmitButton = msgInput.find('.submit-button');
         var defaultStr = "Say something?";
+        msgInputField.keypress(function(e){
+            if (e.keyCode == 13) {
+                common.submitMessage(msgInputField, defaultStr);
+                e.preventDefault();
+            }
+        });
         msgInputField.focus(function(){
+            
             if(msgInputField.val()==defaultStr)
                 msgInputField.val("");
         });
@@ -53,11 +62,37 @@ var common = {
                 msgInputField.val(defaultStr);
         });
         msgInputSubmitButton.click(function(){
-            if(msgInputField.val()=="" || msgInputField.val()==defaultStr)
-                common.showMessage(1,"Fill in something then:(");
-            else{
-            }
+            common.submitMessage(msgInputField, defaultStr);
         });
+    },
+    
+    submitMessage : function(msgInputField, defaultStr)
+    {
+        if(msgInputField.val()=="" || msgInputField.val()==defaultStr)
+            common.showMessage(1,"Fill in something then:(");
+        else{
+            var val = msgInputField.val();
+            msgInputField.val("");
+            sendAjaxCall("./index/message/format/json",
+                    "post",
+                    {'text': val},
+                    function(r){
+                        common.showMessage(1, r.content);
+                    }
+            );
+
+        }
+    },
+    
+    getMessage : function()
+    {
+        sendAjaxCall("./index/getmessage/format/json",
+                    "get",
+                    {},
+                    function(r){
+                      common.dom.msgList = r;
+                    }
+        );
     },
     
     showMessage : function(n, str)
@@ -125,8 +160,8 @@ var common = {
     dynamicMessage : function()
     {
       var msgBoxWrapper = common.dom.msgBoxWrapper;
-      var rtime = Math.floor(Math.random()*6*1000);
-      var rpic = Math.floor(Math.random()*244+1);
+      var rtime = Math.floor(Math.random()*10*1000);
+      var rmsg = Math.floor(Math.random()*common.dom.msgList.length+1);
       if(!common.dom.navFocused)
       {
         if(!msgBoxWrapper.hasClass('inDisplay'))
@@ -134,13 +169,13 @@ var common = {
           /* if idle */
           if(common.dom.idleCounter>0)
           {
-            common.showMessage(rpic, "");
+            common.showMessage(1, common.dom.msgList[rmsg].content);
             common.dom.busyCounter = 0;
             common.dom.idleCounter = 0;
           }
           common.dom.idleCounter++;
         }else{
-          if(common.dom.busyCounter>1)
+          if(common.dom.busyCounter>0)
           {
             common.hideMessage();
             common.dom.busyCounter = 0;
@@ -165,7 +200,9 @@ function sendAjaxCall(url,type,data,callback){
         dataType: 'json',
         type: type,
         data: data,
-        success: callback,
+        success: function(r){
+          callback(r);
+        },
         error: function(e, xhr)
         {
         }

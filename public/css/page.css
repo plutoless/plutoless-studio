@@ -11,10 +11,10 @@ html{
 }
 
 body{
-  /*background: #eaeaea;*/
+  background: #eaeaea;
   margin: 0;
   color: #121314;
-  font-family: "Times New Roman", Verdana, "SimSun", sans-serif;
+  font-family: "Microsoft Yahei","Helvetica","Arial";
   font-size: 12px;
 }
 
@@ -36,27 +36,29 @@ ul{
 
 #header .msg-box{
     position:absolute;
-    min-height: 32px;
     min-width: 32px;
     width: auto;
-    max-width: 500px;
+    max-width: 250px;
     right: 176px;
     top: 28px;
     z-index: 0;
     text-align: center;
+    white-space: pre;
+    word-wrap: break-word;
+    background-color: #D0104C;
 }
 
 #header .msg-box img{
-    display:inline-block;
     height: 16px;
     margin-top: 8px;
+    margin-bottom: 4px;
     margin-right: 2px;
 }
 
 #header .msg-box span{
     text-align: left;
-    display: inline-block;
-    padding: 2px 10px;
+    display: block;
+    padding: 5px 10px;
     color: white;
 }
 
@@ -74,9 +76,9 @@ ul{
     height: 0; 
     border-top: 0px solid transparent;
     border-bottom: 10px solid transparent;
-    border-left:10px solid #E34E50;
+    border-left:10px solid #D0104C;
     left: -12px;
-    top: 40px;
+    top: 38px;
     z-index: 1;
 }
 
@@ -177,13 +179,19 @@ ul{
 .color6{
     background-color: #E34E50
 }
-
+/*
 .shadow{
-    -webkit-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.05);
-    -moz-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.05);
-    box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.05);
+    -webkit-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.3);
+    box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.3);
 }
 
+.shadow2{
+    -webkit-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.2);
+}
+*/
 #say-something{
   position: absolute;
   top: 0;
@@ -202,22 +210,21 @@ ul{
 
 #say-something .input-box{
   width: 100px;
-  background: #C0E0EC;
-  color: #7993B4;
-  font-family: "Times New Roman", Verdana, "SimSun", sans-serif;
-  border: 0;
-  font-size: 12px;
-  padding: 7px;
+  background: #787878;
+  color: #fff;
+  border: 2px solid #ddd;
+  padding: 8px 8px 9px 8px;
   margin: 0;
 }
 
 #say-something .submit-button{
   position: relative;
   float: left;
-  background: #E34E50;
-  border: 0;
+  background: #D0104C;
+  border: 2px solid #ddd;
   color: white;
   clear: right;
-  padding: 7px;
+  padding: 8px;
   cursor: pointer;
+  margin: 0;
 }
