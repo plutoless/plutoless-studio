@@ -12,15 +12,16 @@ var common = {
     {
       common.dom.msgBoxWrapper = $('#msg-box-wrapper');
       var navLinks = $('#navigation .nav-link');
-      var msgBox = $('#msg-box-wrapper');
       var msgInput = $('#say-something');
+      var logo = $('#header .logo img');
+      var logoOverlay = $('#header .logo .logo-overlay');
       common.prepareMessageInput(msgInput);
-      common.appear(navLinks, msgBox);
-      common.dynamicMessage();
+      common.appear(navLinks, logo, logoOverlay);
       common.getMessage();
+      common.dynamicMessage();
     },
     
-    appear : function(navLinks)
+    appear : function(navLinks, logo, logoOverlay)
     {
       navLinks.mouseenter(function(){
         var name = $(this).attr("name");
@@ -39,7 +40,16 @@ var common = {
       navLinks.mouseleave(function(){
         common.dom.navFocused = false;
       });
-      
+      logo.mouseenter(
+        function(){
+            logoOverlay.fadeIn(100);
+        }
+      );
+      logo.mouseleave(
+        function(){
+            logoOverlay.fadeOut(100);
+        }
+      );
     },
     
     prepareMessageInput : function(msgInput){
@@ -78,6 +88,7 @@ var common = {
                     {'text': val},
                     function(r){
                         common.showMessage(1, r.content);
+                        common.dom.busyCounter = 0;
                     }
             );
 
@@ -160,8 +171,10 @@ var common = {
     dynamicMessage : function()
     {
       var msgBoxWrapper = common.dom.msgBoxWrapper;
-      var rtime = Math.floor(Math.random()*10*1000);
-      var rmsg = Math.floor(Math.random()*common.dom.msgList.length+1);
+      var rtime = Math.floor(Math.random()*5*1000);
+      var rpic = Math.floor(Math.random()*244+1);
+      var rmsg = Math.floor(Math.random()*common.dom.msgList.length);
+      var rtype = Math.floor(Math.random()*10);
       if(!common.dom.navFocused)
       {
         if(!msgBoxWrapper.hasClass('inDisplay'))
@@ -169,7 +182,10 @@ var common = {
           /* if idle */
           if(common.dom.idleCounter>0)
           {
-            common.showMessage(1, common.dom.msgList[rmsg].content);
+            if(rtype<3)
+                common.showMessage(rpic, "");
+            else
+                common.showMessage(rpic, common.dom.msgList[rmsg].content)
             common.dom.busyCounter = 0;
             common.dom.idleCounter = 0;
           }

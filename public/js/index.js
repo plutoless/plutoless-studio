@@ -82,23 +82,43 @@ var index = {
           );
         }
       );
-    
-    
-      //hover
-      clickBlockCtrl.hover(
-        function(){
-          var hoverLayer = $(this).siblings('.hover-layer');
-          hoverLayer.stop().animate({
-            'top': $(this).height()*0.87
-          }, 300);
-        },
-        function(){
-          var hoverLayer = $(this).siblings('.hover-layer');
-          hoverLayer.stop().animate({
-            'top': $(this).height()
-          }, 300);
+      jQuery.each(jQuery.browser, function(i) {
+        if($.browser.msie){
+            /* hover */
+            clickBlockCtrl.hover(
+                function(){
+                var hoverLayer = $(this).siblings('.hover-layer');
+                hoverLayer.animate({
+                    'top': $(this).height()*0.87
+                }, 300);
+                },
+                function(){
+                var hoverLayer = $(this).siblings('.hover-layer');
+                hoverLayer.animate({
+                    'top': $(this).height()
+                }, 300);
+                }
+            );
         }
-      );
+        else{
+            /* hover */
+            clickBlockCtrl.hover(
+                function(){
+                var hoverLayer = $(this).siblings('.hover-layer');
+                hoverLayer.stop().animate({
+                    'top': $(this).height()*0.87
+                }, 300);
+                },
+                function(){
+                var hoverLayer = $(this).siblings('.hover-layer');
+                hoverLayer.stop().animate({
+                    'top': $(this).height()
+                }, 300);
+                }
+            );
+        }
+      });
+      
       
       inputBox.focus(
         function(){

@@ -16,6 +16,17 @@ root {
     width: 800px;
 }
 
+#index-wrap .intro{
+    font-size: 26px;
+    color: #505050;
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+#index-wrap .intro span{
+    background: #D0104C;
+    color: white;
+}
 
 #index-wrap .medium-block{
     float: left;
@@ -35,7 +46,7 @@ root {
 .medium-block .bg-layer .content-layer{
     position: relative;
     font-weight: bold;
-    font-size: 15px;
+    font-size: 14px;
     z-index: 1;
     overflow: hidden;
     -webkit-border-radius: 2px;

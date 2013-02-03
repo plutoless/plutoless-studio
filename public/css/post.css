@@ -2,8 +2,8 @@
 #view-content{
   margin: auto;
   overflow: auto;
-  width: 850px;
-  opacity: 0;
+  width: 1000px;
+  opacity: 1;
 }
 
 .post-header{
@@ -24,8 +24,9 @@
 
 
 .menu-column{
-  float: right;
-  width: 40px;
+  float: left;
+  width: 22%;
+  background: red;
   overflow: auto;
 }
 
@@ -43,24 +44,27 @@
   left: 0;
 }
 
-.right-column{
-  float: right;
-  width: 650px;
+.center-column{
+  float: left;
+  width: 56%;
   overflow: auto;
-  margin-right: 100px;
-  background-color: white;
+  
 }
 
 
-.right-column .post-list{
-  width: 610px;
-  
+.center-column .post-list{
 }
 
 .post-list li{
   text-align: left;
   border-bottom: 1px solid #DDD;
   padding: 50px 0;
+}
+
+.post-list li:first-child{
+  text-align: left;
+  border-bottom: 1px solid #DDD;
+  padding: 0 0 50px 0;
 }
 
 .post-list li:last-child{
@@ -70,34 +74,41 @@
   margin-bottom: 20px;
 }
 
-.right-column .post-list .titleBar{
+.center-column .post-list .titleBar{
   width: 100%;
   margin: 0 0 20px 0;
 }
 
-.right-column .post-list .titleBar .title{
+.center-column .post-list .titleBar .title{
   font-size: 22px;
-  font-weight: bold;
-  font-family: "Microsoft YaHei","SimHei";
-  margin-right: 5px;
+  letter-spacing: 3px;
+  font-weight: 700;
+  padding: 8px;
+  line-height: 28px;
+  text-transform: uppercase;
 }
 
-.right-column .post-list .time{
+.center-column .post-list .time{
   font-size: 10px;
-  font-family: STXihei,'Helvetica Neue',Helvetica,sans-serif;
   font-weight: bold;
   text-transform: uppercase;
   color: grey;
 }
 
-.right-column .post-list .info{
+.center-column .post-list .info{
   margin-bottom: 5px;
   padding: 10px;
 }
 
-.right-column .post-list .content{
-  font-size: 14px;
-  line-height:150%;
+.center-column .post-list .content{
+    color: #6A686B;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+    font-size: 16px;
+    line-height: 24px;
 }
 
 dl.zend_form dt {
