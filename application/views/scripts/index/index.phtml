@@ -7,13 +7,7 @@ $this->headScript()->appendFile($this->baseUrl().'/public/js/index.js');
 ?>
 
 <div id="index-wrap">
-    <div class="intro">
-    <p>
-        Qianze Zhang is a Designer & Developer
-        with a passion for latest Web Dev, Mobile Dev
-        and Application Dev, currently living in London, UK.
-    </p>
-    </div>
+
     <div class="medium-block index-object" name="post">
 
         <div class="bg-layer clickable-block posts">
@@ -77,6 +71,7 @@ $this->headScript()->appendFile($this->baseUrl().'/public/js/index.js');
             
         </div>
     </div>
+
     <?php
     if(!isset($_SESSION['username']))
     {
@@ -99,4 +94,11 @@ $this->headScript()->appendFile($this->baseUrl().'/public/js/index.js');
       </div>
       ';
     }?>
+</div>
+<div class="intro">
+<p>
+    Qianze Zhang is a Designer & Developer
+    with a passion for latest Web Dev, Mobile Dev
+    and Application Dev, currently living in London, UK.
+</p>
 </div>
