@@ -14,14 +14,13 @@ class PostController extends Zend_Controller_Action
     public function indexAction()
     {
         // action body
-        $this->view->pagePosts = $this->posts->getPost(PostFindType::PAGE, null);
+        $this->view->pagePosts = $this->posts->getPost();
+        $this->view->postTypes = $this->posts->getAllPostTypes();
     }
 
     public function monthAction()
     {
         // action body
-        $month = $this->_getParam('month', '');
-        $this->view->monthlyPosts = $this->posts->getPost(PostFindType::MONTH, $month);
     }
 
     public function addAction()
@@ -31,7 +30,7 @@ class PostController extends Zend_Controller_Action
         $form->submit->setLabel('Add');
         $this->view->form = $form;
         
-        if($this->getRequest()->isPost()){
+        if($this->getRequest()->isPost()){/*
           $formData = $this->getRequest()->getPost();
           if ($form->isValid($formData)) {
               $title = $form->getValue('title');
@@ -40,7 +39,7 @@ class PostController extends Zend_Controller_Action
               $this->_helper->redirector('index');
           } else {
               $form->populate($formData);
-          }
+          }*/
         }
     }
 

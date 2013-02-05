@@ -6,8 +6,31 @@ class IndexController extends Zend_Controller_Action
     public function init()
     {
         /* Initialize action controller here */
+        
+        $ajaxContent = $this->_helper->getHelper('AjaxContext');
+        $ajaxContent->addActionContext('message', 'json')
+                    ->addActionContext('getMessage', 'json')
+                    ->initContext();
+                    
+        if ($this->getRequest()->isXmlHttpRequest()) {
+          $this->_helper->layout->disableLayout();
+          $this->_helper->viewRenderer->setNoRender(true);
+        }
     }
-
+    
+    public function messageAction(){
+      $content = $this->getRequest()->getPost('text');
+      $messages = new Application_Model_DbTable_Message();
+      $data = $messages->addMessage($content);
+      $this->_helper->json($data);
+    }
+    
+    public function getmessageAction(){
+      $messages = new Application_Model_DbTable_Message();
+      $data = $messages->getMessage();
+      $this->_helper->json($data);
+    }
+    
     public function indexAction()
     {
         // action body

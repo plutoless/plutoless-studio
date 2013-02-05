@@ -39,6 +39,7 @@
           <dbTableFile dbTableName="Post"/>
           <dbTableFile dbTableName="Users"/>
           <dbTableFile dbTableName="Message"/>
+          <dbTableFile dbTableName="Type"/>
         </dbTableDirectory>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>

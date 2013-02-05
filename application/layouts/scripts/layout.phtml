@@ -5,6 +5,11 @@ $this->headTitle('Plutoless Studio');
 
 echo $this->doctype();
 ?>
+<script>
+var is_ie8 = false;</script>
+<!--[if LT IE  9]>
+<script>is_ie8 = true;</script>
+<![endif]-->
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <head>
         <?php echo $this->headMeta(); ?>
@@ -22,8 +27,11 @@ echo $this->doctype();
         
         <div id="header">
             <div class="logo">
+                <div class="logo-overlay">
+                    <img src="<?php echo ($this->baseUrl().'/public/images/logo_2.png'); ?>"></img>
+                </div>
                 <div id="msg-box-wrapper">
-                <div class="msg-box rounded color6">
+                <div class="msg-box rounded color6 shadow2">
                     <img src="<?php echo ($this->baseUrl().'/public/images/msg3/25.png'); ?>"/>
                 </div>
                 <div class="tip"></div>
@@ -35,7 +43,7 @@ echo $this->doctype();
                     <input type="text" name="message" class="input-box shadow" value="Say something?"/>
                 </div>
                 <div class="submit-button shadow">
-                    <span>Yeah</span>
+                    Yeah
                 </div>
             </div>
         </div>

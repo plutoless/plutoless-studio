@@ -16,6 +16,21 @@ root {
     width: 800px;
 }
 
+#index-wrap .intro{
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;
+    font-size: 24px;
+    color: #505050;
+    text-align: center;
+    padding-bottom: 40px;
+    line-height: 40px;
+}
+
+#index-wrap .intro span{
+    background: #D0104C;
+    color: white;
+}
 
 #index-wrap .medium-block{
     float: left;
@@ -35,7 +50,7 @@ root {
 .medium-block .bg-layer .content-layer{
     position: relative;
     font-weight: bold;
-    font-size: 15px;
+    font-size: 14px;
     z-index: 1;
     overflow: hidden;
     -webkit-border-radius: 2px;
@@ -43,9 +58,6 @@ root {
     -ms-border-radius: 2px;
     -o-border-radius: 2px;
     border-radius: 2px;
-    -webkit-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.05);
-    -moz-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.05);
-    box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.05);
 }
 
 .medium-block .bg-layer .content-layer img{
@@ -67,6 +79,7 @@ root {
     color: #aaa;
     font-style: italic;
     padding: 5px;
+    font-family: "Times New Roman", Verdana, "SimSun", sans-serif;
 }
 
 .medium-block .bg-layer .ctrl-layer{
