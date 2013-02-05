@@ -7,12 +7,26 @@ class Application_Model_DbTable_Post extends Zend_Db_Table_Abstract
     protected $_name = 'Post';
     
     public function getPost(){
-        $adapter = $this->getDefaultAdapter();
         $posts = Array();
-        $posts = $this->fetchAll(
-                    $this->select('FROM Post LEFT JOIN Type ON Post.ptid = Type.ptid'),
-                    'ORDER BY ts DESC');
+        $posts = $this->fetchAll($this->select()->setIntegrityCheck(false)
+                ->from(array('p' => 'Post'),
+                        array('title','content','ts','ptid'))
+                ->joinLeft(array('t' => 'Type'), 
+                        't.ptid = p.ptid',
+                        array('ptype'=>'title')));
         return $posts;
+    }
+    
+    public function getAllPostTypes(){
+        $types = Array();
+        $types = $this->fetchAll($this->select()->setIntegrityCheck(false)
+                ->from(array('p' => 'Post'),
+                        array('ptid'))
+                ->joinRight(array('t' => 'Type'), 
+                        't.ptid = p.ptid', 
+                        array('ptype' => 'title'))
+                ->group('ptid'));
+        return $types;
     }
     
     public function getRecentPost(){

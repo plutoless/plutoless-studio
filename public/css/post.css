@@ -4,6 +4,7 @@
   overflow: auto;
   width: 1000px;
   opacity: 1;
+  color: #6A686B;
 }
 
 .post-header{
@@ -26,15 +27,13 @@
 .menu-column{
   float: left;
   width: 22%;
-  background: red;
   overflow: auto;
 }
 
 .menu-column .menu-block{
   position: relative;
-  height: 30px;
   width: 40px;
-  overflow: hidden;
+  height: auto;
 }
 
 .menu-block .menu-content{
@@ -86,6 +85,7 @@
   padding: 8px;
   line-height: 28px;
   text-transform: uppercase;
+  color: #444444;
 }
 
 .center-column .post-list .time{
@@ -101,7 +101,6 @@
 }
 
 .center-column .post-list .content{
-    color: #6A686B;
     margin: 0;
     padding: 0;
     border: 0;

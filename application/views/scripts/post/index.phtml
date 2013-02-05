@@ -8,12 +8,13 @@ $this->headScript()->prependFile($this->baseUrl().'/public/js/post.js');
 
   <div class="menu-column">
     <div class="menu-block">
-      <div class="return menu-content">
-      </div>
-    </div>
-    <div class="menu-block">
-      <div class="refresh menu-content">
-      </div>
+      <ul>
+          <?php foreach($this->postTypes as $type): ?>
+          <li>
+              <?php echo $type->ptype; ?>
+          </li>
+          <?php endforeach; ?>
+        </ul>
     </div>
   </div>
   <div class="center-column">

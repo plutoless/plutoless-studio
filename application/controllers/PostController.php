@@ -15,6 +15,7 @@ class PostController extends Zend_Controller_Action
     {
         // action body
         $this->view->pagePosts = $this->posts->getPost();
+        $this->view->postTypes = $this->posts->getAllPostTypes();
     }
 
     public function monthAction()
