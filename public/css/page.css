@@ -45,7 +45,7 @@ ul{
     text-align: center;
     white-space: pre;
     word-wrap: break-word;
-    background-color: #D0104C;
+    background-color: #505050;
 }
 
 #header .msg-box img{
@@ -86,10 +86,11 @@ ul{
     height: 0; 
     border-top: 0px solid transparent;
     border-bottom: 10px solid transparent;
-    border-left:10px solid #D0104C;
+    border-left:10px solid #505050;
     right: 442px;
     top: 60px;
     z-index: 1;
+    
 }
 
 #header img{
@@ -179,19 +180,19 @@ ul{
 }
 
 .color1{
-    background-color: #5b3c26;
+    background-color: #222;
 }
 
 .color2{
-    background-color: #8ac5d4;
+    background-color: #0c555d;
 }
 
 .color3{
-    background-color: #ffef84;
+    background-color: #ff6860;
 }
 
 .color4{
-    background-color: #d7e8b2;
+    background-color: #FF3900;
 }
 
 .color5{
@@ -233,20 +234,21 @@ ul{
 
 #say-something .input-box{
   width: 100px;
-  background: #787878;
+  background: #ffffff;
   color: #fff;
-  border: 2px solid #dde;
+  border: 1px solid #dde;
   padding: 8px 8px 8px 8px;
   margin: 0;
   font-size: 14px;
+  color: #121314;
   font-family: Palatino Linotype, Book Antiqua, Palatino, serif;
 }
 
 #say-something .submit-button{
   position: relative;
   float: left;
-  background: #D0104C;
-  border: 2px solid #dde;
+  background: #505050;
+  border: 1px solid #dde;
   color: white;
   clear: right;
   padding: 8px;
