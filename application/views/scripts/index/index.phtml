@@ -4,101 +4,125 @@ session_start();
 $this->headTitle($this->title);
 $this->headLink()->prependStylesheet($this->baseUrl().'/public/css/index.css');
 $this->headScript()->appendFile($this->baseUrl().'/public/js/index.js');
+
+$keys = array("Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P");
+$keys2 = array("A", "S", "D", "F", "G", "H", "J", "K", "L", "?");
+$keys3 = array("Z", "X", "C", "V", "B", "N", "M", ",", ".", "!");
 ?>
 
 <div id="index-wrap">
-
-    <div class="medium-block index-object" name="post">
-
-        <div class="bg-layer clickable-block posts">
-            
-            <div class="content-layer color1 shadow">
-                <div class="hover-layer">
-                    #posts
+    <div class="key-board">
+        <ul>
+            <li class="key-element-wrapper key-size-tab">
+                <div class="key-element">
+                    <div class="key-element-content shadow3 rounded2">
+                        Tab
+                    </div>
                 </div>
-                
-                <div class="ctrl-layer">
+            </li>
+            <?php foreach($keys AS $key): ?>
+            <li class="key-element-wrapper key-size-normal">
+                <div class="key-element">
+                    <div class="key-element-content shadow3 rounded2">
+                        <?php echo $key;?>
+                    </div>
                 </div>
-                <img src="<?php echo $this->baseUrl().'/public/images/articles.png';?>"/>
-            </div>
+            </li>
+            <?php endforeach;?>
             
-        </div>
-        
+            <li class="key-element-wrapper key-size-backspace">
+                <div class="key-element">
+                    <div class="key-element-content shadow3 rounded2">
+                        <-
+                    </div>
+                </div>
+            </li>
+            <li class="key-element-wrapper key-size-caps">
+                <div class="key-element">
+                    <div class="key-element-content shadow3 rounded2">
+                        Caps
+                    </div>
+                </div>
+            </li>
+            <?php foreach($keys2 AS $key): ?>
+            <li class="key-element-wrapper key-size-normal">
+                <div class="key-element">
+                    <div class="key-element-content shadow3 rounded2">
+                        <?php echo $key;?>
+                    </div>
+                </div>
+            </li>
+            <?php endforeach;?>
+            
+            <li class="key-element-wrapper key-size-enter">
+                <div class="key-element">
+                    <div class="key-element-content shadow3 rounded2">
+                        enter
+                    </div>
+                </div>
+            </li>
+            <li class="key-element-wrapper key-size-shift-left">
+                <div class="key-element">
+                    <div class="key-element-content shadow3 rounded2">
+                        Shift
+                    </div>
+                </div>
+            </li>
+            <?php foreach($keys3 AS $key): ?>
+            <li class="key-element-wrapper key-size-normal">
+                <div class="key-element">
+                    <div class="key-element-content shadow3 rounded2">
+                        <?php echo $key;?>
+                    </div>
+                </div>
+            </li>
+            <?php endforeach;?>
+            
+            <li class="key-element-wrapper key-size-shift-right">
+                <div class="key-element">
+                    <div class="key-element-content shadow3 rounded2">
+                        Shift
+                    </div>
+                </div>
+            </li>
+            
+            <li class="key-element-wrapper key-size-control">
+                <div class="key-element">
+                    <div class="key-element-content shadow3 rounded2">
+                        Ctrl
+                    </div>
+                </div>
+            </li>
+            
+            <li class="key-element-wrapper key-size-option">
+                <div class="key-element">
+                    <div class="key-element-content shadow3 rounded2">
+                        Option
+                    </div>
+                </div>
+            </li>
+            
+            <li class="key-element-wrapper key-size-command">
+                <div class="key-element">
+                    <div class="key-element-content shadow3 rounded2">
+                        Cmd
+                    </div>
+                </div>
+            </li>
+            <li class="key-element-wrapper key-size-space">
+                <div class="key-element">
+                    <div class="key-element-content shadow3 rounded2">
+                        Space
+                    </div>
+                </div>
+            </li>
+            <li class="key-element-wrapper key-size-message">
+                <div class="key-element">
+                    <div class="key-element-content shadow3 rounded2">
+                        Message
+                    </div>
+                </div>
+            </li>
+        </ul>
     </div>
-    
-    <div class="medium-block index-object" name="projects">
-        <div class="bg-layer clickable-block recent-works">
-            
-            <div class="content-layer color2 shadow">
-                <div class="hover-layer">
-                    #projects
-                </div>
-                
-                <div class="ctrl-layer">
-                </div>
-                <img src="<?php echo $this->baseUrl().'/public/images/projects.png';?>"/>
-            </div>
-        </div>
-    </div>
-
-    <div class="medium-block index-object" name="fun">
-        <div class="bg-layer clickable-block fun">
-            <div class="content-layer color3 shadow">
-                
-                <div class="hover-layer">
-                #fun
-                </div>
-                <div class="ctrl-layer">
-                </div>
-                <img src="<?php echo $this->baseUrl().'/public/images/fun.png';?>"/>
-            </div>
-            
-            
-            
-        </div>
-    </div>
-    <div class="medium-block index-object" name="contact">
-        <div class="bg-layer clickable-block contact">
-            <div class="content-layer color4 shadow">
-                <div class="hover-layer">
-                #contact
-                </div>
-
-                <div class="ctrl-layer">
-                </div>
-                <img src="<?php echo $this->baseUrl().'/public/images/contacts.png';?>"/>
-            </div>
-            
-        </div>
-    </div>
-
-    <?php
-    if(!isset($_SESSION['username']))
-    {
-      echo '
-      <div id="admin-login" class="index-object">
-        <form action="' . $this->url(array('controller'=>'index','action'=>'login')) . '" method="post">
-          <div>
-            <input type="text" name="cm-name" class="input-box" value="username">
-            <input type="password" name="cm-pass" class="input-box" value="password">
-
-            <input type="submit" value="Login" class="signup">
-          </div>
-        </form>
-      </div>';
-    }else{
-      echo '
-      <div class="admin-login index-object">
-        Welcome back, '. $_SESSION['username'] .'
-        <a href="' . $this->url(array('controller'=>'index','action'=>'logout')) . '">Sign Out</a>
-      </div>
-      ';
-    }?>
-</div>
-<div class="intro">
-<p>
-    Qianze Zhang is a Designer & Developer
-    with a passion for latest Web Dev, Mobile Dev
-    and Application Dev, currently living in London, UK.
-</p>
 </div>
