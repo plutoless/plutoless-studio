@@ -1,0 +1,131 @@
+/* 
+    Document   : index
+    Created on : 10-Apr-2012, 20:17:12
+    Author     : plutoless
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+#index-wrap{
+    margin: 20px auto auto auto;
+    overflow: auto;    
+    width: 800px;
+}
+
+.intro{
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;
+    font-size: 24px;
+    color: #505050;
+    text-align: center;
+    padding: 50px 0;
+    line-height: 40px;
+}
+
+#index-wrap .intro span{
+    background: #D0104C;
+    color: white;
+}
+
+#index-wrap .medium-block{
+    float: left;
+    opacity: 0;
+    width: 25%;
+    position: relative;
+}
+
+
+.medium-block .bg-layer{
+    position: relative;
+    overflow: hidden;
+    padding: 10px;
+    
+}
+
+.medium-block .bg-layer .content-layer{
+    position: relative;
+    font-weight: bold;
+    font-size: 14px;
+    z-index: 1;
+    overflow: hidden;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px;
+}
+
+.medium-block .bg-layer .content-layer img{
+    width: 48px;
+    height: 48px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 100px 0;
+}
+
+.medium-block .bg-layer .hover-layer{
+    top: 100%;
+    position: absolute;
+    background: white;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    color: #aaa;
+    font-style: italic;
+    padding: 5px;
+    font-family: "Times New Roman", Verdana, "SimSun", sans-serif;
+}
+
+.medium-block .bg-layer .ctrl-layer{
+    position: absolute;
+    opacity: 0;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+.clickable-block{
+    cursor: pointer;
+}
+
+.clickable-block:hover{
+}
+
+#admin-login{
+  position: absolute;
+  text-align: right;
+  margin: 10px 0 0 5px;
+  opacity: 0;
+}
+
+#admin-login .input-box{
+  width: 120px;
+  height: 25px;
+  background: #C0E0EC;
+  border: 2px solid #D0E3EC;
+  color: #7993B4;
+  padding: 3px 5px;
+  display: inline;
+  font-size: 12px;
+  margin-right: 2px;
+}
+
+#admin-login .signup{
+  width: 50px;
+  height: 32px;
+  background: #E34E50;
+  border: 2px solid #E34E50;
+  color: white;
+  padding: 3px 2px;
+  padding: 4px 0 4px;
+  margin-left: 1px;
+  text-transform: uppercase;
+}

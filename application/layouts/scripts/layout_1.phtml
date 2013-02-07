@@ -1,0 +1,106 @@
+<?php
+$this->headMeta()->appendHttpEquiv('Content-Type', 'text/html; charset=utf-8');
+$this->headTitle()->setSeparator(' - ');
+$this->headTitle('Plutoless Studio');
+
+echo $this->doctype();
+?>
+<script>
+var is_ie8 = false;</script>
+<!--[if LT IE  9]>
+<script>is_ie8 = true;</script>
+<![endif]-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <?php echo $this->headMeta(); ?>
+        <?php echo $this->headTitle(); ?>
+        <?php $this->headLink()->prependStylesheet($this->baseUrl().'/public/css/page.css');?>
+        <?php $this->headScript()->prependFile($this->baseUrl().'/public/js/common.js');?>
+        <?php $this->headScript()->prependFile($this->baseUrl().'/public/js/jquery.color.js');?>
+        <?php $this->headScript()->prependFile($this->baseUrl().'/public/js/jquery.easing.1.3.js');?>
+        <?php $this->headScript()->prependFile($this->baseUrl().'/public/js/jquery-1.8.0.min.js');?>
+        <?php echo $this->headLink();?>
+        <?php echo $this->headScript();?>
+        <link rel="shortcut icon" href="<?php echo $this->baseURL();?>/public/images/favicon.ico">
+    </head>
+    <body>
+        
+        <div id="header">
+            <div class="logo">
+                <div class="logo-overlay">
+                    <img src="<?php echo ($this->baseUrl().'/public/images/logo_2.png'); ?>"></img>
+                </div>
+                <div id="msg-box-wrapper">
+                <div class="msg-box rounded color6 shadow2">
+                    <img src="<?php echo ($this->baseUrl().'/public/images/msg3/25.png'); ?>"/>
+                </div>
+                <div class="tip"></div>
+                </div>
+                <img src="<?php echo ($this->baseUrl().'/public/images/logo.png'); ?>"></img>
+            </div>
+            <div id="say-something">
+                <div class="input-wrapper">
+                    <input type="text" name="message" class="input-box shadow" value="Say something?"/>
+                </div>
+                <div class="submit-button shadow">
+                    Yeah
+                </div>
+            </div>
+        </div>
+        <div id="navigation">
+            <ul>
+                <li>
+                    <div class="holding color5"></div>
+                    <div class="nav-link" name="index">
+                      <a href="<?php echo $this->baseURL();?>">
+                          <span>Index</span>
+                      </a>
+                    </div>
+                </li>
+                |
+                <li>
+                    <div class="holding color5"></div>
+                    <div class="nav-link" name="post">
+                      <a href="post">
+                          <span>Posts</span>
+                      </a>
+                    </div>
+                </li>
+                |
+                <li>
+                    <div class="holding color5"></div>
+                    <div class="nav-link" name="project">
+                      <a href="projects">
+                          <span>Projects</span>
+                      </a>
+                    </div>
+                </li>
+                |
+                <li>
+                    <div class="holding color5"></div>
+                    <div class="nav-link" name="fun">
+                      <a href="fun">
+                          <span>Fun</span>
+                      </a>
+                    </div>
+                </li>
+                |
+                <li>
+                    <div class="holding color5"></div>
+                    <div class="nav-link" name="contact">
+                      <a href="contact">
+                          <span>Contact</span>
+                      </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        
+        <div id="content">
+            <?php echo $this->layout()->content; ?>
+        </div>
+        <div id="bottom">
+            <span>© 2013 plutoless-studio</span>
+        </div>
+    </body>
+</html>
