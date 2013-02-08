@@ -23,6 +23,7 @@ root {
     font-family: "futura-pt","Helvetica Neue",Arial,Helvetica,Geneva,sans-serif;
     font-size: 10px;
     overflow: auto;
+    opacity: 0;
 }
 
 #index-wrap ul{
@@ -99,15 +100,45 @@ root {
     background-color: #fff;
 }
 
-#index-wrap .key-element .color2{
-    background-color: #333333;
-    color: #fff;
-}
 
 #index-wrap .key-element .color3{
     background-color: #ffbfbf;
 }
 
-#index-wrap .key-element .color3{
+#index-wrap .key-element .color4{
     background-color: #ffcc99;
+}
+
+
+#index-wrap .key-element .color2{
+    background: #333333;
+    color: #eee;
+}
+
+#nav-menu-wrapper{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 10;
+    color: #eee;
+    font-family: "futura-pt","Helvetica Neue",Arial,Helvetica,Geneva,sans-serif;
+    font-size: 14px;
+}
+
+.nav-menu{
+    position: relative;
+    /*display:none;*/
+}
+
+.nav-menu .key-menu{
+    background: #333333;
+    width: 45px;
+    height: 45px;
+}
+
+.nav-menu .key-menu .key-menu-content{
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    background: url("../images/msg3/66.png") no-repeat center center;
 }
