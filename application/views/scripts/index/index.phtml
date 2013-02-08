@@ -23,7 +23,8 @@ $keys3 = array("Z", "X", "C", "V", "B", "N", "M", ",", ".", "!");
             <?php foreach($keys AS $key): ?>
             <li id="key-<?php echo $key;?>" class="key-element-wrapper key-size-normal">
                 <div class="key-element">
-                    <div class="key-element-content shadow3 rounded2">
+                    <div class="key-element-content shadow3 rounded2"
+                        name="<?php echo $key;?>">
                         <?php echo $key;?>
                     </div>
                 </div>
@@ -47,7 +48,8 @@ $keys3 = array("Z", "X", "C", "V", "B", "N", "M", ",", ".", "!");
             <?php foreach($keys2 AS $key): ?>
             <li id="key-<?php echo $key;?>" class="key-element-wrapper key-size-normal">
                 <div class="key-element">
-                    <div class="key-element-content shadow3 rounded2">
+                    <div class="key-element-content shadow3 rounded2"
+                        name="<?php echo $key;?>">
                         <?php echo $key;?>
                     </div>
                 </div>
@@ -71,7 +73,8 @@ $keys3 = array("Z", "X", "C", "V", "B", "N", "M", ",", ".", "!");
             <?php foreach($keys3 AS $key): ?>
             <li id="key-<?php echo $key;?>" class="key-element-wrapper key-size-normal">
                 <div class="key-element">
-                    <div class="key-element-content shadow3 rounded2">
+                    <div class="key-element-content shadow3 rounded2"
+                        name="<?php echo $key;?>">
                         <?php echo $key;?>
                     </div>
                 </div>
@@ -126,14 +129,13 @@ $keys3 = array("Z", "X", "C", "V", "B", "N", "M", ",", ".", "!");
         </ul>
     </div>
 </div>
-<div id="nav-menu-wrapper">
-    <?php for($i=0; $i<3; $i++):?>
-    <div id="nav-menu-<?php echo $i;?>" class="nav-menu">
-        <div class="key-menu rounded2 shadow3 color2">
-            <div class="key-menu-content">
+<?php for($i=0; $i<8; $i++):?>
+<div id="nav-menu-<?php echo $i;?>" class="nav-menu">
+    <div class="key-menu rounded2 shadow3 color5">
+        <div class="key-menu-content">
 
-            </div>
         </div>
     </div>
-    <?php endfor;?>
 </div>
+<?php endfor;?>
+<div class="overlay"></div>
