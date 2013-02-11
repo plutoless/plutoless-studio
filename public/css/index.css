@@ -97,28 +97,32 @@ root {
     background:#fff;
 }
 
-#index-wrap .key-element .selected{
-    background-color: #D0104C;
-    color: #fff;
-}
+
 
 #index-wrap .key-element .color1{
     background-color: #fff;
 }
 
 
-#index-wrap .key-element .color3{
+#index-wrap .key-element .nav-color1{
     background-color: #ffbfbf;
+    color: #fff;
 }
 
-#index-wrap .key-element .color4{
+#index-wrap .key-element .nav-color2{
     background-color: #3c81b5;
+    color: #fff;
 }
 
 
 #index-wrap .key-element .color2{
     background: #333333;
     color: #eee;
+}
+
+#index-wrap .key-element .selected{
+    background-color: #D0104C;
+    color: #fff;
 }
 
 #nav-menu-wrapper{
@@ -135,8 +139,8 @@ root {
 }
 
 .nav-menu .key-menu{
-    width: 180px;
-    height: 180px;
+    width: 90px;
+    height: 90px;
 }
 
 .nav-menu .key-menu .key-menu-content{

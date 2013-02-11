@@ -55,9 +55,6 @@ var index = {
         index.dom.keyboardElements.click(
             function()
             {
-                index.dom.keyboardElements.removeClass("selected");
-                index.dom.keyboardMenus.hide();
-                $(this).addClass("selected");
                 if($(this).attr("name")!=null)
                 {
                     index.bindKeyboardMenuAnim($(this));
@@ -70,19 +67,26 @@ var index = {
     getKeyMapping : function()
     {
         index.data.keyMapping = {
-            P: ["Project", "Post", "Public"],
-            C: ["Contact", "Test", "Test", "Test"],
-            F: ["Fun","Test"],
-            G: ["Game","Contact", "Test", "Test", "Test"],
-            B: ["Blog"]
+            P: ["project", "post", "public"],
+            C: ["contact", "Test", "Test", "Test"],
+            F: ["fun","Test"],
+            G: ["game","contact", "Test", "Test", "Test"],
+            B: ["blog"]
         };
+        $('#key-P .key-element-content').addClass('nav-color2');
+        $('#key-B .key-element-content').addClass('nav-color2');
+        $('#key-C .key-element-content').addClass('nav-color2');
+        $('#key-F .key-element-content').addClass('nav-color2');
     },
     
     getKeyboardPos : function()
-    {
+    {/*
         var windowH = $(window).height();
         var keyboardH = index.dom.keyboard.height();
-        index.dom.keyboard.css("margin-top", (windowH-keyboardH)/2);
+        var headerH = $('#header').height();
+        alert(headerH);
+        index.dom.keyboard.css("margin-top", (windowH-keyboardH)/2-headerH);*/
+        index.dom.keyboard.css("margin-top", "140px");
     },
     
     bindKeyboardActions : function(e)
@@ -94,61 +98,74 @@ var index = {
           var c = String.fromCharCode(e.keyCode).toUpperCase();
           var key = $('#key-'+c+' .key-element-content');
           
-          index.dom.keyboardElements.removeClass("selected");
-          index.dom.keyboardMenus.hide();
-          key.addClass("selected");
           index.bindKeyboardMenuAnim(key);
         }
     },
     
     bindKeyboardMenuAnim : function(object)
     {
+        
+        index.dom.keyboardElements.removeClass("selected");
+        index.dom.keyboardMenus.hide();
+        if(!object.hasClass("selected"))
+            object.addClass("selected");
+        else
+            object.removeClass("selected");
         var literal = object.attr("name");
         var links = index.data.keyMapping[literal];
         if(links==null)
-            links = ["?"];
+            links = ["default"];
         index.dom.overlay.show(0);
         var x = object.offset().left;
         var y = object.offset().top;
         var menuH = $('#nav-menu-0').height();
         var keyW = object.width();
-        var menuW = $('#nav-menu-0').width()
+        var menuW = $('#nav-menu-0').width();
         var animTime = 500;
         for(var i = 0; i<links.length; i++)
         {
             var navElement = $('#nav-menu-'+i);
             var moveLeft = 0;
+            var moveTop = 0;
             navElement.css("display", "block");
             navElement.css("opacity", 0);
             navElement.css("left", x+(keyW-menuW)/2+1);
             navElement.css("top", y);
-            
-            if(i == 0 && links.length == 1)
-                moveLeft = 0;
-            else if(links.length % 2 == 0)
-            {  
-                if(i % 2 == 1)
-                    moveLeft = -(menuW/2+2.5+Math.floor(i/2)*menuW+
-                        (Math.floor(i/2)>0?1:0)*5);
-                else
-                    moveLeft = menuW/2+2.5+Math.floor(i/2)*menuW+
-                        (Math.floor(i/2)>0?1:0)*5;
-                    
-            }
-            else if(links.length % 2 == 1)
+            if(object.hasClass("selected"))
             {
-                if(i == 0)
+                if(i == 0 && links.length == 1)
                     moveLeft = 0;
-                else if(i % 2 == 1)
-                    /* LEFT */
-                    moveLeft = -((i+1)/2*(menuW+5));
-                else if(i % 2 == 0)
-                    moveLeft = i/2*(menuW+5);
-                    
+                else if(links.length % 2 == 0)
+                {  
+                    if(i % 2 == 1)
+                        moveLeft = -(menuW/2+2.5+Math.floor(i/2)*menuW+
+                            (Math.floor(i/2)>0?1:0)*5);
+                    else
+                        moveLeft = menuW/2+2.5+Math.floor(i/2)*menuW+
+                            (Math.floor(i/2)>0?1:0)*5;
+
+                }
+                else if(links.length % 2 == 1)
+                {
+                    if(i == 0)
+                        moveLeft = 0;
+                    else if(i % 2 == 1)
+                        /* LEFT */
+                        moveLeft = -((i+1)/2*(menuW+5));
+                    else if(i % 2 == 0)
+                        moveLeft = i/2*(menuW+5);
+
+                }
+                moveTop = y-menuH-5;
             }
+            
+            navElement.find('.key-menu-content').css("background",
+                        'url("public/images/'+links[i]+'.png") no-repeat center center');
+            
+            
             navElement.stop().animate(
                 {opacity: 1, "left": "-="+moveLeft,
-                "top": y-menuH-5},
+                "top": moveTop},
                 {
                     duration: animTime,
                     easing:  "easeOutElastic",
