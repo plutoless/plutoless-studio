@@ -18,9 +18,8 @@ echo $this->doctype();
         <?php echo $this->headScript();?>
         <link rel="shortcut icon" href="<?php echo $this->baseURL();?>/public/images/favicon.ico">
     </head>
-    <body><!--
-        <div id="header"><img 
-             src="<?php echo $this->baseURL();?>/public/images/logo.png"></div>-->
+    <body>
+        <div id="header"></div>
         <div id="content">
             <?php echo $this->layout()->content; ?>
         </div>

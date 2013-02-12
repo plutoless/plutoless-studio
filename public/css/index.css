@@ -12,16 +12,19 @@ root {
 
 #index-wrap{
     margin: 0 auto 0 auto;
-    overflow-x: hidden;  
+    overflow-x: hidden;
     width: 800px;
+    height: 220px;
+    background: rgba(224,224,224,0.4);
 }
 
 #index-wrap .key-board{
     width: 100%;
     height: auto;
     color: #6c6c6c;
-    font-family: "futura-pt","Helvetica Neue",Arial,Helvetica,Geneva,sans-serif;
-    font-size: 10px;
+    font-family: 'メイリオ',Meiryo,'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro',
+        'ＭＳ Ｐゴシック',sans-serif;
+    font-size: 11px;
     overflow: auto;
     opacity: 0;
     z-index: 1;
@@ -50,11 +53,11 @@ root {
 }
 
 #index-wrap .key-size-caps{
-    width: 12%;
+    width: 14%;
 }
 
 #index-wrap .key-size-enter{
-    width: 10%;
+    width: 15.8%;
 }
 
 #index-wrap .key-size-shift-left{
@@ -62,7 +65,7 @@ root {
 }
 
 #index-wrap .key-size-shift-right{
-    width: 9%;
+    width: 16.8%;
 }
 
 #index-wrap .key-size-control{
@@ -94,9 +97,8 @@ root {
     padding: 12px 0 0 0;
     text-align: center;
     cursor: pointer;
-    background:#cccccc;
+    background:#fff;
     height: 30px;
-    font-weight: bold;
 }
 
 #index-wrap .special-key{
@@ -104,7 +106,6 @@ root {
 }
 
 #index-wrap .special-key2{
-    background:#ff9899;
 }
 
 #index-wrap .special-key3{
@@ -126,11 +127,11 @@ root {
 }
 
 #index-wrap .key-element .color4{
-    background-color: #f57d6f;
+    background-color: #9befa9;
 }
 
 #index-wrap .key-element .color5{
-    background-color: #86b0da;
+    background-color: #81c4f7;
 }
 
 #index-wrap .key-element .color6{

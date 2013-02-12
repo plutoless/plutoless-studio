@@ -67,12 +67,18 @@ var index = {
     getKeyMapping : function()
     {
         index.data.keyMapping = {
-            P: ["project", "post", "public"],
-            C: ["contact", "Test", "Test", "Test"],
-            F: ["fun","Test"],
-            G: ["game","contact", "Test", "Test", "Test"],
+            P: ["project", "post"],
+            C: ["contact"],
+            F: ["fun"],
+            G: ["game"],
             B: ["blog"]
         };
+        $('#key-P .key-element-content').addClass('color2');
+        $('#key-C .key-element-content').addClass('color3');
+        $('#key-F .key-element-content').addClass('color5');
+        $('#key-G .key-element-content').addClass('color6');
+        $('#key-B .key-element-content').addClass('color4');
+        
         $('#key-Q .key-element-content').addClass('color1');
         $('#key-W .key-element-content').addClass('color1');
         $('#key-T .key-element-content').addClass('color1');
@@ -82,13 +88,10 @@ var index = {
         $('#key-E .key-element-content').addClass('color2');
         $('#key-R .key-element-content').addClass('color2');
         $('#key-O .key-element-content').addClass('color2');
-        $('#key-P .key-element-content').addClass('color5');
         
         $('#key-A .key-element-content').addClass('color6');
         $('#key-S .key-element-content').addClass('color2');
         $('#key-D .key-element-content').addClass('color1');
-        $('#key-F .key-element-content').addClass('color1');
-        $('#key-G .key-element-content').addClass('color6');
         $('#key-H .key-element-content').addClass('color6');
         $('#key-J .key-element-content').addClass('color4');
         $('#key-K .key-element-content').addClass('color3');
@@ -96,19 +99,27 @@ var index = {
         
         $('#key-Z .key-element-content').addClass('color2');
         $('#key-X .key-element-content').addClass('color5');
-        $('#key-C .key-element-content').addClass('color6');
         $('#key-V .key-element-content').addClass('color1');
-        $('#key-B .key-element-content').addClass('color2');
         $('#key-N .key-element-content').addClass('color3');
         $('#key-M .key-element-content').addClass('color1');
         
+        $('#key-< .key-element-content').addClass('color3');
+        $('#key-> .key-element-content').addClass('color1');
     },
     
     getKeyboardPos : function()
     {
         var windowH = $(window).height();
+        var windowW = $(window).width();
         var keyboardH = index.dom.keyboard.height();
-        index.dom.keyboard.css("margin-top", (windowH-keyboardH)/2);
+        var keyboardW = index.dom.keyboard.width();
+        var spaceH = $('#header').height();
+        var spaceW = 60;
+        var paddingV = (windowH - spaceH*2-keyboardH)/2;
+        var paddingH = (windowW - spaceW*2-keyboardW)/2;
+        var dom = $('#index-wrap');
+        dom.css("padding", paddingV+"px "+paddingH+"px");
+        /*$('#header').css("height", (windowH-keyboardH)/2);*/
     },
     
     bindKeyboardActions : function(e)
@@ -126,11 +137,12 @@ var index = {
     
     bindKeyboardMenuAnim : function(object)
     {
-        
-        index.dom.keyboardElements.removeClass("selected");
-        index.dom.keyboardMenus.hide();
         if(!object.hasClass("selected"))
+        {
+            index.dom.keyboardMenus.hide();
+            index.dom.keyboardElements.removeClass("selected");
             object.addClass("selected");
+        }
         else
             object.removeClass("selected");
         var literal = object.attr("name");
@@ -149,12 +161,13 @@ var index = {
             var navElement = $('#nav-menu-'+i);
             var moveLeft = 0;
             var moveTop = 0;
-            navElement.css("display", "block");
-            navElement.css("opacity", 0);
-            navElement.css("left", x+(keyW-menuW)/2+1);
-            navElement.css("top", y);
+            
             if(object.hasClass("selected"))
             {
+                navElement.css("display", "block");
+                navElement.css("opacity", 0);
+                navElement.css("left", x+(keyW-menuW)/2+1);
+                navElement.css("top", y);
                 if(i == 0 && links.length == 1)
                     moveLeft = 0;
                 else if(links.length % 2 == 0)
@@ -179,23 +192,37 @@ var index = {
 
                 }
                 moveTop = y-menuH-5;
+                /*
+                navElement.find('.key-menu-content').css("background",
+                        'url("public/images/'+links[i]+'.png") no-repeat center center');*/
+            
+                navElement.css("top", moveTop);
+                navElement.stop().animate(
+                    {"opacity": 1, "left": "-="+moveLeft},
+                    {
+                        duration: animTime,
+                        easing:  "swing",
+                        complete: function(){
+                            index.dom.overlay.hide();
+                        }
+                    }
+                );
+            }else
+            {
+              moveLeft = x+(keyW-menuW)/2+1;
+              navElement.stop().animate(
+                    {"opacity": 0, "left": moveLeft},
+                    {
+                        duration: animTime,
+                        complete: function(){
+                            index.dom.overlay.hide();
+                            navElement.hide();
+                        }
+                    }
+                );
             }
             
-            navElement.find('.key-menu-content').css("background",
-                        'url("public/images/'+links[i]+'.png") no-repeat center center');
             
-            
-            navElement.stop().animate(
-                {opacity: 1, "left": "-="+moveLeft,
-                "top": moveTop},
-                {
-                    duration: animTime,
-                    easing:  "easeOutBack",
-                    complete: function(){
-                        index.dom.overlay.hide();
-                    }
-                }
-            );
 
         }
     },
