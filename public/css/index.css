@@ -87,22 +87,55 @@ root {
 }
 
 #index-wrap .key-element{
-    margin: 3px;
+    margin: 4px;
 }
 
 #index-wrap .key-element-content{
-    padding: 5px 0 0 5px;
-    height: 40px;
+    padding: 12px 0 0 0;
+    text-align: center;
     cursor: pointer;
-    background:#fff;
+    background:#cccccc;
+    height: 30px;
+    font-weight: bold;
 }
 
+#index-wrap .special-key{
+    background:#eeeeee;
+}
+
+#index-wrap .special-key2{
+    background:#ff9899;
+}
+
+#index-wrap .special-key3{
+    background:#313131;
+    color: #eee;
+}
 
 
 #index-wrap .key-element .color1{
-    background-color: #fff;
+    background-color: #b0c9e8;
 }
 
+#index-wrap .key-element .color2{
+    background-color: #ffcc99;
+}
+
+#index-wrap .key-element .color3{
+    background-color: #ff9899;
+}
+
+#index-wrap .key-element .color4{
+    background-color: #f57d6f;
+}
+
+#index-wrap .key-element .color5{
+    background-color: #86b0da;
+}
+
+#index-wrap .key-element .color6{
+    background-color: #94dee0;
+}
 
 #index-wrap .key-element .nav-color1{
     background-color: #ffbfbf;
@@ -115,7 +148,7 @@ root {
 }
 
 
-#index-wrap .key-element .color2{
+#index-wrap .key-element .hover{
     background: #333333;
     color: #eee;
 }
@@ -139,8 +172,8 @@ root {
 }
 
 .nav-menu .key-menu{
-    width: 90px;
-    height: 90px;
+    width: 140px;
+    height: 180px;
 }
 
 .nav-menu .key-menu .key-menu-content{

@@ -45,11 +45,11 @@ var index = {
         index.dom.keyboardElements.hover(
             function()
             {
-                $(this).addClass("color2");
+                $(this).addClass("hover");
             },
             function()
             {
-                $(this).removeClass("color2");
+                $(this).removeClass("hover");
             }
         );
         index.dom.keyboardElements.click(
@@ -73,20 +73,42 @@ var index = {
             G: ["game","contact", "Test", "Test", "Test"],
             B: ["blog"]
         };
-        $('#key-P .key-element-content').addClass('nav-color2');
-        $('#key-B .key-element-content').addClass('nav-color2');
-        $('#key-C .key-element-content').addClass('nav-color2');
-        $('#key-F .key-element-content').addClass('nav-color2');
+        $('#key-Q .key-element-content').addClass('color1');
+        $('#key-W .key-element-content').addClass('color1');
+        $('#key-T .key-element-content').addClass('color1');
+        $('#key-Y .key-element-content').addClass('color3');
+        $('#key-U .key-element-content').addClass('color4');
+        $('#key-I .key-element-content').addClass('color1');
+        $('#key-E .key-element-content').addClass('color2');
+        $('#key-R .key-element-content').addClass('color2');
+        $('#key-O .key-element-content').addClass('color2');
+        $('#key-P .key-element-content').addClass('color5');
+        
+        $('#key-A .key-element-content').addClass('color6');
+        $('#key-S .key-element-content').addClass('color2');
+        $('#key-D .key-element-content').addClass('color1');
+        $('#key-F .key-element-content').addClass('color1');
+        $('#key-G .key-element-content').addClass('color6');
+        $('#key-H .key-element-content').addClass('color6');
+        $('#key-J .key-element-content').addClass('color4');
+        $('#key-K .key-element-content').addClass('color3');
+        $('#key-L .key-element-content').addClass('color3');
+        
+        $('#key-Z .key-element-content').addClass('color2');
+        $('#key-X .key-element-content').addClass('color5');
+        $('#key-C .key-element-content').addClass('color6');
+        $('#key-V .key-element-content').addClass('color1');
+        $('#key-B .key-element-content').addClass('color2');
+        $('#key-N .key-element-content').addClass('color3');
+        $('#key-M .key-element-content').addClass('color1');
+        
     },
     
     getKeyboardPos : function()
-    {/*
+    {
         var windowH = $(window).height();
         var keyboardH = index.dom.keyboard.height();
-        var headerH = $('#header').height();
-        alert(headerH);
-        index.dom.keyboard.css("margin-top", (windowH-keyboardH)/2-headerH);*/
-        index.dom.keyboard.css("margin-top", "140px");
+        index.dom.keyboard.css("margin-top", (windowH-keyboardH)/2);
     },
     
     bindKeyboardActions : function(e)
@@ -168,7 +190,7 @@ var index = {
                 "top": moveTop},
                 {
                     duration: animTime,
-                    easing:  "easeOutElastic",
+                    easing:  "easeOutBack",
                     complete: function(){
                         index.dom.overlay.hide();
                     }
