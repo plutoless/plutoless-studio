@@ -11,23 +11,37 @@ root {
 }
 
 #index-wrap{
+    position: relative;
     overflow-x: hidden;
-    width: 100%;
-    height: 340px;
-    padding-top: 100px;
+    width: 800px;
+    height: auto;
+    margin: 0 auto 0 auto;
+    
 }
 
 #index-wrap .key-board{
-    width: 800px;
+    width: 100%;
     height: auto;
     color: #6c6c6c;
-    font-family: 'メイリオ',Meiryo,'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro',
-        'ＭＳ Ｐゴシック',sans-serif;
+    font-family: 'Open Sans',  "Microsoft Yahei",
+        Helvetica, sans-serif;
     font-size: 11px;
     overflow: auto;
     opacity: 0;
     z-index: 1;
-    margin: 0 auto 0 auto;
+    margin-top: 100px;
+}
+
+#index-wrap .navigate-tips{
+    position: absolute;
+    width: 800px;
+    text-align: right;
+    right: 50px;
+}
+
+.navigate-tips img{
+    height: 100px;
+    
 }
 
 #index-wrap ul{
@@ -94,11 +108,12 @@ root {
 }
 
 #index-wrap .key-element-content{
-    padding: 12px 0 0 0;
+    padding: 9px 0 0 0;
     text-align: center;
     cursor: pointer;
     background:#fff;
-    height: 30px;
+    height: 28px;
+    border: solid 2px #fff;
 }
 
 #index-wrap .special-key{
@@ -115,33 +130,27 @@ root {
 
 
 #index-wrap .key-element .color1{
-    background-color: #213540;
-    color: white;
+    background-color: #b0c9e8;
 }
 
 #index-wrap .key-element .color2{
-    background-color: #3cb5a2;
-    color: white;
+    background-color: #ffcc99;
 }
 
 #index-wrap .key-element .color3{
-    background-color: #0c486c;
-    color: white;
+    background-color: #ff9899;
 }
 
 #index-wrap .key-element .color4{
-    background-color: #fe4e50;
-    color:white;
+    background-color: #9befa9;
 }
 
 #index-wrap .key-element .color5{
-    background-color: #3c81b5;
-    color: white;
+    background-color: #81c4f7;
 }
 
 #index-wrap .key-element .color6{
-    background-color: #eb9605;
-    color: white;
+    background-color: #94dee0;
 }
 
 #index-wrap .key-element .nav-color1{
@@ -197,4 +206,33 @@ root {
     top: 0;
     width: 100%;
     height: 100%;
+}
+
+
+
+#msg-box-wrapper{
+    width: 780px;
+    margin: 50px auto 0 auto;
+}
+
+#msg-box-wrapper .msg-box{
+    width: 100%;
+    max-width: 100%;
+    z-index: 0;
+    text-align: center;
+    color: #fff;
+}
+#msg-box-wrapper .msg-box span{
+    font-size: 20px;
+    font-family: 'Helvetica Neue','Open Sans',  "Microsoft Yahei",
+        Helvetica, sans-serif;
+    line-height: 40px;
+}
+
+#msg-box-wrapper .msg-box .title{
+}
+
+#msg-box-wrapper .msg-box .text{
+    background: #fff;
+    color: #333;
 }
