@@ -11,15 +11,14 @@ root {
 }
 
 #index-wrap{
-    margin: 0 auto 0 auto;
     overflow-x: hidden;
-    width: 800px;
-    height: 220px;
-    background: rgba(224,224,224,0.4);
+    width: 100%;
+    height: 340px;
+    padding-top: 100px;
 }
 
 #index-wrap .key-board{
-    width: 100%;
+    width: 800px;
     height: auto;
     color: #6c6c6c;
     font-family: 'メイリオ',Meiryo,'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro',
@@ -28,6 +27,7 @@ root {
     overflow: auto;
     opacity: 0;
     z-index: 1;
+    margin: 0 auto 0 auto;
 }
 
 #index-wrap ul{
@@ -115,27 +115,33 @@ root {
 
 
 #index-wrap .key-element .color1{
-    background-color: #b0c9e8;
+    background-color: #213540;
+    color: white;
 }
 
 #index-wrap .key-element .color2{
-    background-color: #ffcc99;
+    background-color: #3cb5a2;
+    color: white;
 }
 
 #index-wrap .key-element .color3{
-    background-color: #ff9899;
+    background-color: #0c486c;
+    color: white;
 }
 
 #index-wrap .key-element .color4{
-    background-color: #9befa9;
+    background-color: #fe4e50;
+    color:white;
 }
 
 #index-wrap .key-element .color5{
-    background-color: #81c4f7;
+    background-color: #3c81b5;
+    color: white;
 }
 
 #index-wrap .key-element .color6{
-    background-color: #94dee0;
+    background-color: #eb9605;
+    color: white;
 }
 
 #index-wrap .key-element .nav-color1{
@@ -155,7 +161,7 @@ root {
 }
 
 #index-wrap .key-element .selected{
-    background-color: #D0104C;
+    background-color: #333333;
     color: #fff;
 }
 

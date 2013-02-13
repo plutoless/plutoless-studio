@@ -69,7 +69,7 @@ var index = {
         index.data.keyMapping = {
             P: ["project", "post"],
             C: ["contact"],
-            F: ["fun"],
+            F: ["fun","fightclub"],
             G: ["game"],
             B: ["blog"]
         };
@@ -78,7 +78,7 @@ var index = {
         $('#key-F .key-element-content').addClass('color5');
         $('#key-G .key-element-content').addClass('color6');
         $('#key-B .key-element-content').addClass('color4');
-        
+        /*
         $('#key-Q .key-element-content').addClass('color1');
         $('#key-W .key-element-content').addClass('color1');
         $('#key-T .key-element-content').addClass('color1');
@@ -104,11 +104,12 @@ var index = {
         $('#key-M .key-element-content').addClass('color1');
         
         $('#key-< .key-element-content').addClass('color3');
-        $('#key-> .key-element-content').addClass('color1');
+        $('#key-> .key-element-content').addClass('color1');*/
     },
     
     getKeyboardPos : function()
     {
+        /*
         var windowH = $(window).height();
         var windowW = $(window).width();
         var keyboardH = index.dom.keyboard.height();

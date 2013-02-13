@@ -16,7 +16,8 @@ src: url("../fonts/Origin.otf") format("opentype");
 }
 
 body{
-  background: #fff;
+  
+    background: #f36324;
   
   /*background: rgba(224,224,224,0.5);*/
   margin: 0;
@@ -31,15 +32,20 @@ ul{
 }
 
 #header{
-  width: 100%;
+  width: 800px;
   position: relative;
   /*background: #fff;*/
-  text-align: center;
   height: 80px;
+  margin-left:auto;
+  margin-right: auto;
+  font-size: 15px;
+  font-family: Georgia, "Times New Roman", "Bitstream Vera Serif", serif;
+  color: #fff;
 }
 
 #header img{
-  height: 40px;
+  padding: 10px 0;
+  height: 60px;
 }
 
 #msg-box-wrapper{
@@ -203,11 +209,11 @@ ul{
 }
 
 .color5{
-    background-color: #D0104C;
+    background-color: #333333;
 }
 
 .color6{
-    background-color: #E34E50
+    background-color: #E34E50;
 }
 
 .shadow{
@@ -223,9 +229,9 @@ ul{
 }
 
 .shadow3{
-    -webkit-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.2);
-    -moz-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.2);
-    box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.2);
+    -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.2);
+    box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.2);
 }
 
 
