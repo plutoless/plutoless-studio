@@ -11,8 +11,21 @@ $keys3 = array("Z", "X", "C", "V", "B", "N", "M", "<", ">");
 ?>
 
 <div id="index-wrap">
-    <div class="navigate-tips"><img 
-        src="<?php echo $this->baseURL();?>/public/images/tips.png"/></div>
+    <div class="navigate-area">
+        <div class="navigate-tips">
+            <img src="<?php echo $this->baseURL();?>/public/images/tips.png"/>
+        </div>
+        <div class="navigate-menu">
+            <ul>
+                <li class="rounded shadow3"><div class="tags">Post</div></li>
+                <li class="rounded shadow3"><div class="tags">Project</div></li>
+                <li class="rounded shadow3"><div class="tags">Public</div></li>
+            </ul>
+        </div>
+        <div class="navigate-error">
+            <h1>No contents found:(</h1>
+        </div>
+    </div>
     <div class="key-board">
         
         <ul>
@@ -139,12 +152,4 @@ $keys3 = array("Z", "X", "C", "V", "B", "N", "M", "<", ">");
         <span class="text"></span>
     </div>
 </div>
-<?php for($i=0; $i<8; $i++):?>
-<div id="nav-menu-<?php echo $i;?>" class="nav-menu">
-    <div class="key-menu color5 shadow3 rounded2">
-        <div class="key-menu-content">
-        </div>
-    </div>
-</div>
-<?php endfor;?>
 <div class="overlay"></div>

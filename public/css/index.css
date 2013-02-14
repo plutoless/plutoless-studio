@@ -23,20 +23,76 @@ root {
     width: 100%;
     height: auto;
     color: #6c6c6c;
-    font-family: 'Open Sans',  "Microsoft Yahei",
+    font-family: "Microsoft Yahei",
         Helvetica, sans-serif;
     font-size: 11px;
     overflow: auto;
     opacity: 0;
     z-index: 1;
-    margin-top: 100px;
+}
+
+#index-wrap .navigate-area{
+    position: relative;
+    width: 800px;
+    height: 110px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
 }
 
 #index-wrap .navigate-tips{
-    position: absolute;
-    width: 800px;
+    position: relative;
+    width: 100%;
     text-align: right;
-    right: 50px;
+    height: 100%;
+}
+
+#index-wrap .navigate-menu{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#index-wrap .navigate-menu li .tags{
+    position: absolute;
+    background: white;
+    width: 90px;
+    bottom: 8px;
+}
+
+#index-wrap .navigate-menu ul{
+    text-align: center;
+}
+
+#index-wrap .navigate-error{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: white;
+}
+
+#index-wrap .navigate-error h1{
+    
+    font-size: 20px;
+    padding: 45px;
+}
+
+#index-wrap .navigate-menu li{
+    display: inline-block;
+    margin: 10px 10px 0 10px;
+    height: 90px;
+    width: 90px;
+    background: #333;
+    color: #333;
+    border: 2px solid #fff;
+    background: url(../images/msg3/50.png) no-repeat center center;
+    background-color: #123456;
+}
+
+#index-wrap .navigate-tips img{
+    margin-right: 50px;
+    margin-top: 7px;
 }
 
 .navigate-tips img{
@@ -129,6 +185,7 @@ root {
 }
 
 
+
 #index-wrap .key-element .color1{
     background-color: #b0c9e8;
 }
@@ -164,6 +221,11 @@ root {
 }
 
 
+#index-wrap .key-element .default{
+    background-color: #fff;
+    color: #333;
+}
+
 #index-wrap .key-element .hover{
     background: #333333;
     color: #eee;
@@ -174,30 +236,6 @@ root {
     color: #fff;
 }
 
-#nav-menu-wrapper{
-}
-
-.nav-menu{
-    display: none;
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    z-index: 5;
-    font-family: "futura-pt","Helvetica Neue",Arial,Helvetica,Geneva,sans-serif;
-    font-size: 14px;
-}
-
-.nav-menu .key-menu{
-    width: 140px;
-    height: 180px;
-}
-
-.nav-menu .key-menu .key-menu-content{
-    text-align: center;
-    width: 100%;
-    height: 100%;
-    background: url("../images/msg3/100.png") no-repeat center center;
-}
 
 .overlay{
     display:none;
@@ -224,7 +262,7 @@ root {
 }
 #msg-box-wrapper .msg-box span{
     font-size: 20px;
-    font-family: 'Helvetica Neue','Open Sans',  "Microsoft Yahei",
+    font-family: 'Helvetica Neue', "Microsoft Yahei",
         Helvetica, sans-serif;
     line-height: 40px;
 }

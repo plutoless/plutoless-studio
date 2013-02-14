@@ -12,18 +12,21 @@ var index = {
     dom : {
         keyboard : 0,
         keyboardElements : 0,
-        keyboardMenus   : 0,
+        navBar   : 0,
         overlay : 0
     },
     
     data : {
-        keyMapping : new Array()
+        keyMapping : new Array(),
+        lastKey : ""
     },
     
     init : function()
     {
         common.init();
         index.dom.keyboard = $('#index-wrap .key-board');
+        index.dom.navBar =
+            $('#index-wrap .navigate-area');
         index.dom.overlay = $('.overlay');
         index.initializeKeyboard();
         index.getKeyMapping();
@@ -40,8 +43,6 @@ var index = {
         index.getKeyboardPos();
         index.dom.keyboardElements = 
             $('#index-wrap .key-board .key-element-content');
-        index.dom.keyboardMenus =
-            $('.nav-menu');
         index.dom.keyboardElements.hover(
             function()
             {
@@ -67,17 +68,25 @@ var index = {
     getKeyMapping : function()
     {
         index.data.keyMapping = {
-            P: ["project", "post"],
-            C: ["contact"],
-            F: ["fun","fightclub"],
-            G: ["game"],
-            B: ["blog"]
+            P: [
+                    {name:"project", bgColor:"#d34678"}, 
+                    {name:"post", bgColor:"#e45876"}
+                ],
+            C: [
+                    {name:"contact", bgColor:"#c45876"}
+                ],
+            F: [
+                    {name:"fun", bgColor:"#a45876"},
+                    {name:"fightclub", bgColor:"#b45876"}
+                ],
+            G: [
+                    {name:"game", bgColor:"#f45876"}
+                ],
+            B: [
+                    {name:"blog", bgColor:"#f45876"}
+                ]
         };
-        $('#key-P .key-element-content').addClass('color2');
-        $('#key-C .key-element-content').addClass('color3');
-        $('#key-F .key-element-content').addClass('color5');
-        $('#key-G .key-element-content').addClass('color6');
-        $('#key-B .key-element-content').addClass('color4');
+        index.setKeyColors();
         /*
         $('#key-Q .key-element-content').addClass('color1');
         $('#key-W .key-element-content').addClass('color1');
@@ -136,96 +145,119 @@ var index = {
         }
     },
     
+    
+    constructNavMenuElement : function(name)
+    {
+        return '<li class="rounded shadow3"><div class="tags">'+
+                            name+'</div></li>';
+    },
+    
     bindKeyboardMenuAnim : function(object)
     {
-        if(!object.hasClass("selected"))
+        var navH = index.dom.navBar.height();
+        var errorH = navH*2;
+        var head = index.dom.navBar.find('.navigate-tips');
+        var headTop = parseInt(head.css("margin-top"));
+        var name  = object.attr("name");
+        
+        index.dom.navBar.find('.navigate-menu li').remove();
+        
+        if(index.data.keyMapping[name] == null)
         {
-            index.dom.keyboardMenus.hide();
-            index.dom.keyboardElements.removeClass("selected");
-            object.addClass("selected");
-        }
-        else
-            object.removeClass("selected");
-        var literal = object.attr("name");
-        var links = index.data.keyMapping[literal];
-        if(links==null)
-            links = ["default"];
-        index.dom.overlay.show(0);
-        var x = object.offset().left;
-        var y = object.offset().top;
-        var menuH = $('#nav-menu-0').height();
-        var keyW = object.width();
-        var menuW = $('#nav-menu-0').width();
-        var animTime = 500;
-        for(var i = 0; i<links.length; i++)
-        {
-            var navElement = $('#nav-menu-'+i);
-            var moveLeft = 0;
-            var moveTop = 0;
-            
-            if(object.hasClass("selected"))
-            {
-                navElement.css("display", "block");
-                navElement.css("opacity", 0);
-                navElement.css("left", x+(keyW-menuW)/2+1);
-                navElement.css("top", y);
-                if(i == 0 && links.length == 1)
-                    moveLeft = 0;
-                else if(links.length % 2 == 0)
-                {  
-                    if(i % 2 == 1)
-                        moveLeft = -(menuW/2+2.5+Math.floor(i/2)*menuW+
-                            (Math.floor(i/2)>0?1:0)*5);
-                    else
-                        moveLeft = menuW/2+2.5+Math.floor(i/2)*menuW+
-                            (Math.floor(i/2)>0?1:0)*5;
-
-                }
-                else if(links.length % 2 == 1)
+            index.data.lastKey = "";
+            head.stop().animate(
                 {
-                    if(i == 0)
-                        moveLeft = 0;
-                    else if(i % 2 == 1)
-                        /* LEFT */
-                        moveLeft = -((i+1)/2*(menuW+5));
-                    else if(i % 2 == 0)
-                        moveLeft = i/2*(menuW+5);
-
+                    "margin-top": ["-"+errorH,"easeInOutQuint"]
+                },
+                {
+                    duration: 800
                 }
-                moveTop = y-menuH-5;
-                /*
-                navElement.find('.key-menu-content').css("background",
-                        'url("public/images/'+links[i]+'.png") no-repeat center center');*/
-            
-                navElement.css("top", moveTop);
-                navElement.stop().animate(
-                    {"opacity": 1, "left": "-="+moveLeft},
-                    {
-                        duration: animTime,
-                        easing:  "swing",
-                        complete: function(){
-                            index.dom.overlay.hide();
-                        }
-                    }
-                );
-            }else
-            {
-              moveLeft = x+(keyW-menuW)/2+1;
-              navElement.stop().animate(
-                    {"opacity": 0, "left": moveLeft},
-                    {
-                        duration: animTime,
-                        complete: function(){
-                            index.dom.overlay.hide();
-                            navElement.hide();
-                        }
-                    }
-                );
-            }
-            
-            
-
+            );
+            return;
         }
+        
+        
+        if(headTop == 0 || index.data.lastKey=="")
+        {
+            
+            for(var i = 0; i<index.data.keyMapping[name].length; i++)
+            {
+                var entry = index.data.keyMapping[name][i];
+                index.dom.navBar.find('.navigate-menu ul')
+                    .append(index.constructNavMenuElement(entry['name']));
+            }
+            index.selectKey(object);
+            head.stop().animate(
+                {
+                    "margin-top": ["-"+navH,"easeInOutQuint"]
+                },
+                {
+                    duration: 800
+                }
+            );
+        }else if(name==index.data.lastKey)
+        {
+            index.revertKey();
+            head.stop().animate(
+                {
+                    "margin-top": [0,"easeInOutQuint"]
+                },
+                {
+                    duration: 800
+                }
+            );
+        }else
+        {
+            index.revertKey();
+            index.selectKey(object);
+            head.stop().animate(
+                {
+                    "margin-top": [0,"swing"]
+                },
+                {
+                    duration: 400,
+                    complete: function(){
+                        
+                        for(var i = 0; i<index.data.keyMapping[name].length; i++)
+                        {
+                            var entry = index.data.keyMapping[name][i];
+                            index.dom.navBar.find('.navigate-menu ul')
+                                .append(index.constructNavMenuElement(entry['name']));
+                        }
+                        head.stop().animate(
+                            {
+                                "margin-top": ["-"+navH,"swing"]
+                            },
+                            {
+                                duration: 400
+                            }
+                        );
+                    }
+                }
+            );
+        }
+    },
+    
+    setKeyColors : function()
+    {
+        $('#key-P .key-element-content').addClass('color2');
+        $('#key-C .key-element-content').addClass('color3');
+        $('#key-F .key-element-content').addClass('color5');
+        $('#key-G .key-element-content').addClass('color6');
+        $('#key-B .key-element-content').addClass('color4');
+    },
+    
+    selectKey : function(object)
+    {
+        index.dom.keyboardElements.not(object).addClass('default');
+        object.addClass('selected');
+        index.data.lastKey = object.attr("name");
+    },
+    
+    revertKey : function()
+    {
+        index.dom.keyboardElements.removeClass('default selected');
+        index.setKeyColors();
     },
     
     turnup : function(object)
