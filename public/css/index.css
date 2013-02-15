@@ -34,11 +34,11 @@ root {
 #index-wrap .navigate-area{
     position: relative;
     width: 800px;
-    height: 110px;
+    height: 150px;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    font-family:  "Opificio", "Microsoft Yahei",
+    font-family:  "Opificio","Microsoft Yahei",
         Helvetica, sans-serif;
 }
 
@@ -55,11 +55,47 @@ root {
     height: 100%;
 }
 
+#index-wrap .navigate-menu .post{
+    background: url(../images/post.png) no-repeat center 9px;
+    background-size: 70%;
+    background-color: #e6e6e6;
+}
+
+#index-wrap .navigate-menu .project{
+    background: url(../images/project.png) no-repeat center 5px;
+    background-size: 90%;
+    background-color: #797e84;
+}
+
+#index-wrap .navigate-menu .public{
+    background: url(../images/public.png) no-repeat center -10px;
+    background-size: 100%;
+    background-color: #d0e5e6;
+}
+
+#index-wrap .navigate-menu .game{
+    background: url(../images/game.png) no-repeat center 0px;
+    background-size: 80%;
+    background-color: #c23627;
+}
+
+#index-wrap .navigate-menu .fun{
+    background: url(../images/fun.png) no-repeat center 4px;
+    background-size: 80%;
+    background-color: #ffcb29;
+}
+
+#index-wrap .navigate-menu .blog{
+    background: url(../images/blog.png) no-repeat center -4px;
+    background-size: 90%;
+    background-color: #00a8a8;
+}
+
 #index-wrap .navigate-menu li .tags{
     position: absolute;
     background: white;
-    width: 90px;
-    bottom: 8px;
+    width: 100%;
+    bottom: 0;
     font-size: 18px;
 }
 
@@ -82,20 +118,23 @@ root {
 }
 
 #index-wrap .navigate-menu li{
+    position: relative;
     display: inline-block;
-    margin: 10px 10px 0 10px;
-    height: 90px;
-    width: 90px;
-    background: #333;
+    margin: 20px 10px 0 10px;
+    height: 120px;
+    width: 120px;
     color: #333;
     border: 2px solid #fff;
-    background: url(../images/msg3/60.png) no-repeat center center;
-    background-color: #123456;
+    overflow: hidden;
+    
+    background: url(../images/default.png) no-repeat center 4px;
+    background-size: 80%;
+    background-color: #da2625;
 }
 
 #index-wrap .navigate-tips img{
     margin-right: 50px;
-    margin-top: 7px;
+    margin-top: 37px;
 }
 
 .navigate-tips img{
@@ -253,7 +292,7 @@ root {
 
 #msg-box-wrapper{
     width: 780px;
-    margin: 50px auto 0 auto;
+    margin: 30px auto 0 auto;
 }
 
 #msg-box-wrapper .msg-box{

@@ -68,10 +68,11 @@ var index = {
     getKeyMapping : function()
     {
         index.data.keyMapping = {
-            P: [
-                    {name:"project", bgColor:"#d34678"}, 
-                    {name:"post", bgColor:"#e45876"}
-                ]
+            P: $('.navigate-area .P').position().top,
+            B: $('.navigate-area .B').position().top,
+            C: $('.navigate-area .C').position().top,
+            G: $('.navigate-area .G').position().top,
+            F: $('.navigate-area .F').position().top
         };
         index.setKeyColors();
         /*
@@ -141,13 +142,37 @@ var index = {
     
     bindKeyboardMenuAnim : function(object)
     {
-        var navH = index.dom.navBar.height();
         var head = index.dom.navBar.find('.navigate-tips');
-        var headTop = parseInt(head.css("margin-top"));
         var name  = object.attr("name");
         
-        index.dom.navBar.find('.navigate-menu li').remove();
         
+        
+        if(name == index.data.lastKey)
+        {
+            /* second attempt revert to initial */
+            index.revertKey();
+            index.data.lastKey = "";
+            head.stop().animate(
+                {"margin-top": [0,"easeInOutExpo"]},
+                {duration: 800}
+            );
+        }
+        else
+        {
+            index.revertKey();
+            index.selectKey(object);
+
+            if(index.data.keyMapping[name]!=null)
+                head.stop().animate(
+                    {"margin-top": ["-"+index.data.keyMapping[name]+"px","easeInOutExpo"]},
+                    {duration: 800}
+                );
+            else
+                head.stop().animate(
+                    {"margin-top": [0,"easeInOutExpo"]},
+                    {duration: 800}
+                );
+        }
         
     },
     
@@ -162,14 +187,13 @@ var index = {
     
     selectKey : function(object)
     {
-        index.dom.keyboardElements.not(object).addClass('default');
         object.addClass('selected');
         index.data.lastKey = object.attr("name");
     },
     
     revertKey : function()
     {
-        index.dom.keyboardElements.removeClass('default selected');
+        index.dom.keyboardElements.removeClass('selected');
         index.setKeyColors();
     },
     
