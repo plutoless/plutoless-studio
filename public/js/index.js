@@ -17,7 +17,7 @@ var index = {
     },
     
     data : {
-        keyMapping : new Array(),
+        keyMapping : 0,
         lastKey : ""
     },
     
@@ -71,19 +71,6 @@ var index = {
             P: [
                     {name:"project", bgColor:"#d34678"}, 
                     {name:"post", bgColor:"#e45876"}
-                ],
-            C: [
-                    {name:"contact", bgColor:"#c45876"}
-                ],
-            F: [
-                    {name:"fun", bgColor:"#a45876"},
-                    {name:"fightclub", bgColor:"#b45876"}
-                ],
-            G: [
-                    {name:"game", bgColor:"#f45876"}
-                ],
-            B: [
-                    {name:"blog", bgColor:"#f45876"}
                 ]
         };
         index.setKeyColors();
@@ -155,87 +142,13 @@ var index = {
     bindKeyboardMenuAnim : function(object)
     {
         var navH = index.dom.navBar.height();
-        var errorH = navH*2;
         var head = index.dom.navBar.find('.navigate-tips');
         var headTop = parseInt(head.css("margin-top"));
         var name  = object.attr("name");
         
         index.dom.navBar.find('.navigate-menu li').remove();
         
-        if(index.data.keyMapping[name] == null)
-        {
-            index.data.lastKey = "";
-            head.stop().animate(
-                {
-                    "margin-top": ["-"+errorH,"easeInOutQuint"]
-                },
-                {
-                    duration: 800
-                }
-            );
-            return;
-        }
         
-        
-        if(headTop == 0 || index.data.lastKey=="")
-        {
-            
-            for(var i = 0; i<index.data.keyMapping[name].length; i++)
-            {
-                var entry = index.data.keyMapping[name][i];
-                index.dom.navBar.find('.navigate-menu ul')
-                    .append(index.constructNavMenuElement(entry['name']));
-            }
-            index.selectKey(object);
-            head.stop().animate(
-                {
-                    "margin-top": ["-"+navH,"easeInOutQuint"]
-                },
-                {
-                    duration: 800
-                }
-            );
-        }else if(name==index.data.lastKey)
-        {
-            index.revertKey();
-            head.stop().animate(
-                {
-                    "margin-top": [0,"easeInOutQuint"]
-                },
-                {
-                    duration: 800
-                }
-            );
-        }else
-        {
-            index.revertKey();
-            index.selectKey(object);
-            head.stop().animate(
-                {
-                    "margin-top": [0,"swing"]
-                },
-                {
-                    duration: 400,
-                    complete: function(){
-                        
-                        for(var i = 0; i<index.data.keyMapping[name].length; i++)
-                        {
-                            var entry = index.data.keyMapping[name][i];
-                            index.dom.navBar.find('.navigate-menu ul')
-                                .append(index.constructNavMenuElement(entry['name']));
-                        }
-                        head.stop().animate(
-                            {
-                                "margin-top": ["-"+navH,"swing"]
-                            },
-                            {
-                                duration: 400
-                            }
-                        );
-                    }
-                }
-            );
-        }
     },
     
     setKeyColors : function()

@@ -12,6 +12,9 @@ html{
 @font-face {
     font-family: Helvetica Neue;
     src: url("../fonts/helveticaneueltstdcn.otf") format("opentype");
+    
+    font-family: Opificio;
+    src: url("../fonts/opificio.otf") format("opentype")
 }
 
 body{

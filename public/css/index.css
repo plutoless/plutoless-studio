@@ -38,6 +38,8 @@ root {
     margin: 0;
     padding: 0;
     overflow: hidden;
+    font-family:  "Opificio", "Microsoft Yahei",
+        Helvetica, sans-serif;
 }
 
 #index-wrap .navigate-tips{
@@ -58,6 +60,7 @@ root {
     background: white;
     width: 90px;
     bottom: 8px;
+    font-size: 18px;
 }
 
 #index-wrap .navigate-menu ul{
@@ -86,7 +89,7 @@ root {
     background: #333;
     color: #333;
     border: 2px solid #fff;
-    background: url(../images/msg3/50.png) no-repeat center center;
+    background: url(../images/msg3/60.png) no-repeat center center;
     background-color: #123456;
 }
 
