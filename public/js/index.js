@@ -43,7 +43,6 @@ var index = {
         index.dom.overlay = $('.overlay');
         index.initializeKeyboard();
         index.getKeyMapping();
-        index.turnup(index.dom.keyboard);
         
         /* Attach listener */
         $(window).resize(index.getKeyboardPos);
@@ -279,22 +278,6 @@ var index = {
         /*
         index.dom.keyboardElements.removeClass('selected');
         index.setKeyColors();*/
-    },
-    
-    turnup : function(object)
-    {
-        var toPosH = object.css("margin-top");
-        var fromPosH = toPosH - 40;
-        object.css("mragin-top", fromPosH);
-        object.animate(
-            {
-                opacity: 1, 
-                "margin-top": "+=20px"
-            },
-            {
-                duration: 600
-            }
-        );
     },
     
     

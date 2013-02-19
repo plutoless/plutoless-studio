@@ -21,7 +21,8 @@ html{
 
 body{
   
-    background: rgb(89, 184, 229);
+  /*  background: rgb(89, 184, 229);*/
+  background: rgb(244,13,100);
   
   /*background: rgba(224,224,224,0.5);*/
   margin: 0;
