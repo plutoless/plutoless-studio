@@ -316,3 +316,48 @@ root {
     background: #fff;
     color: #333;
 }
+
+.nav-select-wrapper{
+    position: absolute;
+}
+
+.nav-select-background{
+    position: relative;
+    height: 34px;
+    width: 34px;
+    background-color: #333;
+    -webkit-border-radius: 17px;
+    -moz-border-radius: 17px;
+    -ms-border-radius: 17px;
+    -o-border-radius: 17px;
+    border-radius: 17px;
+}
+
+.nav-inner{
+    position: absolute;
+    left: -1px;
+    top: -1px;
+    margin-left: 18px;
+    margin-top: 18px;
+    -webkit-border-radius: 18px;
+    -moz-border-radius: 18px;
+    -ms-border-radius: 18px;
+    -o-border-radius: 18px;
+    border-radius: 18px;
+}
+
+#nav-string-wrapper{
+    position: absolute;
+}
+
+#nav-string-wrapper .nav-string-content{
+    position: relative;
+    background: #333;
+}
+
+#nav-string-wrapper .nav-string-tri{
+    position: relative;
+    left: 84px;
+    width: 0; 
+    height: 0; 
+}

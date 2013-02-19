@@ -137,44 +137,6 @@ ul{
     box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.2);
 }
 
-
-
-#say-something{
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 4px;
-  width: 180px;
-  text-align: center;
-  overflow: auto;
-}
-
-#say-something .input-wrapper{ 
-  position: relative;
-  float: left;
-  margin-right: 5px;
-}
-
-#say-something .input-box{
-  width: 100px;
-  background: #ffffff;
-  color: #fff;
-  border: 1px solid #dde;
-  padding: 8px 8px 8px 8px;
-  margin: 0;
-  font-size: 14px;
-  color: #121314;
-  font-family: Palatino Linotype, Book Antiqua, Palatino, serif;
-}
-
-#say-something .submit-button{
-  position: relative;
-  float: left;
-  background: #505050;
-  border: 1px solid #dde;
-  color: white;
-  clear: right;
-  padding: 8px;
-  cursor: pointer;
-  margin: 0;
+.hidden{
+    opacity: 0;
 }

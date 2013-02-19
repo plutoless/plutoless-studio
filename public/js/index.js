@@ -13,20 +13,33 @@ var index = {
         keyboard : 0,
         keyboardElements : 0,
         navBar   : 0,
+        msgBoxWrapper : 0,
+        msgBox : 0,
+        navStrWin : 0,
         overlay : 0
     },
     
     data : {
         keyMapping : 0,
-        lastKey : ""
+        lastKey : "",
+        navStr : "",
+        idleCounter : 0,
+        busyCounter : 0,
+        msgList : 0
     },
     
     init : function()
     {
         common.init();
+        index.dom.msgBoxWrapper = $('#msg-box-wrapper');
+        index.dom.navStrWin = 
+            $('#nav-string-wrapper');
+        index.getMessage();
         index.dom.keyboard = $('#index-wrap .key-board');
         index.dom.navBar =
             $('#index-wrap .navigate-area');
+        index.dom.msgBox = 
+            $('#msg-box-wrapper .msg-box');
         index.dom.overlay = $('.overlay');
         index.initializeKeyboard();
         index.getKeyMapping();
@@ -62,7 +75,7 @@ var index = {
                 }
             }
         );
-        $(document).keypress(function(e){index.bindKeyboardActions(e);});
+        $(document).keydown(function(e){index.bindKeyboardActions(e);});
     },
     
     getKeyMapping : function()
@@ -123,7 +136,7 @@ var index = {
     bindKeyboardActions : function(e)
     {
         e.preventDefault();
-        if(e.keyCode >=97 && e.keyCode <=122)
+        if(e.keyCode >=65 && e.keyCode <=90)
         {
           /* IT'S CHAR CODE */
           var c = String.fromCharCode(e.keyCode).toUpperCase();
@@ -134,14 +147,10 @@ var index = {
     },
     
     
-    constructNavMenuElement : function(name)
-    {
-        return '<li class="rounded shadow3"><div class="tags">'+
-                            name+'</div></li>';
-    },
     
     bindKeyboardMenuAnim : function(object)
     {
+        
         var head = index.dom.navBar.find('.navigate-tips');
         var name  = object.attr("name");
         
@@ -185,16 +194,91 @@ var index = {
         $('#key-B .key-element-content').addClass('color4');
     },
     
+    navStrPopUp : function(object)
+    {
+        var offsetH = object.offset().left;
+        var offsetV = object.offset().top;
+        index.dom.navStrWin.css("left",offsetH-68);
+        index.dom.navStrWin.css("top",offsetV-160);
+        var navContent = index.dom.navStrWin.find('.nav-string-content');
+        var navTri = index.dom.navStrWin.find('.nav-string-tri');
+        
+        navContent.css("width", 0).css("height", 0).css("margin-top", 140)
+            .css("margin-left", 100);
+        navTri.css("border-left","0 solid transparent")
+                .css("border-right","0 solid transparent")
+                .css("border-top","0 solid #333").css("left", 92);
+        navTri.stop().animate(
+        
+            {
+                "border-left-width": "10px",
+                "border-right-width": "10px",
+                "border-top-width": "16px",
+                "left": "84px"
+            },
+            
+            {
+                duration: 1000,
+                easing: "easeOutElastic"
+            }
+        );
+        navContent.stop().animate(
+        
+            {
+                "width": 200,
+                "height": 140,
+                "margin-top": 0,
+                "margin-left": 0
+            },
+            
+            {
+                duration: 1000,
+                easing: "easeOutElastic"
+            }
+        );
+        
+    },
+    
     selectKey : function(object)
     {
-        object.addClass('selected');
+        var offsetH = object.offset().left;
+        var offsetV = object.offset().top;
+        object.removeClass('hover');
+        var keyColor = object.css("background-color");
+        var navSelectWrapper = $('<div>').appendTo('body')
+            .addClass('nav-select-wrapper');
+        var navSelectBack = $('<div>').appendTo(navSelectWrapper)
+            .addClass('nav-select-background');
+        var navSelectInner = $('<div>').appendTo(navSelectBack)
+            .addClass('nav-inner').css("background-color", keyColor);
+        navSelectWrapper.css("left",offsetH+10);
+        navSelectWrapper.css("top",offsetV+4);
+        
+        index.navStrPopUp(object);
+        
+        navSelectInner.animate(
+            {
+                "width":"36px",
+                "height":"36px",
+                "margin-top": "0",
+                "margin-left": "0"
+            },
+            {
+                duration: 400,
+                complete: function()
+                {
+                    navSelectWrapper.remove();
+                }
+            }
+        );
         index.data.lastKey = object.attr("name");
     },
     
     revertKey : function()
     {
+        /*
         index.dom.keyboardElements.removeClass('selected');
-        index.setKeyColors();
+        index.setKeyColors();*/
     },
     
     turnup : function(object)
@@ -211,6 +295,38 @@ var index = {
                 duration: 600
             }
         );
+    },
+    
+    
+    getMessage : function()
+    {
+        sendAjaxCall("./index/getmessage/format/json",
+                    "get",
+                    {},
+                    function(r){
+                      index.data.msgList = r;
+                      index.dynamicMessage();
+                    }
+        );
+    },
+    
+    showMessage : function(str)
+    {
+        var msgBox = index.dom.msgBox.find('.text');
+        msgBox.fadeOut(function(){msgBox.html(str);});
+        msgBox.fadeIn();
+    },
+    
+    dynamicMessage : function()
+    {
+      var rmsg = Math.floor(Math.random()*index.data.msgList.length);
+      if(index.data.msgList[rmsg].content!=null)
+        index.showMessage(index.data.msgList[rmsg].content);
+      
+      /* self call after random time */
+      setTimeout(function() {
+        index.dynamicMessage();
+      }, 5000);
     }
 
 }
