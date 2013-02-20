@@ -150,7 +150,6 @@ var index = {
     bindKeyboardMenuAnim : function(object)
     {
         
-        var head = index.dom.navBar.find('.navigate-tips');
         var name  = object.attr("name");
         
         
@@ -158,28 +157,30 @@ var index = {
         if(name == index.data.lastKey)
         {
             /* second attempt revert to initial */
-            index.revertKey();
             index.data.lastKey = "";
-            head.stop().animate(
-                {"margin-top": [0,"easeInOutExpo"]},
+            index.dom.navBar.stop().animate(
+                {"scroll-top": [0,"easeInOutExpo"]},
                 {duration: 800}
             );
         }
         else
         {
-            index.revertKey();
             index.selectKey(object);
 
             if(index.data.keyMapping[name]!=null)
-                head.stop().animate(
-                    {"margin-top": ["-"+index.data.keyMapping[name]+"px","easeInOutExpo"]},
+            {
+                index.dom.navBar.stop().animate(
+                    {"scroll-top": [index.data.keyMapping[name]+"px","easeInOutExpo"]},
                     {duration: 800}
                 );
+            }
             else
-                head.stop().animate(
-                    {"margin-top": [0,"easeInOutExpo"]},
+            {
+                index.dom.navBar.stop().animate(
+                    {"scroll-top": [0,"easeInOutExpo"]},
                     {duration: 800}
                 );
+            }
         }
         
     },
@@ -250,24 +251,25 @@ var index = {
             .addClass('nav-select-background');
         var navSelectInner = $('<div>').appendTo(navSelectBack)
             .addClass('nav-inner').css("background-color", keyColor);
-        navSelectWrapper.css("left",offsetH+10);
-        navSelectWrapper.css("top",offsetV+4);
-        
-        index.navStrPopUp(object);
-        
+        navSelectWrapper.css("left",offsetH+12);
+        navSelectWrapper.css("top",offsetV+5);
+
+        /*index.navStrPopUp(object);*/
+
         navSelectInner.animate(
             {
-                "width":"36px",
-                "height":"36px",
+                "width":"32px",
+                "height":"32px",
                 "margin-top": "0",
                 "margin-left": "0"
             },
             {
-                duration: 400,
+                duration: 300,
                 complete: function()
                 {
                     navSelectWrapper.remove();
-                }
+                },
+                queue: false
             }
         );
         index.data.lastKey = object.attr("name");
@@ -275,9 +277,9 @@ var index = {
     
     revertKey : function()
     {
-        /*
+        
         index.dom.keyboardElements.removeClass('selected');
-        index.setKeyColors();*/
+        index.setKeyColors();
     },
     
     

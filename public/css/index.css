@@ -33,8 +33,8 @@ root {
     padding: 2px;
 }
 
-#index-wrap .navigate-area{
-    background: rgb(244,222,41);
+#index-wrap .navigate-area-outer{
+    background: #121314;
     position: relative;
     width: 100%;
     height: 300px;
@@ -46,11 +46,28 @@ root {
         Helvetica, sans-serif;
 }
 
+#index-wrap .navigate-area{
+    background: rgb(244,222,41);
+    position: relative;
+    width: 100%;
+    height: 260px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    margin: 10px auto 0 auto;
+    font-family:  "Opificio","Microsoft Yahei",
+        Helvetica, sans-serif;
+}
+
 #index-wrap .navigate-tips{
     position: relative;
     width: 100%;
-    text-align: right;
-    height: 100%;
+    text-align: center;
+    height: 128px;
+    font-family: 'Helvetica Neue Bold','Open Sans',  "Microsoft Yahei",
+        Helvetica, sans-serif;
+    font-size: 72px;
+    padding: 66px 0;
 }
 
 #index-wrap .navigate-menu{
@@ -124,11 +141,10 @@ root {
 #index-wrap .navigate-menu li{
     position: relative;
     display: inline-block;
-    margin: 20px 10px 0 10px;
-    height: 120px;
-    width: 120px;
+    height: 140px;
+    margin: 60px 10px;
+    width: 140px;
     color: #333;
-    border: 2px solid #fff;
     overflow: hidden;
     
     background: url(../images/default.png) no-repeat center 4px;
@@ -136,15 +152,7 @@ root {
     background-color: #da2625;
 }
 
-#index-wrap .navigate-tips img{
-    margin-right: 50px;
-    margin-top: 37px;
-}
 
-.navigate-tips img{
-    height: 100px;
-    
-}
 
 #index-wrap ul{
     margin: 0;
@@ -326,27 +334,27 @@ root {
 
 .nav-select-background{
     position: relative;
-    height: 34px;
-    width: 34px;
+    height: 30px;
+    width: 30px;
     background-color: #333;
-    -webkit-border-radius: 17px;
-    -moz-border-radius: 17px;
-    -ms-border-radius: 17px;
-    -o-border-radius: 17px;
-    border-radius: 17px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+    border-radius: 15px;
 }
 
 .nav-inner{
     position: absolute;
     left: -1px;
     top: -1px;
-    margin-left: 18px;
-    margin-top: 18px;
-    -webkit-border-radius: 18px;
-    -moz-border-radius: 18px;
-    -ms-border-radius: 18px;
-    -o-border-radius: 18px;
-    border-radius: 18px;
+    margin-left: 16px;
+    margin-top: 16px;
+    -webkit-border-radius: 999px;
+    -moz-border-radius: 999px;
+    -ms-border-radius: 999px;
+    -o-border-radius: 999px;
+    border-radius: 999px;
 }
 
 #nav-string-wrapper{
