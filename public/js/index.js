@@ -158,6 +158,15 @@ var index = {
           preventDefault = true;
         }
         
+        if(e.keyCode == 13)
+        {
+          /* ENTER */
+          key = $('#key-enter .key-element-content');
+          index.bindKeyboardMenuAnim(key);
+          window.location = index.data.navStr;
+          preventDefault = true;
+        }
+        
         if(preventDefault)
             e.preventDefault();
         
