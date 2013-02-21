@@ -16,7 +16,8 @@ var index = {
         msgBoxWrapper : 0,
         msgBox : 0,
         navStrWin : 0,
-        overlay : 0
+        overlay : 0,
+        textArea : 0
     },
     
     data : {
@@ -152,27 +153,17 @@ var index = {
         
         var name  = object.attr("name");
         
-        
-        
-        if(name == index.data.lastKey)
+        index.selectKey(object);
+        if(index.data.navStr.length==1)
         {
-            /* second attempt revert to initial */
-            index.data.lastKey = "";
-            index.dom.navBar.stop().animate(
-                {"scroll-top": [0,"easeInOutExpo"]},
-                {duration: 800}
-            );
-        }
-        else
-        {
-            index.selectKey(object);
-
             if(index.data.keyMapping[name]!=null)
             {
                 index.dom.navBar.stop().animate(
                     {"scroll-top": [index.data.keyMapping[name]+"px","easeInOutExpo"]},
                     {duration: 800}
                 );
+                index.dom.textArea = index.dom.navBar.find('.'+name+' .nav-str');
+                index.dom.textArea.html(index.data.navStr);
             }
             else
             {
@@ -181,6 +172,9 @@ var index = {
                     {duration: 800}
                 );
             }
+        }else if(index.data.navStr.length>1)
+        {
+            index.dom.textArea.html(index.data.navStr);
         }
         
     },
@@ -241,6 +235,7 @@ var index = {
     
     selectKey : function(object)
     {
+        var name  = object.attr("name");
         var offsetH = object.offset().left;
         var offsetV = object.offset().top;
         object.removeClass('hover');
@@ -272,7 +267,7 @@ var index = {
                 queue: false
             }
         );
-        index.data.lastKey = object.attr("name");
+        index.data.navStr = (index.data.navStr + name).toLowerCase();
     },
     
     revertKey : function()

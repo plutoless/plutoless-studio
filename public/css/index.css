@@ -76,6 +76,37 @@ root {
     height: 100%;
 }
 
+
+#index-wrap .navigate-menu .menu-item{
+    position: relative;
+    display: inline-block;
+    height: 140px;
+    margin: 60px 10px;
+    width: 140px;
+    color: #333;
+    overflow: hidden;
+    border: 2px solid #fff;
+    
+    background: url(../images/default.png) no-repeat center 4px;
+    background-size: 80%;
+    background-color: #da2625;
+}
+
+
+#index-wrap .navigate-menu .nav-str{
+    position: relative;
+    width: 400px;
+    height: 140px;
+    display: inline-block;
+    margin: 70px 10px 50px 10px;
+    font-family: 'Helvetica Neue Bold','Open Sans',  "Microsoft Yahei",
+        Helvetica, sans-serif;
+    font-size: 72px;
+    color: #121314;
+    text-align: center;
+    vertical-align: top;
+}
+
 #index-wrap .navigate-menu .post{
     background: url(../images/post.png) no-repeat center 9px;
     background-size: 70%;
@@ -120,9 +151,11 @@ root {
     font-size: 18px;
 }
 
+
 #index-wrap .navigate-menu ul{
     text-align: center;
 }
+
 
 #index-wrap .navigate-error{
     position: relative;
@@ -138,19 +171,6 @@ root {
     padding: 45px;
 }
 
-#index-wrap .navigate-menu li{
-    position: relative;
-    display: inline-block;
-    height: 140px;
-    margin: 60px 10px;
-    width: 140px;
-    color: #333;
-    overflow: hidden;
-    
-    background: url(../images/default.png) no-repeat center 4px;
-    background-size: 80%;
-    background-color: #da2625;
-}
 
 
 
