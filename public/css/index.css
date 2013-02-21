@@ -81,13 +81,11 @@ root {
     position: relative;
     display: inline-block;
     height: 140px;
-    margin: 60px 10px;
+    margin: 50px 10px 70px 10px;
     width: 140px;
     color: #333;
-    overflow: hidden;
-    border: 2px solid #fff;
     
-    background: url(../images/default.png) no-repeat center 4px;
+    background: url(../images/default.png) no-repeat center center;
     background-size: 80%;
     background-color: #da2625;
 }
@@ -95,7 +93,7 @@ root {
 
 #index-wrap .navigate-menu .nav-str{
     position: relative;
-    width: 400px;
+    width: 300px;
     height: 140px;
     display: inline-block;
     margin: 70px 10px 50px 10px;
@@ -108,37 +106,37 @@ root {
 }
 
 #index-wrap .navigate-menu .post{
-    background: url(../images/post.png) no-repeat center 9px;
+    background: url(../images/post.png) no-repeat center center;
     background-size: 70%;
     background-color: #e6e6e6;
 }
 
 #index-wrap .navigate-menu .project{
-    background: url(../images/project.png) no-repeat center 5px;
+    background: url(../images/project.png) no-repeat center center;
     background-size: 90%;
     background-color: #797e84;
 }
 
 #index-wrap .navigate-menu .public{
-    background: url(../images/public.png) no-repeat center -10px;
+    background: url(../images/public.png) no-repeat center center;
     background-size: 100%;
     background-color: #d0e5e6;
 }
 
 #index-wrap .navigate-menu .game{
-    background: url(../images/game.png) no-repeat center 0px;
+    background: url(../images/game.png) no-repeat center center;
     background-size: 80%;
     background-color: #c23627;
 }
 
 #index-wrap .navigate-menu .fun{
-    background: url(../images/fun.png) no-repeat center 4px;
+    background: url(../images/fun.png) no-repeat center bottom;
     background-size: 80%;
     background-color: #ffcb29;
 }
 
 #index-wrap .navigate-menu .blog{
-    background: url(../images/blog.png) no-repeat center -4px;
+    background: url(../images/blog.png) no-repeat center center;
     background-size: 90%;
     background-color: #00a8a8;
 }
@@ -147,7 +145,8 @@ root {
     position: absolute;
     background: white;
     width: 100%;
-    bottom: 0;
+    bottom: -15px;
+    bottom: -1.5em;
     font-size: 18px;
 }
 

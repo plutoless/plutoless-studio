@@ -135,15 +135,32 @@ var index = {
     
     bindKeyboardActions : function(e)
     {
-        e.preventDefault();
+        var preventDefault = false;
+        var key = 0;
+        
         if(e.keyCode >=65 && e.keyCode <=90)
         {
           /* IT'S CHAR CODE */
           var c = String.fromCharCode(e.keyCode).toUpperCase();
-          var key = $('#key-'+c+' .key-element-content');
+          key = $('#key-'+c+' .key-element-content');
           
           index.bindKeyboardMenuAnim(key);
+          preventDefault = true;
         }
+        
+        if(e.keyCode == 8)
+        {
+          /* BACKSPACE */
+          key = $('#key-backspace .key-element-content');
+          
+          index.removeNavStr();
+          index.bindKeyboardMenuAnim(key);
+          preventDefault = true;
+        }
+        
+        if(preventDefault)
+            e.preventDefault();
+        
     },
     
     
@@ -152,9 +169,12 @@ var index = {
     {
         
         var name  = object.attr("name");
+        if(name==null)
+            name="";
+        
         
         index.selectKey(object);
-        if(index.data.navStr.length==1)
+        if(index.data.navStr.length==0)
         {
             if(index.data.keyMapping[name]!=null)
             {
@@ -162,6 +182,8 @@ var index = {
                     {"scroll-top": [index.data.keyMapping[name]+"px","easeInOutExpo"]},
                     {duration: 800}
                 );
+                    
+                index.appendNavStr(name);
                 index.dom.textArea = index.dom.navBar.find('.'+name+' .nav-str');
                 index.dom.textArea.html(index.data.navStr);
             }
@@ -172,8 +194,9 @@ var index = {
                     {duration: 800}
                 );
             }
-        }else if(index.data.navStr.length>1)
+        }else if(index.data.navStr.length>0)
         {
+            index.appendNavStr(name);
             index.dom.textArea.html(index.data.navStr);
         }
         
@@ -235,7 +258,6 @@ var index = {
     
     selectKey : function(object)
     {
-        var name  = object.attr("name");
         var offsetH = object.offset().left;
         var offsetV = object.offset().top;
         object.removeClass('hover');
@@ -267,7 +289,19 @@ var index = {
                 queue: false
             }
         );
-        index.data.navStr = (index.data.navStr + name).toLowerCase();
+        
+    },
+    
+    appendNavStr : function(name)
+    {
+        if(index.data.navStr.length <=8)
+            index.data.navStr = (index.data.navStr + name).toLowerCase();
+    },
+    
+    removeNavStr : function()
+    {
+        if(index.data.navStr.length > 0)
+            index.data.navStr = index.data.navStr.substring(0, index.data.navStr.length-1);
     },
     
     revertKey : function()
