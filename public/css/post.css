@@ -1,19 +1,23 @@
 
-#view-content{
-  margin: auto;
+#view-content-outer{
+  margin: 0;
   overflow: auto;
-  width: 1000px;
+  width: 100%;
   opacity: 1;
   color: #6A686B;
+  background-color: #121314;
+  padding: 10px 0 30px 0;
 }
 
-.post-header{
-  margin: auto;
-  overflow: auto;
-  height: 100px;
-  background: #FFB11B;
+#view-content-outer .content-wrap{
+    background: rgb(244,222,41);
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin: 0 auto;
+    font-family: 'Helvetica Neue',"Microsoft Yahei",
+        Helvetica, sans-serif;
 }
-
 
 .menu-column .return{
   background-color: green;
@@ -60,18 +64,6 @@
   padding: 50px 0;
 }
 
-.post-list li:first-child{
-  text-align: left;
-  border-bottom: 1px solid #DDD;
-  padding: 0 0 50px 0;
-}
-
-.post-list li:last-child{
-  text-align: left;
-  border-bottom: 0;
-  padding: 50px 0;
-  margin-bottom: 20px;
-}
 
 .center-column .post-list .titleBar{
   width: 100%;
@@ -79,13 +71,14 @@
 }
 
 .center-column .post-list .titleBar .title{
-  font-size: 22px;
   letter-spacing: 3px;
-  font-weight: 700;
+  font-size: 32px;
   padding: 8px;
   line-height: 28px;
   text-transform: uppercase;
-  color: #444444;
+  color: #121314;
+  font-family: 'Helvetica Neue Bold',"Microsoft Yahei",
+        Helvetica, sans-serif;
 }
 
 .center-column .post-list .time{
@@ -104,9 +97,12 @@
     margin: 0;
     padding: 0;
     border: 0;
-    font: inherit;
+    
+    color: #444;
     vertical-align: baseline;
     font-size: 16px;
+    font-family: 'Helvetica Neue',"Microsoft Yahei",
+        Helvetica, sans-serif;
     line-height: 24px;
 }
 

@@ -20,7 +20,8 @@ root {
 }
 
 #index-wrap .key-board{
-    width: 800px;
+    width: 90%;
+    min-width: 800px;
     height: auto;
     color: #6c6c6c;
     font-family: "Microsoft Yahei",
@@ -29,7 +30,7 @@ root {
     overflow: auto;
     z-index: 1;
     background: #ddd;
-    margin: 0 auto 0 auto;
+    margin: 20px auto 0 auto;
     padding: 2px;
 }
 
@@ -37,11 +38,8 @@ root {
     background: #121314;
     position: relative;
     width: 100%;
-    height: 300px;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    margin: 0 auto 20px auto;
+    height: auto;
+    padding: 10px 0 30px 0;
     font-family:  "Opificio","Microsoft Yahei",
         Helvetica, sans-serif;
 }
@@ -51,12 +49,19 @@ root {
     position: relative;
     width: 100%;
     height: 260px;
-    margin: 0;
-    padding: 0;
     overflow: hidden;
-    margin: 10px auto 0 auto;
+    margin: 0 auto;
     font-family:  "Opificio","Microsoft Yahei",
         Helvetica, sans-serif;
+    white-space: nowrap;
+    
+}
+
+
+#index-wrap .navigate-menu{
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
 
 #index-wrap .navigate-tips{
@@ -69,13 +74,6 @@ root {
     font-size: 72px;
     padding: 66px 0;
 }
-
-#index-wrap .navigate-menu{
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
 
 #index-wrap .navigate-menu .menu-item{
     position: relative;
@@ -173,13 +171,18 @@ root {
 
 
 
-#index-wrap ul{
+#index-wrap .key-board ul{
     margin: 0;
     padding: 0;
+    word-spacing: 0;
+    font-size: 0;
+    letter-spacing: 0;
 }
 
 #index-wrap .key-element-wrapper{
-    float: left;
+    display: inline-block;
+    font-size: 11px;
+    vertical-align: top;
 }
 
 #index-wrap .key-size-normal{
@@ -237,11 +240,11 @@ root {
 }
 
 #index-wrap .key-element-content{
-    padding: 8px 0 0 0;
     text-align: center;
+    
     cursor: pointer;
     background: #fff;
-    height: 30px;
+    height: 40px;
 }
 
 #index-wrap .special-key{
@@ -353,41 +356,23 @@ root {
 
 .nav-select-background{
     position: relative;
-    height: 30px;
-    width: 30px;
-    background-color: #333;
-    -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
-    -ms-border-radius: 15px;
-    -o-border-radius: 15px;
-    border-radius: 15px;
+    width: 0;
+    height: 0;
+    -webkit-border-radius: 999px;
+    -moz-border-radius: 999px;
+    -ms-border-radius: 999px;
+    -o-border-radius: 999px;
+    border-radius: 999px;
+    border: 100px solid #f19072;
 }
 
 .nav-inner{
     position: absolute;
     left: -1px;
     top: -1px;
-    margin-left: 16px;
-    margin-top: 16px;
     -webkit-border-radius: 999px;
     -moz-border-radius: 999px;
     -ms-border-radius: 999px;
     -o-border-radius: 999px;
     border-radius: 999px;
-}
-
-#nav-string-wrapper{
-    position: absolute;
-}
-
-#nav-string-wrapper .nav-string-content{
-    position: relative;
-    background: #333;
-}
-
-#nav-string-wrapper .nav-string-tri{
-    position: relative;
-    left: 84px;
-    width: 0; 
-    height: 0; 
 }

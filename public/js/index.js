@@ -10,6 +10,7 @@ $(function(){
 var index = {
     
     dom : {
+        mainContent : 0,
         keyboard : 0,
         keyboardElements : 0,
         navBar   : 0,
@@ -22,16 +23,19 @@ var index = {
     
     data : {
         keyMapping : 0,
+        navMapping : 0,
         lastKey : "",
         navStr : "",
         idleCounter : 0,
         busyCounter : 0,
-        msgList : 0
+        msgList : 0,
+        sampleKey : 0
     },
     
     init : function()
     {
         common.init();
+        index.dom.mainContent = $('#content');
         index.dom.msgBoxWrapper = $('#msg-box-wrapper');
         index.dom.navStrWin = 
             $('#nav-string-wrapper');
@@ -41,21 +45,18 @@ var index = {
             $('#index-wrap .navigate-area');
         index.dom.msgBox = 
             $('#msg-box-wrapper .msg-box');
-        index.dom.overlay = $('.overlay');
         index.initializeKeyboard();
         index.getKeyMapping();
         
         /* Attach listener */
         $(window).resize(index.getKeyboardPos);
-        
-
     },
     
     initializeKeyboard : function()
     {
-        index.getKeyboardPos();
         index.dom.keyboardElements = 
             $('#index-wrap .key-board .key-element-content');
+        index.getKeyboardPos();
         index.dom.keyboardElements.hover(
             function()
             {
@@ -86,6 +87,12 @@ var index = {
             C: $('.navigate-area .C').position().top,
             G: $('.navigate-area .G').position().top,
             F: $('.navigate-area .F').position().top
+        };
+        index.data.navMapping = {
+            project : "projects",
+            post : "post",
+            fun : "fun",
+            contact : "contact"
         };
         index.setKeyColors();
         /*
@@ -119,18 +126,12 @@ var index = {
     
     getKeyboardPos : function()
     {
-        /*
-        var windowH = $(window).height();
-        var windowW = $(window).width();
-        var keyboardH = index.dom.keyboard.height();
-        var keyboardW = index.dom.keyboard.width();
-        var spaceH = $('#header').height();
-        var spaceW = 60;
-        var paddingV = (windowH - spaceH*2-keyboardH)/2;
-        var paddingH = (windowW - spaceW*2-keyboardW)/2;
-        var dom = $('#index-wrap');
-        dom.css("padding", paddingV+"px "+paddingH+"px");
-        /*$('#header').css("height", (windowH-keyboardH)/2);*/
+        var sampleKey = $('#key-Q');
+        var sampleKeyW = sampleKey.width();
+        var sampleKeyH = sampleKeyW/70*40-7;
+        if(sampleKeyH>30)
+            index.dom.keyboardElements.css("height", sampleKeyH)
+                .css("padding-top", (sampleKeyH-14)/2);
     },
     
     bindKeyboardActions : function(e)
@@ -163,13 +164,56 @@ var index = {
           /* ENTER */
           key = $('#key-enter .key-element-content');
           index.bindKeyboardMenuAnim(key);
-          window.location = index.data.navStr;
+          if(index.data.navMapping[index.data.navStr]!=null)
+              index.navigatePage(index.data.navMapping[index.data.navStr]);
+          else
+          {
+              /* TODO */
+          }
           preventDefault = true;
         }
         
         if(preventDefault)
             e.preventDefault();
         
+    },
+    
+    navigatePage : function(link)
+    {
+       
+        var navElements = index.dom.navBar.find('.navigate-menu')
+        navElements.animate(
+            {"opacity": 0},
+            {
+                duration: 400,
+                step : function()
+                {
+                    index.dom.keyboard.css("opacity", $(this).css("opacity"));
+                },
+                complete : function()
+                {
+                    index.dom.keyboard.remove();
+                    $(this).remove();
+                    var h = common.getWrapHeight();
+                    index.dom.navBar.animate(
+                        {
+                            height: h
+                        },
+                        {
+                            duration : 800,
+                            easing : "easeOutExpo",
+                            complete : function()
+                            {
+                                $(document).off();
+                                $(window).off();
+                                index.dom.mainContent.load(link);
+                            }
+                        }
+                    );
+                }
+            }
+
+        );
     },
     
     
@@ -188,8 +232,8 @@ var index = {
             if(index.data.keyMapping[name]!=null)
             {
                 index.dom.navBar.stop().animate(
-                    {"scroll-top": [index.data.keyMapping[name]+"px","easeInOutExpo"]},
-                    {duration: 800}
+                    {"scroll-top": [index.data.keyMapping[name]+"px","easeOutExpo"]},
+                    {duration: 1000}
                 );
                     
                 index.appendNavStr(name);
@@ -199,8 +243,8 @@ var index = {
             else
             {
                 index.dom.navBar.stop().animate(
-                    {"scroll-top": [0,"easeInOutExpo"]},
-                    {duration: 800}
+                    {"scroll-top": [0,"easeOutExpo"]},
+                    {duration: 1000}
                 );
             }
         }else if(index.data.navStr.length>0)
@@ -269,33 +313,39 @@ var index = {
     {
         var offsetH = object.offset().left;
         var offsetV = object.offset().top;
+        var keyW = object.width();
+        var keyH = object.parent().height();
+        var length = (keyW>keyH)?keyH-16:keyW-16;
+        if(length<16)
+            length = 16;
         object.removeClass('hover');
-        var keyColor = object.css("background-color");
         var navSelectWrapper = $('<div>').appendTo('body')
             .addClass('nav-select-wrapper');
         var navSelectBack = $('<div>').appendTo(navSelectWrapper)
             .addClass('nav-select-background');
-        var navSelectInner = $('<div>').appendTo(navSelectBack)
-            .addClass('nav-inner').css("background-color", keyColor);
-        navSelectWrapper.css("left",offsetH+12);
-        navSelectWrapper.css("top",offsetV+5);
+        navSelectWrapper.css("left",offsetH+keyW/2-length/2);
+        navSelectWrapper.css("top",offsetV+keyH/2-length/2);
 
         /*index.navStrPopUp(object);*/
 
-        navSelectInner.animate(
+        navSelectBack.stop().animate(
             {
-                "width":"32px",
-                "height":"32px",
-                "margin-top": "0",
-                "margin-left": "0"
+                "height" : length,
+                "width" : length
             },
             {
-                duration: 300,
+                duration: 400,
+                step: function()
+                {
+                    var h = $(this).height();
+                    $(this).css("border-width", (length-h)/2)
+                },
                 complete: function()
                 {
                     navSelectWrapper.remove();
                 },
-                queue: false
+                queue: false,
+                easing: "easeOutExpo"
             }
         );
         

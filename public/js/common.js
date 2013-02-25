@@ -6,6 +6,13 @@ var common = {
     init : function()
     {
       
+    },
+    
+    getWrapHeight : function()
+    { 
+        var headerH = 80;
+        var marginV = 40;
+        return $(window).height()-headerH-marginV-50;
     }
     
     

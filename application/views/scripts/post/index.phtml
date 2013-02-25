@@ -1,46 +1,47 @@
-﻿<?php
-
+<?php
 $this->headTitle($this->title);
 $this->headLink()->prependStylesheet($this->baseUrl().'/public/css/post.css');
 $this->headScript()->prependFile($this->baseUrl().'/public/js/post.js');
 ?>
-<div id="view-content">
 
-  <div class="menu-column">
-    <div class="menu-block">
-      <ul>
-          <?php foreach($this->postTypes as $type): ?>
-          <li>
-              <?php echo $type->ptype; ?>
-          </li>
-          <?php endforeach; ?>
-        </ul>
-    </div>
-  </div>
-  <div class="center-column">
-    <div class="post-list">
-      <ul>
-        <?php foreach($this->pagePosts as $post) : ?>
-          <li>
-            <div class="titleBar">
-              <div class="title inline"><?php echo $this->escape($post->title);?></div>
+<div id="view-content-outer">
+    <div class="content-wrap">
+        <div class="menu-column">
+            <div class="menu-block">
+            <ul>
+                <?php foreach($this->postTypes as $type): ?>
+                <li>
+                    <?php echo $type->ptype; ?>
+                </li>
+                <?php endforeach; ?>
+                </ul>
             </div>
-            <div class="content"><?php echo $this->escape($post->content);?></div>
-            <!--<div class="time"><?php echo date("M d, Y", strtotime($this->escape($post->ts)));?></div>-->
-          </li>
-        <?php endforeach; ?>
-      </ul>
+        </div>
+        <div class="center-column">
+            <div class="post-list">
+            <ul>
+                <?php foreach($this->pagePosts as $post) : ?>
+                <li>
+                    <div class="titleBar">
+                    <div class="title inline"><?php echo $this->escape($post->title);?></div>
+                    </div>
+                    <div class="content"><?php echo $this->escape($post->content);?></div>
+                    <!--<div class="time"><?php echo date("M d, Y", strtotime($this->escape($post->ts)));?></div>-->
+                </li>
+                <?php endforeach; ?>
+            </ul>
+            </div>
+        </div>
+
+        <div class="menu-column">
+            <div class="menu-block">
+            <div class="return menu-content">
+            </div>
+            </div>
+            <div class="menu-block">
+            <div class="refresh menu-content">
+            </div>
+            </div>
+        </div>
     </div>
-  </div>
-  
-  <div class="menu-column">
-    <div class="menu-block">
-      <div class="return menu-content">
-      </div>
-    </div>
-    <div class="menu-block">
-      <div class="refresh menu-content">
-      </div>
-    </div>
-  </div>
 </div>
