@@ -40,8 +40,6 @@ root {
     width: 100%;
     height: auto;
     padding: 10px 0 30px 0;
-    font-family:  "Opificio","Microsoft Yahei",
-        Helvetica, sans-serif;
 }
 
 #index-wrap .navigate-area{
@@ -51,12 +49,13 @@ root {
     height: 260px;
     overflow: hidden;
     margin: 0 auto;
-    font-family:  "Opificio","Microsoft Yahei",
-        Helvetica, sans-serif;
     white-space: nowrap;
     
 }
 
+#index-wrap .navigate-area .content-wrap{
+    height: 100%;
+}
 
 #index-wrap .navigate-menu{
     position: relative;
@@ -146,6 +145,8 @@ root {
     bottom: -15px;
     bottom: -1.5em;
     font-size: 18px;
+    font-family:  "Opificio","Microsoft Yahei",
+        Helvetica, sans-serif;
 }
 
 

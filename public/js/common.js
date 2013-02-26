@@ -12,7 +12,8 @@ var common = {
     { 
         var headerH = 80;
         var marginV = 40;
-        return $(window).height()-headerH-marginV-50;
+        var result = $(window).height()-headerH-marginV-50;
+        return (result>469)?result:469;
     }
     
     

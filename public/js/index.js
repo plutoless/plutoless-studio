@@ -29,7 +29,8 @@ var index = {
         idleCounter : 0,
         busyCounter : 0,
         msgList : 0,
-        sampleKey : 0
+        sampleKey : 0,
+        loadLock : false
     },
     
     init : function()
@@ -180,9 +181,15 @@ var index = {
     
     navigatePage : function(link)
     {
-       
-        var navElements = index.dom.navBar.find('.navigate-menu')
-        navElements.animate(
+        if(!index.data.loadLock)
+            index.data.loadLock = true;
+        else
+            return;
+        
+        $(document).off();
+        $(window).off();
+        var navElements = index.dom.navBar.find('.navigate-menu-wrap')
+        navElements.stop().animate(
             {"opacity": 0},
             {
                 duration: 400,
@@ -192,8 +199,8 @@ var index = {
                 },
                 complete : function()
                 {
-                    index.dom.keyboard.remove();
-                    $(this).remove();
+                    index.dom.keyboard.hide();
+                    $(this).hide();
                     var h = common.getWrapHeight();
                     index.dom.navBar.animate(
                         {
@@ -204,9 +211,7 @@ var index = {
                             easing : "easeOutExpo",
                             complete : function()
                             {
-                                $(document).off();
-                                $(window).off();
-                                index.dom.mainContent.load(link);
+                                index.dom.navBar.find('.content-wrap').load(link);
                             }
                         }
                     );

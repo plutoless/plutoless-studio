@@ -8,6 +8,7 @@ class PostController extends Zend_Controller_Action
     public function init()
     {
         /* Initialize action controller here */
+        $this->_helper->layout()->disableLayout(); 
         $this->posts = new Application_Model_DbTable_Post();
     }
 
