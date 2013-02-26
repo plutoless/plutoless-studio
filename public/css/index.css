@@ -55,6 +55,7 @@ root {
 
 #index-wrap .navigate-area .content-wrap{
     height: 100%;
+    min-width: 800px;
 }
 
 #index-wrap .navigate-menu{

@@ -40,7 +40,8 @@ var index = {
         index.dom.msgBoxWrapper = $('#msg-box-wrapper');
         index.dom.navStrWin = 
             $('#nav-string-wrapper');
-        index.getMessage();
+        /*
+        index.getMessage();*/
         index.dom.keyboard = $('#index-wrap .key-board');
         index.dom.navBar =
             $('#index-wrap .navigate-area');
@@ -211,7 +212,14 @@ var index = {
                             easing : "easeOutExpo",
                             complete : function()
                             {
-                                index.dom.navBar.find('.content-wrap').load(link);
+                                index.dom.navBar.find('.content-wrap')
+                                    .load(link, function()
+                                {
+                                    $.getScript('./public/js/post.js', 
+                                        function(){
+                                            post.init();
+                                        });
+                                });
                             }
                         }
                     );
@@ -339,7 +347,7 @@ var index = {
                 "width" : length
             },
             {
-                duration: 400,
+                duration: 200,
                 step: function()
                 {
                     var h = $(this).height();
@@ -349,8 +357,7 @@ var index = {
                 {
                     navSelectWrapper.remove();
                 },
-                queue: false,
-                easing: "easeOutExpo"
+                queue: false
             }
         );
         
