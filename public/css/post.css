@@ -58,24 +58,25 @@
     height: 80px;
     text-align: right;
     font-size: 0;
+    right: 50px;
 }
 
 .post-control-wrap .control-key-wrap{
     display: inline-block;
     width: 80px;
     height: 100%;
-    margin: 0 5px;
+    margin: 10px 5px 0 5px;
 }
 
 .post-control-wrap .control-key-frame{
     text-align: center;
     padding: 15px 10px;
-    background: white;
+    background: #da2625;
     font-size: 11px;
-    font-family: "Microsoft Yahei",
+    font-family: "Microsoft Yahei","微软雅黑",
         Helvetica, sans-serif;
     cursor: pointer;
-    color: #666;
+    color: #fff;
 }
 
 .post-control-wrap .control-key-frame:hover{
@@ -102,17 +103,18 @@
 
 .center-column .post-list .titleBar{
   width: 100%;
-  margin: 50px 0 20px 0;
+  margin: 0 0 20px 0;
 }
 
 .center-column .post-list .titleBar .title{
   letter-spacing: 3px;
   font-size: 32px;
+  font-weight: bold;
   padding: 8px;
   line-height: 28px;
   text-transform: uppercase;
   color: #121314;
-  font-family: 'Helvetica Neue Bold',"Microsoft Yahei",
+  font-family: 'Helvetica Neue',"Microsoft Yahei",
         Helvetica, sans-serif;
 }
 

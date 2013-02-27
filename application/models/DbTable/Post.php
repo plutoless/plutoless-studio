@@ -13,7 +13,8 @@ class Application_Model_DbTable_Post extends Zend_Db_Table_Abstract
                         array('pid','title','content','ts','ptid'))
                 ->joinLeft(array('t' => 'Type'), 
                         't.ptid = p.ptid',
-                        array('ptype'=>'title')));
+                        array('ptype'=>'title'))
+                ->order(array('ts DESC')));
         return $posts;
     }
     

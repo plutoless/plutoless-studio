@@ -11,7 +11,8 @@ var common = {
     getWrapHeight : function()
     { 
         var headerH = 80;
-        var marginV = 40;
+        /*var marginV = 40;*/
+        marginV = 0;
         var result = $(window).height()-headerH-marginV-50;
         return (result>469)?result:469;
     }

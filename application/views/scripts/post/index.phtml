@@ -17,7 +17,7 @@
                 <div class="titleBar">
                     <div class="title inline"><?php echo $this->escape($post->title);?></div>
                 </div>
-                <div class="content"><?php echo $this->escape($post->content);?></div>
+                <div class="content"><?php echo nl2br($post->content);?></div>
                 <!--<div class="time"><?php echo date("M d, Y", strtotime($this->escape($post->ts)));?></div>-->
             </li>
             <?php endforeach; ?>
@@ -25,17 +25,17 @@
     </div>
     <div class="post-control-wrap">
         <div class="control-key-wrap" name="prev">
-            <div class="control-key-frame rounded2 shadow3">
+            <div class="control-key-frame rounded2 shadow4">
                 Prev
             </div>
         </div>
         <div class="control-key-wrap" name="next">
-            <div class="control-key-frame rounded2 shadow3">
+            <div class="control-key-frame rounded2 shadow4">
                 Next
             </div>
         </div>
         <div class="control-key-wrap" name="home">
-            <div class="control-key-frame rounded2 shadow3">
+            <div class="control-key-frame rounded2 shadow4">
                 Home
             </div>
         </div>

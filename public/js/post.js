@@ -11,10 +11,12 @@ if(post==null)
             controlPanel : 0,
             controlKeys : 0,
             postList : 0,
+            posts : 0,
             currentPost : 0
         },
 
         data :{
+            api : 0,
             controlPanelH : 0
         },
 
@@ -29,6 +31,8 @@ if(post==null)
                 .find('.post-control-wrap');
             post.dom.controlKeys = post.dom.controlPanel.find('.control-key-wrap');
             post.dom.postList = post.dom.contentWrap.find('.post-list-wrap');
+            post.dom.posts = post.dom.postList.find('.post');
+            post.dom.posts.jScrollPane();
             post.dom.currentPost = post.dom.postList.find('.post').filter(':first');
 
             post.data.controlPanelH = post.dom.controlPanel.height();
@@ -43,7 +47,19 @@ if(post==null)
         getControlPanelPos : function()
         {
             var centerColumnH = post.dom.mainColumn.height();
-            post.dom.postList.css("height", centerColumnH - post.data.controlPanelH);
+            var originHeight = post.dom.postList.css("height");
+            var topMargin = 40;
+            post.dom.postList.css("height", centerColumnH 
+                - post.data.controlPanelH - topMargin).css("margin-top",topMargin);
+            if(originHeight!=centerColumnH - post.data.controlPanelH)
+            {
+                post.dom.posts.each(
+                    function(){
+                        var api = $(this).data('jsp');
+                        api.reinitialise();
+                    }
+                );
+            }
         },
 
         getContentWrapPos : function()
