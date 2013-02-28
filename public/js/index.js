@@ -127,13 +127,13 @@ var index = {
     },
     
     getKeyboardPos : function()
-    {
+    {/*
         var sampleKey = $('#key-Q');
         var sampleKeyW = sampleKey.width();
         var sampleKeyH = sampleKeyW/70*36-7;
         if(sampleKeyH>30)
             index.dom.keyboardElements.css("height", sampleKeyH)
-                .css("padding-top", (sampleKeyH-14)/2);
+                .css("padding-top", (sampleKeyH-14)/2);*/
     },
     
     bindKeyboardActions : function(e)

@@ -9,9 +9,9 @@ $keys = array("Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P");
 $keys2 = array("A", "S", "D", "F", "G", "H", "J", "K", "L");
 $keys3 = array("Z", "X", "C", "V", "B", "N", "M", "<", ">");
 ?>
-<div id="header"><img src="<?php echo $this->baseURL();?>/public/images/logo.png"></div>
+<!--<div id="header"><img src="<?php echo $this->baseURL();?>/public/images/logo.png"></div>-->
 <div id="content">
-    <div id="index-wrap">
+    <div id="index-wrap"><!--
         <div class="navigate-area-outer">
             <div class="navigate-area">
                 <div class="navigate-menu-wrap">
@@ -56,12 +56,12 @@ $keys3 = array("Z", "X", "C", "V", "B", "N", "M", "<", ">");
                 <div class="content-wrap">
                 </div>
             </div>
-        </div>
+        </div>-->
         <div class="key-board rounded shadow">       
             <ul>
                 <li id="key-tab" class="key-element-wrapper key-size-tab">
                     <div class="key-element">
-                        <div class="key-element-content rounded2 shadow3">
+                        <div class="key-element-content">
                             Tab
                         </div>
                     </div>
@@ -69,7 +69,7 @@ $keys3 = array("Z", "X", "C", "V", "B", "N", "M", "<", ">");
                 <?php foreach($keys AS $key): ?>
                 <li id="key-<?php echo $key;?>" class="key-element-wrapper key-size-normal">
                     <div class="key-element">
-                        <div class="key-element-content rounded2 shadow3"
+                        <div class="key-element-content"
                             name="<?php echo $key;?>">
                             <?php echo $key;?>
                         </div>
@@ -79,14 +79,14 @@ $keys3 = array("Z", "X", "C", "V", "B", "N", "M", "<", ">");
 
                 <li id="key-backspace" class="key-element-wrapper key-size-backspace">
                     <div class="key-element">
-                        <div class="key-element-content rounded2 shadow3">
+                        <div class="key-element-content">
                             <-
                         </div>
                     </div>
                 </li>
                 <li id="key-caps" class="key-element-wrapper key-size-caps">
                     <div class="key-element">
-                        <div class="key-element-content rounded2 shadow3">
+                        <div class="key-element-content">
                             Caps
                         </div>
                     </div>
@@ -94,7 +94,7 @@ $keys3 = array("Z", "X", "C", "V", "B", "N", "M", "<", ">");
                 <?php foreach($keys2 AS $key): ?>
                 <li id="key-<?php echo $key;?>" class="key-element-wrapper key-size-normal">
                     <div class="key-element">
-                        <div class="key-element-content rounded2 shadow3"
+                        <div class="key-element-content"
                             name="<?php echo $key;?>">
                             <?php echo $key;?>
                         </div>
@@ -104,14 +104,14 @@ $keys3 = array("Z", "X", "C", "V", "B", "N", "M", "<", ">");
 
                 <li id="key-enter" class="key-element-wrapper key-size-enter">
                     <div class="key-element">
-                        <div class="key-element-content rounded2 shadow3">
+                        <div class="key-element-content">
                             enter
                         </div>
                     </div>
                 </li>
                 <li id="key-shift-left" class="key-element-wrapper key-size-shift-left">
                     <div class="key-element">
-                        <div class="key-element-content rounded2 shadow3">
+                        <div class="key-element-content">
                             Shift
                         </div>
                     </div>
@@ -119,7 +119,7 @@ $keys3 = array("Z", "X", "C", "V", "B", "N", "M", "<", ">");
                 <?php foreach($keys3 AS $key): ?>
                 <li id="key-<?php echo $key;?>" class="key-element-wrapper key-size-normal">
                     <div class="key-element">
-                        <div class="key-element-content rounded2 shadow3"
+                        <div class="key-element-content"
                             name="<?php echo $key;?>">
                             <?php echo $key;?>
                         </div>
@@ -129,7 +129,7 @@ $keys3 = array("Z", "X", "C", "V", "B", "N", "M", "<", ">");
 
                 <li id="key-shift-right" class="key-element-wrapper key-size-shift-right">
                     <div class="key-element">
-                        <div class="key-element-content rounded2 shadow3">
+                        <div class="key-element-content">
                             Shift
                         </div>
                     </div>
@@ -137,7 +137,7 @@ $keys3 = array("Z", "X", "C", "V", "B", "N", "M", "<", ">");
 
                 <li id="key-ctrl" class="key-element-wrapper key-size-control">
                     <div class="key-element">
-                        <div class="key-element-content rounded2 shadow3">
+                        <div class="key-element-content key-bottom">
                             Ctrl
                         </div>
                     </div>
@@ -145,7 +145,7 @@ $keys3 = array("Z", "X", "C", "V", "B", "N", "M", "<", ">");
 
                 <li id="key-option" class="key-element-wrapper key-size-option">
                     <div class="key-element">
-                        <div class="key-element-content rounded2 shadow3">
+                        <div class="key-element-content key-bottom">
                             Option
                         </div>
                     </div>
@@ -153,21 +153,21 @@ $keys3 = array("Z", "X", "C", "V", "B", "N", "M", "<", ">");
 
                 <li id="key-command" class="key-element-wrapper key-size-command">
                     <div class="key-element">
-                        <div class="key-element-content rounded2 shadow3">
+                        <div class="key-element-content key-bottom">
                             Cmd
                         </div>
                     </div>
                 </li>
                 <li id="key-space" class="key-element-wrapper key-size-space">
                     <div class="key-element">
-                        <div class="key-element-content rounded2 shadow3">
+                        <div class="key-element-content key-bottom">
                             Space
                         </div>
                     </div>
                 </li>
                 <li id="key-messages" class="key-element-wrapper key-size-message">
                     <div class="key-element">
-                        <div class="key-element-content rounded2 shadow3 special-key3">
+                        <div class="key-element-content key-bottom">
                             Message
                         </div>
                     </div>
@@ -185,7 +185,7 @@ $keys3 = array("Z", "X", "C", "V", "B", "N", "M", "<", ">");
     <div class="overlay"></div>
     <!--
     <div id="nav-string-wrapper">
-        <div class="nav-string-content rounded2 shadow3">
+        <div class="nav-string-content rounded2">
         </div>
         <div class="nav-string-tri"></div>
     </div>-->
