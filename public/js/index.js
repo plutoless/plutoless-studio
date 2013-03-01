@@ -60,17 +60,6 @@ var index = {
             $('#index-wrap .key-board .key-element-content');
         index.getKeyboardPos();
         
-        index.dom.keyboardElements.hover(
-            function()
-            {
-                $(this).addClass("hover");
-            },
-            function()
-            {
-                $(this).removeClass("hover");
-            }
-        );
-        
         index.dom.keyboardElements.mousedown(
             function()
             {
