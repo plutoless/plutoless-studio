@@ -48,7 +48,7 @@ var index = {
         index.dom.msgBox = 
             $('#msg-box-wrapper .msg-box');
         index.initializeKeyboard();
-        index.getKeyMapping();
+        /*index.getKeyMapping();*/
         
         /* Attach listener */
         $(window).resize(index.getKeyboardPos);
@@ -59,6 +59,7 @@ var index = {
         index.dom.keyboardElements = 
             $('#index-wrap .key-board .key-element-content');
         index.getKeyboardPos();
+        
         index.dom.keyboardElements.hover(
             function()
             {
@@ -69,14 +70,30 @@ var index = {
                 $(this).removeClass("hover");
             }
         );
+        
+        index.dom.keyboardElements.mousedown(
+            function()
+            {
+                $(this).addClass("selected");
+            }
+        );
+        index.dom.keyboardElements.mouseup(
+            function()
+            {
+                $(this).removeClass("selected");
+            }
+        );    
+        
+        
         index.dom.keyboardElements.click(
+        /*
             function()
             {
                 if($(this).attr("name")!=null)
                 {
                     index.bindKeyboardMenuAnim($(this));
                 }
-            }
+            }*/
         );
         $(document).keydown(function(e){index.bindKeyboardActions(e);});
     },

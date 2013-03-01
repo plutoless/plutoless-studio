@@ -7,7 +7,8 @@
 */
 
 html{
-  background: -webkit-radial-gradient(center, ellipse cover, rgba(246,241,232,1) 39%,rgba(212,204,186,1) 100%);
+  background: url(../images/BG.png), -moz-linear-gradient(225deg, #bdbab1 0%, #b9b7ae 100%) #585858;
+  background: url(../images/BG.png), -webkit-gradient(linear, right top, left bottom, from(#bdbab1), to(#b9b7ae)) #585858;
   height: 100%;
 }
 
@@ -66,8 +67,8 @@ ul{
 
 #content{
   width: 100%;
-  height: auto;
-  overflow: auto;
+  height: 520px;
+  overflow: visible;
   margin: 0;
 }
 
