@@ -15,6 +15,13 @@ var common = {
         marginV = 0;
         var result = $(window).height()-headerH-marginV-50;
         return (result>469)?result:469;
+    },
+    
+    verticalCenter : function(object, parentObject)
+    {
+        var pH = parentObject.height();
+        var oH = object.height();
+        object.css("margin-top", (pH-oH)/2);
     }
     
     

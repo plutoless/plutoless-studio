@@ -31,7 +31,7 @@ root {
 #index-wrap .screen{
     position: relative;
     width: 780px;
-    height: 265px;
+    height: 264px;
     top: 10px;
     left: 10px;
     color: #6c6c6c;
@@ -52,16 +52,17 @@ root {
 #index-wrap .screen-index{
     position: absolute;
     margin: 0 !important;
-    width: 780px;
-    height: 265px;
+    left: -110px;
+    top: -368px;
+    width: 1000px;
+    height: 1000px;
     z-index: -1;
     text-align: center;
 }
 
 .screen-index .screen-index-inner{
-    vertical-align: middle;
-    width: 275px;
-    height: 275px;
+    width: 1000px;
+    height: 1000px;
     display: inline-block;
     background: white;
     -webkit-border-radius: 999px;

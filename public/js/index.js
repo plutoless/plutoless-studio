@@ -54,19 +54,22 @@ var index = {
         $(window).resize(index.getKeyboardPos);
         
         /* START ANIM */
-        //index.indexInAnim();
+        index.indexInAnim();
     },
     
     indexInAnim : function()
     {
+        var objPar = $('#index-wrap .screen-index');
+        var obj = objPar.find('.screen-index-inner');
         
         $('#index-wrap .screen-index .screen-index-inner').animate(
                 {
                     "width": "100px",
-                    "height": "100px"
+                    "height": "100px",
+                    "margin-top": "450px"
                 },
                 {
-                    duration: 400,
+                    duration: 1000,
                     easing : "easeInCubic"
                 }
 
