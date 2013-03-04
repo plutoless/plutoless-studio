@@ -52,6 +52,25 @@ var index = {
         
         /* Attach listener */
         $(window).resize(index.getKeyboardPos);
+        
+        /* START ANIM */
+        //index.indexInAnim();
+    },
+    
+    indexInAnim : function()
+    {
+        
+        $('#index-wrap .screen-index .screen-index-inner').animate(
+                {
+                    "width": "100px",
+                    "height": "100px"
+                },
+                {
+                    duration: 400,
+                    easing : "easeInCubic"
+                }
+
+        );
     },
     
     initializeKeyboard : function()
@@ -59,6 +78,18 @@ var index = {
         index.dom.keyboardElements = 
             $('#index-wrap .key-board .key-element-content');
         index.getKeyboardPos();
+        
+        index.dom.keyboardElements.hover(
+            function()
+            {
+                $(this).addClass("hover");
+            },
+            function()
+            {
+                $(this).removeClass("hover");
+            }
+
+        );
         
         index.dom.keyboardElements.mousedown(
             function()
@@ -84,7 +115,8 @@ var index = {
                 }
             }*/
         );
-        $(document).keydown(function(e){index.bindKeyboardActions(e);});
+        $(document).keydown(function(e){index.bindKeydownActions(e);});
+        $(document).keyup(function(e){index.bindKeyupActions(e)});
     },
     
     getKeyMapping : function()
@@ -140,6 +172,11 @@ var index = {
         if(sampleKeyH>30)
             index.dom.keyboardElements.css("height", sampleKeyH)
                 .css("padding-top", (sampleKeyH-14)/2);*/
+    },
+    
+    bindKeydownActions : function(e)
+    {
+        
     },
     
     bindKeyboardActions : function(e)
@@ -221,12 +258,12 @@ var index = {
                                 index.dom.navBar.find('.content-wrap')
                                     .load(link, function()
                                 {
-                                    $.ajaxSetup({ cache: true });
+                                    $.ajaxSetup({cache: true});
                                     $.getScript('./public/js/post.js', 
                                         function(){
                                             post.init();
                                         });
-                                    $.ajaxSetup({ cache: false });
+                                    $.ajaxSetup({cache: false});
                                 });
                             }
                         }

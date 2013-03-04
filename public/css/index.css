@@ -16,25 +16,86 @@ root {
     width: 800px;
     height: 500px;
     margin: 20px auto;
-    background: #fff;
-    -webkit-box-shadow: inset 0px 1px 0px #bbb,0px 1px 10px rgba(0,0,0,0.25);
+    background: #eff0ec;
+    background: -webkit-linear-gradient(top, #f8f9f6 0%,#ecebe6 100%);
+    -webkit-box-shadow: inset 0px -1px 0px 1px rgba(255, 255, 255, 0.3);
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-box-shadow: 0px 6px 8px #777;
+    z-index: 0;
 }
+
+#index-wrap .screen{
+    position: relative;
+    width: 780px;
+    height: 265px;
+    top: 10px;
+    left: 10px;
+    color: #6c6c6c;
+    font-family: "Microsoft Yahei",
+        Helvetica, sans-serif;
+    overflow: hidden;
+    -webkit-border-radius: 8px 8px 0 0;
+    -moz-border-radius: 8px 8px 0 0;
+    -ms-border-radius: 8px 8px 0 0;
+    -o-border-radius: 8px 8px 0 0;
+    border-radius: 8px 8px 0 0;
+    /*background-color: #2ab7ec;*/
+    box-shadow: inset 0px 0px 1px 1px rgba(0,0,0,0.3);
+    -webkit-box-shadow: inset 0px 0px 1px 1px rgba(0,0,0,0.3);
+    -moz-box-shadow: inset 0px 0px 1px 1px rgba(0,0,0,0.3);
+}
+
+#index-wrap .screen-index{
+    position: absolute;
+    margin: 0 !important;
+    width: 780px;
+    height: 265px;
+    z-index: -1;
+    text-align: center;
+}
+
+.screen-index .screen-index-inner{
+    vertical-align: middle;
+    width: 275px;
+    height: 275px;
+    display: inline-block;
+    background: white;
+    -webkit-border-radius: 999px;
+    -moz-border-radius: 999px;
+    -ms-border-radius: 999px;
+    -o-border-radius: 999px;
+    border-radius: 999px;
+}
+
+#index-wrap .screen-index-back{
+    position: absolute;
+    margin: 0 !important;
+    width: 780px;
+    height: 265px;
+    background: #2ab7ec;
+    z-index: -10;
+}
+
 
 #index-wrap .key-board{
     position: absolute;
     width: 800px;
     height: auto;
     color: #6c6c6c;
-    bottom: -5px;
+    top: 285px;
     font-family: "Microsoft Yahei",
         Helvetica, sans-serif;
     overflow: hidden;
     z-index: 1;
-    -webkit-border-radius: 0 0 4px 4px;
-    -moz-border-radius: 0 0 4px 4px;
-    -ms-border-radius: 0 0 4px 4px;
-    -o-border-radius: 0 0 4px 4px;
-    border-radius: 0 0 4px 4px;
+    -webkit-border-radius: 0 0 8px 8px;
+    -moz-border-radius: 0 0 8px 8px;
+    -ms-border-radius: 0 0 8px 8px;
+    -o-border-radius: 0 0 8px 8px;
+    border-radius: 0 0 8px 8px;
 }
 
 
@@ -69,7 +130,7 @@ root {
     font-family: 'Helvetica Neue Bold','Open Sans',  "Microsoft Yahei",
         Helvetica, sans-serif;
     font-size: 72px;
-    padding: 66px 0;
+    padding: 68px 0;
 }
 
 #index-wrap .navigate-menu .menu-item{
@@ -244,13 +305,15 @@ root {
     color: #777;
     position: relative;
     text-align: center;
-    padding: 16px;
+    padding: 18px;
     border: 0;
-    border-top: 1px solid #ccc;
-    border-right: 1px solid #ccc;
-    background: #eff0ec;
-    background: -webkit-linear-gradient(top, #fff 0%,#f6f6f6 100%);
+    border-top: 1px solid #a09f97;
+    border-right: 1px solid #a09f97;
+    background: -webkit-linear-gradient(top, #f8f9f6 0%,#ecebe6 100%);
     -webkit-box-shadow: inset 0px -1px 0px 1px rgba(255, 255, 255, 0.3);
+
+    /*background: white;*/
+    z-index: 10;
 }
 
 
@@ -266,7 +329,7 @@ root {
 #index-wrap .key-left-bottom{
     -webkit-box-shadow: 0px 5px 0px 0px #777;
     margin-bottom: 5px;
-    -webkit-border-radius: 0 0 0 4px;
+    -webkit-border-radius: 0 0 0 8px;
 }
 
 
@@ -274,7 +337,7 @@ root {
     border-right: 0;
     -webkit-box-shadow: 0px 5px 0px 0px #777;
     margin-bottom: 5px;
-    -webkit-border-radius: 0 0 4px 0;
+    -webkit-border-radius: 0 0 8px 0;
 }
 
 #index-wrap .special-key{
@@ -331,9 +394,26 @@ root {
     color: #333;
 }
 
+#index-wrap .key-element .hover{
+    background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0, rgb(44,160,202)), color-stop(1, rgb(62,184,229)) );
+    color: #fff;
+    -webkit-box-shadow: inset 0px 1px 0px #2ab7ec, 0px 5px 0px 0px #156785, 0px 10px 5px #999;
+}
 
 #index-wrap .key-element .selected{
-    -webkit-box-shadow: inset 0px 4px 0px #777, 0px 2px 0px 0px #777, 0px 5px 3px #999;
+    -webkit-box-shadow: inset 0px 2px 0px 0px #0b698b, 0px 3px 0px 0px #156785, 0px 5px 3px #999;
+}
+
+#index-wrap .key-element .key-bottom.selected{
+    padding-top: 20px;
+}
+
+#index-wrap .key-element .key-right-bottom.selected{
+    padding-top: 20px;
+}
+
+#index-wrap .key-element .key-left-bottom.selected{
+    padding-top: 20px;
 }
 
 
