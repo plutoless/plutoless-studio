@@ -11,12 +11,12 @@ html{
   background: url(../images/BG.png), -webkit-gradient(linear, right top, left bottom, from(#bdbab1), to(#b9b7ae)) #585858;
   height: 100%;
 }
-/*
-@font-face {
-    font-family: Helvetica Neue;
-    src: url("../fonts/helveticaneueltstdcn.otf") format("opentype");
-}
 
+@font-face {
+    font-family: Helvetica Neue Lt;
+    src: url("../fonts/helveticaneueltstdultlt.otf") format("opentype");
+}
+/*
 @font-face {
     font-family: Helvetica Neue Bold;
     src: url("../fonts/helveticaneueltstdblkcn.otf") format("opentype");
