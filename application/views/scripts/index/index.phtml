@@ -63,12 +63,22 @@ $keys3 = array("Z", "X", "C", "V", "B", "N", "M", "<", ">");
             <div class="screen-index">
                 <div class="screen-index-inner">
                 </div>
+                <div class="screen-index-tips">
+                    Use Keyboard to Navigate
+                </div>
                 <div class="screen-logo">
-
+                    <img src="<?php echo $this->baseUrl().'/public/images/logo.png'; ?>" />
                 </div>
             </div>
             <div class="screen-index-back">
-                
+                <ul class="screen-back-widgets">
+                    <li class="battery">
+                        
+                    </li>
+                    <li class="calendar">
+                        <?php echo $this->currentMonth;?>
+                    </li>
+                </ul>
             </div>
         </div>
         <div class="key-board">       

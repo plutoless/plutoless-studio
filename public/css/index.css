@@ -34,9 +34,9 @@ root {
     height: 264px;
     top: 10px;
     left: 10px;
-    color: #6c6c6c;
-    font-family: "Microsoft Yahei",
-        Helvetica, sans-serif;
+    color: #3a3a3a;
+    font-family: "fortunatus", 'Palatino Linotype',
+        'Times New Roman', 'MS Serif';
     overflow: hidden;
     -webkit-border-radius: 8px 8px 0 0;
     -moz-border-radius: 8px 8px 0 0;
@@ -58,6 +58,16 @@ root {
     height: 1000px;
     z-index: -1;
     text-align: center;
+    font-size: 0;
+}
+
+.screen-index .screen-index-tips{
+    position: absolute;
+    top: 482px;
+    width: 100%;
+    text-align: center;
+    font-size: 36px;
+    display: none;
 }
 
 .screen-index .screen-index-inner{
@@ -70,15 +80,22 @@ root {
     -ms-border-radius: 999px;
     -o-border-radius: 999px;
     border-radius: 999px;
+    
 }
 
 .screen-index .screen-logo{
-    width: 151px;
-    height: 151px;
-    left: 425px;
-    top: 400px;
     position: absolute;
-    background: url(../images/logo.png) no-repeat center center;
+    width: 176px;
+    height: 176px;
+    left: 412px;
+    top: 450px;
+    display: none;
+}
+
+.screen-logo img{
+    width: 175px;
+    height: 175px;
+    margin: 0px;
 }
 
 #index-wrap .screen-index-back{
@@ -86,15 +103,41 @@ root {
     margin: 0 !important;
     width: 780px;
     height: 265px;
-    background: #2ab7ec;
+    background: #fe6a84;
     z-index: -10;
     -webkit-border-radius: 8px 8px 0 0;
     -moz-border-radius: 8px 8px 0 0;
     -ms-border-radius: 8px 8px 0 0;
     -o-border-radius: 8px 8px 0 0;
     border-radius: 8px 8px 0 0;
+    font-size: 0;
 }
 
+#index-wrap .screen-index-back .screen-back-widgets{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+
+.screen-back-widgets .battery{
+    position: absolute;
+    width: 34px;
+    height: 16px;
+    right: 20px;
+    top: 20px;
+    background: url(../images/battery.png) no-repeat center center;
+}
+
+.screen-back-widgets .calendar{
+    position: absolute;
+    left: 20px;
+    top: 10px;
+    color:white;
+    font-size: 36px;
+}
 
 #index-wrap .key-board{
     position: absolute;
@@ -416,6 +459,8 @@ root {
 }
 
 #index-wrap .key-element .selected{
+    background-image: -webkit-gradient( linear, left top, left bottom, color-stop(0, rgb(44,160,202)), color-stop(1, rgb(62,184,229)) );
+    color: #fff;
     -webkit-box-shadow: inset 0px 2px 0px 0px #0b698b, 0px 3px 0px 0px #156785, 0px 5px 3px #999;
 }
 

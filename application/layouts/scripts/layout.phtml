@@ -22,7 +22,9 @@ echo $this->doctype();
         <?php echo $this->headScript();?>
         <link rel="shortcut icon" href="<?php echo $this->baseURL();?>/public/images/favicon.ico">
     </head>
+    <script>var baseUrl = "<?php echo $this->baseUrl();?>"</script>
     <body>
         <?php echo $this->layout()->content; ?>
+        <div id="bottom">© 2013 plutoless-studio</div>
     </body>
 </html>

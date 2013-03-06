@@ -39,6 +39,7 @@ class IndexController extends Zend_Controller_Action
         $this->view->posts = $posts->fetchAll();
         $this->view->recentPost = $posts->getRecentPost();
         */
+        $this->view->currentMonth = date("F");
     }
 
     public function addAction()

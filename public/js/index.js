@@ -4,6 +4,10 @@
  */
 
 $(function(){
+    preload([
+        baseUrl+'/public/images/logo.png',
+        baseUrl+'/public/images/battery.png'
+    ]);
     index.init();
 });
 
@@ -18,7 +22,8 @@ var index = {
         msgBox : 0,
         navStrWin : 0,
         overlay : 0,
-        textArea : 0
+        textArea : 0,
+        screenArea : 0
     },
     
     data : {
@@ -42,6 +47,7 @@ var index = {
             $('#nav-string-wrapper');
         /*
         index.getMessage();*/
+        index.dom.screenArea = $('#index-wrap .screen-index');
         index.dom.keyboard = $('#index-wrap .key-board');
         index.dom.navBar =
             $('#index-wrap .navigate-area');
@@ -54,26 +60,46 @@ var index = {
         $(window).resize(index.getKeyboardPos);
         
         /* START ANIM */
-        index.indexInAnim();
+        index.dom.screenArea.find('.screen-index-tips').fadeIn(1500,
+            function()
+            {
+                index.indexInAnim();
+            }
+        );
+        
+        
     },
     
     indexInAnim : function()
     {
-        var objPar = $('#index-wrap .screen-index');
-        var obj = objPar.find('.screen-index-inner');
+        var indexOverlay = index.dom.screenArea.find('.screen-index-inner');
+        var logo = index.dom.screenArea.find('.screen-logo');
+        var tips = index.dom.screenArea.find('.screen-index-tips');
         
-        $('#index-wrap .screen-index .screen-index-inner').animate(
+        tips.fadeOut();
+        indexOverlay.animate(
                 {
-                    "width": "150px",
-                    "height": "150px",
-                    "margin-top": "400px"
+                    "width": "175px",
+                    "height": "175px",
+                    "margin-top": "412px"
                 },
                 {
-                    duration: 1000,
-                    easing : "easeInOutExpo"
+                    duration: 400,
+                    easing : "easeOutExpo"
                 }
 
         );
+        
+        logo.animate(
+            {
+                "top" : "412px"
+            },
+
+            {
+                duration: 600,
+                queue: false
+            }
+        ).fadeIn();
     },
     
     initializeKeyboard : function()
@@ -118,8 +144,8 @@ var index = {
                 }
             }*/
         );
-        $(document).keydown(function(e){index.bindKeydownActions(e);});
-        $(document).keyup(function(e){index.bindKeyupActions(e)});
+        $(document).keydown(function(e){index.bindKeyboardActions(e,false);});
+        $(document).keyup(function(e){index.bindKeyboardActions(e,true)});
     },
     
     getKeyMapping : function()
@@ -168,13 +194,10 @@ var index = {
     },
     
     getKeyboardPos : function()
-    {/*
-        var sampleKey = $('#key-Q');
-        var sampleKeyW = sampleKey.width();
-        var sampleKeyH = sampleKeyW/70*36-7;
-        if(sampleKeyH>30)
-            index.dom.keyboardElements.css("height", sampleKeyH)
-                .css("padding-top", (sampleKeyH-14)/2);*/
+    {
+      var boardH = index.dom.mainContent.height();
+      var winH = $(window).height();
+      index.dom.mainContent.css("margin-top", (winH-boardH)/2);
     },
     
     bindKeydownActions : function(e)
@@ -182,7 +205,7 @@ var index = {
         
     },
     
-    bindKeyboardActions : function(e)
+    bindKeyboardActions : function(e, action)
     {
         var preventDefault = false;
         var key = 0;
@@ -192,8 +215,10 @@ var index = {
           /* IT'S CHAR CODE */
           var c = String.fromCharCode(e.keyCode).toUpperCase();
           key = $('#key-'+c+' .key-element-content');
-          
-          index.bindKeyboardMenuAnim(key);
+          if(!action)
+            index.bindKeyboardPress(key);
+          else
+            index.bindKeyboardMenuAnim(key);
           preventDefault = true;
         }
         
@@ -203,7 +228,10 @@ var index = {
           key = $('#key-backspace .key-element-content');
           
           index.removeNavStr();
-          index.bindKeyboardMenuAnim(key);
+          if(!action)
+            index.bindKeyboardPress(key);
+          else
+            index.bindKeyboardMenuAnim(key);
           preventDefault = true;
         }
         
@@ -211,7 +239,10 @@ var index = {
         {
           /* ENTER */
           key = $('#key-enter .key-element-content');
-          index.bindKeyboardMenuAnim(key);
+          if(!action)
+            index.bindKeyboardPress(key);
+          else
+            index.bindKeyboardMenuAnim(key);
           if(index.data.navMapping[index.data.navStr]!=null)
               index.navigatePage(index.data.navMapping[index.data.navStr]);
           else
@@ -277,7 +308,11 @@ var index = {
         );
     },
     
-    
+    bindKeyboardPress : function(object)
+    {
+        if(!object.hasClass('selected'))
+            object.addClass('selected');
+    },
     
     bindKeyboardMenuAnim : function(object)
     {
@@ -287,7 +322,8 @@ var index = {
             name="";
         
         
-        index.selectKey(object);
+        /*index.selectKey(object);*/
+        object.removeClass('selected');
         if(index.data.navStr.length==0)
         {
             if(index.data.keyMapping[name]!=null)

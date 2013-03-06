@@ -11,7 +11,7 @@ html{
   background: url(../images/BG.png), -webkit-gradient(linear, right top, left bottom, from(#bdbab1), to(#b9b7ae)) #585858;
   height: 100%;
 }
-
+/*
 @font-face {
     font-family: Helvetica Neue;
     src: url("../fonts/helveticaneueltstdcn.otf") format("opentype");
@@ -21,10 +21,10 @@ html{
     font-family: Helvetica Neue Bold;
     src: url("../fonts/helveticaneueltstdblkcn.otf") format("opentype");
 }
-
+*/
 @font-face {
-    font-family: Opificio;
-    src: url("../fonts/opificio.otf") format("opentype");
+    font-family: fortunatus;
+    src: url("../fonts/fortunatus.otf") format("opentype");
 }
 
 body{
@@ -74,7 +74,6 @@ ul{
 
 #bottom{
   width: 100%;
-  padding-top: 50px;
   text-align: center;
   color: #505050;
   font-size: 12px;
