@@ -64,13 +64,13 @@ var index = {
         
         $('#index-wrap .screen-index .screen-index-inner').animate(
                 {
-                    "width": "100px",
-                    "height": "100px",
-                    "margin-top": "450px"
+                    "width": "150px",
+                    "height": "150px",
+                    "margin-top": "400px"
                 },
                 {
                     duration: 1000,
-                    easing : "easeInCubic"
+                    easing : "easeInOutExpo"
                 }
 
         );

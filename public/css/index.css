@@ -72,6 +72,15 @@ root {
     border-radius: 999px;
 }
 
+.screen-index .screen-logo{
+    width: 151px;
+    height: 151px;
+    left: 425px;
+    top: 400px;
+    position: absolute;
+    background: url(../images/logo.png) no-repeat center center;
+}
+
 #index-wrap .screen-index-back{
     position: absolute;
     margin: 0 !important;
@@ -79,6 +88,11 @@ root {
     height: 265px;
     background: #2ab7ec;
     z-index: -10;
+    -webkit-border-radius: 8px 8px 0 0;
+    -moz-border-radius: 8px 8px 0 0;
+    -ms-border-radius: 8px 8px 0 0;
+    -o-border-radius: 8px 8px 0 0;
+    border-radius: 8px 8px 0 0;
 }
 
 
