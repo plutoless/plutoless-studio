@@ -63,10 +63,10 @@ root {
 
 .screen-index .screen-index-tips{
     position: absolute;
-    top: 482px;
+    top: 415px;
     width: 100%;
     text-align: center;
-    font-size: 36px;
+    font-size: 24px;
     display: none;
 }
 
@@ -122,16 +122,13 @@ root {
 }
 
 
-.screen-back-widgets .battery{
+.screen-back-widgets .battery-wrap{
     position: absolute;
-    width: 34px;
-    height: 16px;
     right: 20px;
     top: 20px;
-    background: url(../images/battery.png) no-repeat center center;
 }
 
-.screen-back-widgets .calendar{
+.screen-back-widgets .calendar-wrap{
     position: absolute;
     left: 20px;
     top: 10px;

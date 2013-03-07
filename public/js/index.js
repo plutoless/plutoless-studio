@@ -6,7 +6,8 @@
 $(function(){
     preload([
         baseUrl+'/public/images/logo.png',
-        baseUrl+'/public/images/battery.png'
+        baseUrl+'/public/images/battery.png',
+        baseUrl+'/public/images/tips/tips_'+randTip+'.jpg'
     ]);
     index.init();
 });
