@@ -38,6 +38,7 @@ body{
   font-family: 'Helvetica Neue', "Microsoft Yahei",
         Helvetica, sans-serif;
   font-size: 14px;
+  -webkit-font-smoothing: antialiased;
 }
 
 ul{

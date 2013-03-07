@@ -25,6 +25,7 @@ var index = {
         overlay : 0,
         textArea : 0,
         screenArea : 0,
+        screenCanvas : 0,
         logo : 0,
         logoWrap : 0
     },
@@ -44,11 +45,16 @@ var index = {
     init : function()
     {
         common.init();
+        
         index.dom.mainContent = $('#content');
+        
+        
+        index.getKeyboardPos();
         /*
         index.getMessage();*/
         index.dom.screenArea = $('#index-wrap .screen-index');
-        index.getKeyboardPos();
+        index.dom.screenCanvas = $('#index-wrap .screen-index-back');
+        index.dom.textArea = index.dom.screenCanvas.find('.input-wrap');
         index.dom.logo = index.dom.screenArea.find('.screen-logo');
         index.dom.logoWrap = index.dom.screenArea.find('.screen-index-inner');
         index.dom.keyboard = $('#index-wrap .key-board');
@@ -107,6 +113,7 @@ var index = {
     
     menuInAnim :function()
     {
+        
         
         index.dom.logo.stop().animate(
             {
@@ -257,11 +264,13 @@ var index = {
           /* BACKSPACE */
           key = $('#key-backspace .key-element-content');
           
-          index.removeNavStr();
           if(!action)
             index.bindKeyboardPress(key);
           else
+          {
             index.bindKeyboardMenuAnim(key);
+            index.removeNavStr();
+          }
           preventDefault = true;
         }
         
@@ -360,9 +369,8 @@ var index = {
         }else if(index.data.navStr.length>0)
         {
             index.appendNavStr(name);
-            /*index.dom.textArea.html(index.data.navStr);*/
         }
-        
+        index.dom.textArea.html(index.data.navStr);
     },
     
     setKeyColors : function()
@@ -374,91 +382,6 @@ var index = {
         $('#key-B .key-element-content').addClass('color4');
     },
     
-    navStrPopUp : function(object)
-    {
-        var offsetH = object.offset().left;
-        var offsetV = object.offset().top;
-        index.dom.navStrWin.css("left",offsetH-68);
-        index.dom.navStrWin.css("top",offsetV-160);
-        var navContent = index.dom.navStrWin.find('.nav-string-content');
-        var navTri = index.dom.navStrWin.find('.nav-string-tri');
-        
-        navContent.css("width", 0).css("height", 0).css("margin-top", 140)
-            .css("margin-left", 100);
-        navTri.css("border-left","0 solid transparent")
-                .css("border-right","0 solid transparent")
-                .css("border-top","0 solid #333").css("left", 92);
-        navTri.stop().animate(
-        
-            {
-                "border-left-width": "10px",
-                "border-right-width": "10px",
-                "border-top-width": "16px",
-                "left": "84px"
-            },
-            
-            {
-                duration: 1000,
-                easing: "easeOutElastic"
-            }
-        );
-        navContent.stop().animate(
-        
-            {
-                "width": 200,
-                "height": 140,
-                "margin-top": 0,
-                "margin-left": 0
-            },
-            
-            {
-                duration: 1000,
-                easing: "easeOutElastic"
-            }
-        );
-        
-    },
-    
-    selectKey : function(object)
-    {
-        var offsetH = object.offset().left;
-        var offsetV = object.offset().top;
-        var keyW = object.width();
-        var keyH = object.parent().height();
-        var length = (keyW>keyH)?keyH-16:keyW-16;
-        if(length<16)
-            length = 16;
-        object.removeClass('hover');
-        var navSelectWrapper = $('<div>').appendTo('body')
-            .addClass('nav-select-wrapper');
-        var navSelectBack = $('<div>').appendTo(navSelectWrapper)
-            .addClass('nav-select-background');
-        navSelectWrapper.css("left",offsetH+keyW/2-length/2);
-        navSelectWrapper.css("top",offsetV+keyH/2-length/2);
-
-        /*index.navStrPopUp(object);*/
-
-        navSelectBack.stop().animate(
-            {
-                "height" : length,
-                "width" : length
-            },
-            {
-                duration: 200,
-                step: function()
-                {
-                    var h = $(this).height();
-                    $(this).css("border-width", (length-h)/2)
-                },
-                complete: function()
-                {
-                    navSelectWrapper.remove();
-                },
-                queue: false
-            }
-        );
-        
-    },
     
     appendNavStr : function(name)
     {
