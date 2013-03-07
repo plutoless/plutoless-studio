@@ -154,3 +154,34 @@ ul{
 .hidden{
     opacity: 0;
 }
+
+
+.battery{
+    position: relative;
+    width: 26px;
+    height: 12px;
+}
+
+.battery .b-body{
+    position: absolute;
+    width: 22px;
+    height: 10px;
+    border: 1px solid white;
+}
+
+.battery .b-head{
+    position: absolute;
+    width: 2px;
+    right: 0;
+    height: 3px;
+    top: 4px;
+    background: white;
+}
+
+.b-body .b-life{
+    position: relative;
+    width: 12px;
+    height: 8px;
+    background: white;
+    margin: 1px;
+}

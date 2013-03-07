@@ -9,6 +9,7 @@ $keys = array("Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P");
 $keys2 = array("A", "S", "D", "F", "G", "H", "J", "K", "L");
 $keys3 = array("Z", "X", "C", "V", "B", "N", "M", "<", ">");
 ?>
+<script>var randTip = "<?php echo $this->rand;?>"</script>
 <!--<div id="header"><img src="<?php echo $this->baseURL();?>/public/images/logo.png"></div>-->
 <div id="content">
     <div id="index-wrap"><!--
@@ -64,8 +65,10 @@ $keys3 = array("Z", "X", "C", "V", "B", "N", "M", "<", ">");
                 <div class="screen-index-inner">
                 </div>
                 <div class="screen-index-tips">
-                    Initialising...<br>
-                    Use Keyboard to Navigate
+                    <img src="<?php echo $this->baseUrl()
+                            .'/public/images/tips/tips_'
+                            .$this->rand.'.jpg'; ?>">
+                    <div style="margin-top:-10px;">Use Keyboard to Navigate</div>
                 </div>
                 <div class="screen-logo">
                     <img src="<?php echo $this->baseUrl().'/public/images/logo.png'; ?>" />
@@ -73,11 +76,17 @@ $keys3 = array("Z", "X", "C", "V", "B", "N", "M", "<", ">");
             </div>
             <div class="screen-index-back">
                 <ul class="screen-back-widgets">
-                    <li class="battery">
-                        
+                    <li class="battery-wrap">
+                        <div class="battery">
+                            <div class="b-body">
+                                <div class="b-life"></div>
+                            </div>
+                            <div class="b-head">
+                            </div>
+                        </div>
                     </li>
-                    <li class="calendar">
-                        <!--<?php echo $this->currentMonth;?>-->
+                    <li class="calendar-wrap">
+                        <?php echo $this->currentMonth;?>
                     </li>
                 </ul>
             </div>
