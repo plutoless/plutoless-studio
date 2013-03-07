@@ -23,7 +23,9 @@ var index = {
         navStrWin : 0,
         overlay : 0,
         textArea : 0,
-        screenArea : 0
+        screenArea : 0,
+        logo : 0,
+        logoWrap : 0
     },
     
     data : {
@@ -42,25 +44,21 @@ var index = {
     {
         common.init();
         index.dom.mainContent = $('#content');
-        index.dom.msgBoxWrapper = $('#msg-box-wrapper');
-        index.dom.navStrWin = 
-            $('#nav-string-wrapper');
         /*
         index.getMessage();*/
         index.dom.screenArea = $('#index-wrap .screen-index');
+        index.getKeyboardPos();
+        index.dom.logo = index.dom.screenArea.find('.screen-logo');
+        index.dom.logoWrap = index.dom.screenArea.find('.screen-index-inner');
         index.dom.keyboard = $('#index-wrap .key-board');
-        index.dom.navBar =
-            $('#index-wrap .navigate-area');
-        index.dom.msgBox = 
-            $('#msg-box-wrapper .msg-box');
-        index.initializeKeyboard();
+        
         /*index.getKeyMapping();*/
         
         /* Attach listener */
         $(window).resize(index.getKeyboardPos);
         
         /* START ANIM */
-        index.dom.screenArea.find('.screen-index-tips').fadeIn(1500,
+        index.dom.screenArea.find('.screen-index-tips').fadeIn(2000,
             function()
             {
                 index.indexInAnim();
@@ -97,16 +95,46 @@ var index = {
 
             {
                 duration: 600,
-                queue: false
+                queue: false,
+                complete: function()
+                {
+                    index.initializeKeyboard();
+                }
             }
         ).fadeIn();
+    },
+    
+    menuInAnim :function()
+    {
+        
+        index.dom.logo.stop().animate(
+            {
+                "top" : "380px"
+            },
+            {
+                duration: 400,
+                queue: false,
+                easing : "easeInBack"
+            }
+        ).fadeOut();
+        index.dom.logoWrap.stop().animate(
+            {
+                "width": 0,
+                "height": 0,
+                "margin-top": "500px"
+            },
+            {
+                duration: 600,
+                queue: false,
+                easing : "easeInExpo"
+            }
+        );
     },
     
     initializeKeyboard : function()
     {
         index.dom.keyboardElements = 
             $('#index-wrap .key-board .key-element-content');
-        index.getKeyboardPos();
         
         index.dom.keyboardElements.hover(
             function()
@@ -118,7 +146,7 @@ var index = {
                 $(this).removeClass("hover");
             }
 
-        );
+        ).css("cursor","pointer");
         
         index.dom.keyboardElements.mousedown(
             function()
@@ -150,13 +178,14 @@ var index = {
     
     getKeyMapping : function()
     {
+        /*
         index.data.keyMapping = {
             P: $('.navigate-area .P').position().top,
             B: $('.navigate-area .B').position().top,
             C: $('.navigate-area .C').position().top,
             G: $('.navigate-area .G').position().top,
             F: $('.navigate-area .F').position().top
-        };
+        };*/
         index.data.navMapping = {
             project : "projects",
             post : "post",
@@ -316,7 +345,6 @@ var index = {
     
     bindKeyboardMenuAnim : function(object)
     {
-        
         var name  = object.attr("name");
         if(name==null)
             name="";
@@ -326,28 +354,12 @@ var index = {
         object.removeClass('selected');
         if(index.data.navStr.length==0)
         {
-            if(index.data.keyMapping[name]!=null)
-            {
-                index.dom.navBar.stop().animate(
-                    {"scroll-top": [index.data.keyMapping[name]+"px","easeOutExpo"]},
-                    {duration: 1000}
-                );
-                    
-                index.appendNavStr(name);
-                index.dom.textArea = index.dom.navBar.find('.'+name+' .nav-str');
-                index.dom.textArea.html(index.data.navStr);
-            }
-            else
-            {
-                index.dom.navBar.stop().animate(
-                    {"scroll-top": [0,"easeOutExpo"]},
-                    {duration: 1000}
-                );
-            }
+            index.menuInAnim();
+            index.appendNavStr(name);
         }else if(index.data.navStr.length>0)
         {
             index.appendNavStr(name);
-            index.dom.textArea.html(index.data.navStr);
+            /*index.dom.textArea.html(index.data.navStr);*/
         }
         
     },

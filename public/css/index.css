@@ -129,6 +129,7 @@ root {
     right: 20px;
     top: 20px;
     background: url(../images/battery.png) no-repeat center center;
+    background-size: 34px 16px;
 }
 
 .screen-back-widgets .calendar{
@@ -359,7 +360,6 @@ root {
 #index-wrap .key-element-content{
     margin: 0;
     text-align: center;
-    cursor: pointer;
     overflow: hidden;
     color: #777;
     position: relative;
