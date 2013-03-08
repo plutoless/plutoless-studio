@@ -4,11 +4,6 @@
  */
 
 $(function(){
-    preload([
-        baseUrl+'/public/images/logo.png',
-        baseUrl+'/public/images/battery.png',
-        baseUrl+'/public/images/tips/tips_'+randTip+'.jpg'
-    ]);
     index.init();
 });
 
@@ -54,7 +49,7 @@ var index = {
         index.getMessage();*/
         index.dom.screenArea = $('#index-wrap .screen-index');
         index.dom.screenCanvas = $('#index-wrap .screen-index-back');
-        index.dom.textArea = index.dom.screenCanvas.find('.input-wrap');
+        index.dom.textArea = index.dom.screenCanvas.find('.input-wrap ul');
         index.dom.logo = index.dom.screenArea.find('.screen-logo');
         index.dom.logoWrap = index.dom.screenArea.find('.screen-index-inner');
         index.dom.keyboard = $('#index-wrap .key-board');
@@ -65,14 +60,25 @@ var index = {
         $(window).resize(index.getKeyboardPos);
         
         /* START ANIM */
+        
+        preload([
+            baseUrl+'/public/images/logo.png',
+            baseUrl+'/public/images/battery.png',
+            baseUrl+'/public/images/tips/tips_'+randTip+'.jpg'
+        ], index.indexTipsInAnim);
+        
+        
+        
+    },
+    
+    indexTipsInAnim : function()
+    {
         index.dom.screenArea.find('.screen-index-tips').fadeIn(2000,
             function()
             {
                 index.indexInAnim();
             }
         );
-        
-        
     },
     
     indexInAnim : function()
@@ -253,9 +259,13 @@ var index = {
           var c = String.fromCharCode(e.keyCode).toUpperCase();
           key = $('#key-'+c+' .key-element-content');
           if(!action)
-            index.bindKeyboardPress(key);
-          else
             index.bindKeyboardMenuAnim(key);
+          else
+          {
+            index.bindKeyboardRelease(key);
+            index.dom.textArea.find('li').
+                animate({'vertical-align':0},{duration:800,easing:"easeOutBounce"});
+          }
           preventDefault = true;
         }
         
@@ -265,11 +275,13 @@ var index = {
           key = $('#key-backspace .key-element-content');
           
           if(!action)
-            index.bindKeyboardPress(key);
-          else
           {
             index.bindKeyboardMenuAnim(key);
             index.removeNavStr();
+          }
+          else
+          {
+            index.bindKeyboardRelease(key);
           }
           preventDefault = true;
         }
@@ -279,9 +291,9 @@ var index = {
           /* ENTER */
           key = $('#key-enter .key-element-content');
           if(!action)
-            index.bindKeyboardPress(key);
-          else
             index.bindKeyboardMenuAnim(key);
+          else
+            index.bindKeyboardRelease(key);
           if(index.data.navMapping[index.data.navStr]!=null)
               index.navigatePage(index.data.navMapping[index.data.navStr]);
           else
@@ -347,10 +359,10 @@ var index = {
         );
     },
     
-    bindKeyboardPress : function(object)
+    bindKeyboardRelease : function(object)
     {
-        if(!object.hasClass('selected'))
-            object.addClass('selected');
+        if(object.hasClass('selected'))
+            object.removeClass('selected');
     },
     
     bindKeyboardMenuAnim : function(object)
@@ -361,7 +373,7 @@ var index = {
         
         
         /*index.selectKey(object);*/
-        object.removeClass('selected');
+        object.addClass('selected');
         if(index.data.navStr.length==0)
         {
             index.menuInAnim();
@@ -370,7 +382,6 @@ var index = {
         {
             index.appendNavStr(name);
         }
-        index.dom.textArea.html(index.data.navStr);
     },
     
     setKeyColors : function()
@@ -385,14 +396,24 @@ var index = {
     
     appendNavStr : function(name)
     {
-        if(index.data.navStr.length <=8)
-            index.data.navStr = (index.data.navStr + name).toLowerCase();
+        if(name!="")
+        {
+            var c = name.toLowerCase();
+            if(index.data.navStr.length <=8)
+            {
+                index.data.navStr = index.data.navStr + c;
+                $('<li>').html(c).css('vertical-align',30).addClass('in-use').
+                    appendTo(index.dom.textArea);
+            }
+        }
     },
     
     removeNavStr : function()
     {
         if(index.data.navStr.length > 0)
             index.data.navStr = index.data.navStr.substring(0, index.data.navStr.length-1);
+        index.dom.textArea.find('li.in-use').last().removeClass('in-use')
+            .fadeOut({complete:function(){$(this).remove();},queue:false});
     },
     
     revertKey : function()

@@ -45,10 +45,18 @@ function sendAjaxCall(url,type,data,callback){
     });
 }
 
-function preload(arrayOfImages) {
-    $(arrayOfImages).each(function(){
-        $('<img/>')[0].src = this;
-        // Alternatively you could use:
-        // (new Image()).src = this;
+var preload = function(image_links, callback) {
+  var self = this;
+  // assume image_links is an array here
+  var count = image_links.length;
+  $.each( image_links, function(){
+    $('<img/>', {
+      'src': this, // url
+      'load': function(){
+        if( --count == 0 ) {
+          callback.apply(self);
+        }
+      }
     });
+  });      
 }

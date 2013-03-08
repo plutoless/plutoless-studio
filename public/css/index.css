@@ -126,6 +126,7 @@ root {
     position: absolute;
     right: 20px;
     top: 20px;
+    z-index: 10;
 }
 
 .screen-back-widgets .calendar-wrap{
@@ -138,22 +139,33 @@ root {
 }
 
 .screen-back-widgets .input-wrap{
-    display: none;
+    display: inline;
     position: absolute;
-    height: 100%;
-    width: 200px;
-    background: #3c3c3c;
-    color:white;
-    font-size: 36px;
-    text-align: center;
+    bottom: 0;
     font-family: "fortunatus", 'Palatino Linotype',
         'Times New Roman', 'MS Serif';
-    -webkit-border-radius: 8px 0px 0 0;
-    -moz-border-radius: 8px 0px 0 0;
-    -ms-border-radius: 8px 0px 0 0;
-    -o-border-radius: 8px 0px 0 0;
-    border-radius: 8px 0px 0 0;
+    font-size: 36px;
+    color:#3c3c3c;
+    z-index: 10;
 }
+
+.input-wrap ul{
+    margin: 0;
+    padding: 0 10px 10px 0;
+}
+
+.input-wrap li{
+    display: inline;
+    background: white;
+    padding-bottom: 10px;
+}
+
+.input-wrap li:first-child{
+}
+
+.input-wrap li:last-child{
+}
+
 
 .input-wrap .input-area{
     
