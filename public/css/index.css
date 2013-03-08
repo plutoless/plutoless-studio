@@ -136,6 +136,7 @@ root {
     color:white;
     font-size: 36px;
     font-family: "Helvetica Neue Lt",Helvetica, serif;
+    z-index: -1;
 }
 
 .screen-back-widgets .input-wrap{
@@ -166,9 +167,21 @@ root {
 .input-wrap li:last-child{
 }
 
+.screen-back-widgets .bg-wrap{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 100%;
+    -webkit-border-radius: 8px 8px 0 0;
+    -moz-border-radius: 8px 8px 0 0;
+    -ms-border-radius: 8px 8px 0 0;
+    -o-border-radius: 8px 8px 0 0;
+    border-radius: 8px 8px 0 0;
+    z-index: 5;
+}
 
-.input-wrap .input-area{
-    
+.screen-back-widgets .bg-wrap.a{
+    background:#7ad2ea;
 }
 
 #index-wrap .key-board{
@@ -505,70 +518,4 @@ root {
 
 #index-wrap .key-element .key-left-bottom.selected{
     padding-top: 20px;
-}
-
-
-.overlay{
-    display:none;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-}
-
-
-
-#msg-box-wrapper{
-    width: 780px;
-    margin: 30px auto 0 auto;
-}
-
-#msg-box-wrapper .msg-box{
-    width: 100%;
-    max-width: 100%;
-    z-index: 0;
-    text-align: center;
-    color: #fff;
-}
-#msg-box-wrapper .msg-box span{
-    font-size: 20px;
-    font-family: 'Helvetica Neue', "Microsoft Yahei",
-        Helvetica, sans-serif;
-    line-height: 40px;
-}
-
-#msg-box-wrapper .msg-box .title{
-}
-
-#msg-box-wrapper .msg-box .text{
-    background: #fff;
-    color: #333;
-}
-
-.nav-select-wrapper{
-    position: absolute;
-}
-
-.nav-select-background{
-    position: relative;
-    width: 0;
-    height: 0;
-    -webkit-border-radius: 999px;
-    -moz-border-radius: 999px;
-    -ms-border-radius: 999px;
-    -o-border-radius: 999px;
-    border-radius: 999px;
-    border: 100px solid #f19072;
-}
-
-.nav-inner{
-    position: absolute;
-    left: -1px;
-    top: -1px;
-    -webkit-border-radius: 999px;
-    -moz-border-radius: 999px;
-    -ms-border-radius: 999px;
-    -o-border-radius: 999px;
-    border-radius: 999px;
 }

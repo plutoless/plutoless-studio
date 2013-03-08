@@ -21,6 +21,7 @@ var index = {
         textArea : 0,
         screenArea : 0,
         screenCanvas : 0,
+        screenAnimCanvas : 0,
         logo : 0,
         logoWrap : 0
     },
@@ -49,6 +50,7 @@ var index = {
         index.getMessage();*/
         index.dom.screenArea = $('#index-wrap .screen-index');
         index.dom.screenCanvas = $('#index-wrap .screen-index-back');
+        index.dom.screenAnimCanvas = index.dom.screenCanvas.find('.bg-wrap');
         index.dom.textArea = index.dom.screenCanvas.find('.input-wrap ul');
         index.dom.logo = index.dom.screenArea.find('.screen-logo');
         index.dom.logoWrap = index.dom.screenArea.find('.screen-index-inner');
@@ -86,8 +88,10 @@ var index = {
         var indexOverlay = index.dom.screenArea.find('.screen-index-inner');
         var logo = index.dom.screenArea.find('.screen-logo');
         var tips = index.dom.screenArea.find('.screen-index-tips');
+        var animList = [new $.Deferred(),
+            new $.Deferred(),new $.Deferred(),new $.Deferred()];
         
-        tips.fadeOut();
+        tips.fadeOut(function(){animList[0].resolve();});
         indexOverlay.animate(
                 {
                     "width": "175px",
@@ -96,7 +100,8 @@ var index = {
                 },
                 {
                     duration: 400,
-                    easing : "easeOutExpo"
+                    easing : "easeOutExpo",
+                    complete:function(){animList[1].resolve();}
                 }
 
         );
@@ -109,18 +114,20 @@ var index = {
             {
                 duration: 600,
                 queue: false,
-                complete: function()
-                {
-                    index.initializeKeyboard();
+                complete:function(){
+                    animList[2].resolve();
                 }
             }
-        ).fadeIn();
+        ).fadeIn(function(){animList[3].resolve();});
+        /* Do not bind keyboard action before in anim finished */
+        $.when(animList[0], animList[1], animList[2], animList[3])
+            .done(function(){index.initializeKeyboard();});
     },
     
     menuInAnim :function()
     {
-        
-        
+        var animList = [new $.Deferred(),
+            new $.Deferred(),new $.Deferred(),new $.Deferred()];
         index.dom.logo.stop().animate(
             {
                 "top" : "380px"
@@ -128,9 +135,13 @@ var index = {
             {
                 duration: 400,
                 queue: false,
-                easing : "easeInBack"
+                easing : "easeInBack",
+                complete : function()
+                {
+                    animList[0].resolve();
+                }
             }
-        ).fadeOut();
+        ).fadeOut({complete:function(){animList[1].resolve();}});
         index.dom.logoWrap.stop().animate(
             {
                 "width": 0,
@@ -140,9 +151,32 @@ var index = {
             {
                 duration: 600,
                 queue: false,
-                easing : "easeInExpo"
+                easing : "easeInExpo",
+                complete : function()
+                {
+                    $(this).hide();
+                    animList[2].resolve();
+                }
             }
         );
+        /* Anim from right */
+        index.dom.screenAnimCanvas.stop().animate(
+            {
+                "left": 0
+            },
+            {
+                duration: 600,
+                queue: false,
+                easing : "easeOutExpo",
+                complete : function()
+                {
+                    animList[3].resolve();
+                }
+            }
+        );
+        /* navigate elements in */
+        $.when(animList[0], animList[1], animList[2], animList[3])
+            .done(function(){index.initializeKeyboard();})
     },
     
     initializeKeyboard : function()
@@ -259,7 +293,10 @@ var index = {
           var c = String.fromCharCode(e.keyCode).toUpperCase();
           key = $('#key-'+c+' .key-element-content');
           if(!action)
-            index.bindKeyboardMenuAnim(key);
+          {
+            index.bindKeyboardPress(key);
+            index.bindKeyboardCharAnim(key);
+          }
           else
           {
             index.bindKeyboardRelease(key);
@@ -276,7 +313,7 @@ var index = {
           
           if(!action)
           {
-            index.bindKeyboardMenuAnim(key);
+            index.bindKeyboardPress(key);
             index.removeNavStr();
           }
           else
@@ -291,7 +328,7 @@ var index = {
           /* ENTER */
           key = $('#key-enter .key-element-content');
           if(!action)
-            index.bindKeyboardMenuAnim(key);
+            index.bindKeyboardPress(key);
           else
             index.bindKeyboardRelease(key);
           if(index.data.navMapping[index.data.navStr]!=null)
@@ -359,21 +396,25 @@ var index = {
         );
     },
     
+    bindKeyboardPress : function(object)
+    {
+        if(!object.hasClass('selected'))
+            object.addClass('selected');
+    },
+    
     bindKeyboardRelease : function(object)
     {
         if(object.hasClass('selected'))
             object.removeClass('selected');
     },
     
-    bindKeyboardMenuAnim : function(object)
+    bindKeyboardCharAnim : function(object)
     {
         var name  = object.attr("name");
         if(name==null)
             name="";
         
         
-        /*index.selectKey(object);*/
-        object.addClass('selected');
         if(index.data.navStr.length==0)
         {
             index.menuInAnim();
@@ -399,7 +440,7 @@ var index = {
         if(name!="")
         {
             var c = name.toLowerCase();
-            if(index.data.navStr.length <=8)
+            if(index.data.navStr.length <=30)
             {
                 index.data.navStr = index.data.navStr + c;
                 $('<li>').html(c).css('vertical-align',30).addClass('in-use').
@@ -413,14 +454,7 @@ var index = {
         if(index.data.navStr.length > 0)
             index.data.navStr = index.data.navStr.substring(0, index.data.navStr.length-1);
         index.dom.textArea.find('li.in-use').last().removeClass('in-use')
-            .fadeOut({complete:function(){$(this).remove();},queue:false});
-    },
-    
-    revertKey : function()
-    {
-        
-        index.dom.keyboardElements.removeClass('selected');
-        index.setKeyColors();
+            .fadeOut({duration: 200,complete:function(){$(this).remove();},queue:false});
     },
     
     

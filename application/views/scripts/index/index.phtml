@@ -76,6 +76,14 @@ $keys3 = array("Z", "X", "C", "V", "B", "N", "M", "<", ">");
             </div>
             <div class="screen-index-back">
                 <ul class="screen-back-widgets">
+                    
+                    <li class="calendar-wrap">
+                        <?php echo $this->currentMonth;?>
+                    </li>
+                    <!-- Everything beyond this layer goes after -->
+                    <li class="bg-wrap a">
+                        
+                    </li>
                     <li class="battery-wrap">
                         <div class="battery">
                             <div class="b-body">
@@ -84,9 +92,6 @@ $keys3 = array("Z", "X", "C", "V", "B", "N", "M", "<", ">");
                             <div class="b-head">
                             </div>
                         </div>
-                    </li>
-                    <li class="calendar-wrap">
-                        <?php echo $this->currentMonth;?>
                     </li>
                     <li class="input-wrap">
                         <ul>
@@ -213,19 +218,4 @@ $keys3 = array("Z", "X", "C", "V", "B", "N", "M", "<", ">");
             </ul>
         </div>
     </div>
-    <!--
-    <div id="msg-box-wrapper">
-        <div class="msg-box">
-            <span class="title">Qianze Zhang has acknowledged that </span>
-            <span class="text"></span>
-        </div>
-    </div>-->
-    <div class="overlay"></div>
-    <!--
-    <div id="nav-string-wrapper">
-        <div class="nav-string-content rounded2">
-        </div>
-        <div class="nav-string-tri"></div>
-    </div>-->
-
 </div>
