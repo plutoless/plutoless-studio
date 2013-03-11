@@ -175,14 +175,14 @@ var index = {
             .done(function(){if(signal!=null)signal.resolve();});
     },
     
-    menuInAnim :function(out, signal)
+    menuInAnim :function(out, signal, name)
     {
         var animList = [new $.Deferred(), new $.Deferred()];
         
         if(out!=null)
             out(animList[0]);
         /* Anim from right */
-        index.dom.screenAnimCanvas.stop().animate(
+        index.dom.screenAnimCanvas.stop().attr('class','bg-wrap '+name).animate(
             {
                 "left": 0
             },
@@ -241,9 +241,9 @@ var index = {
         }
     },
     
-    indexOutMenuIn:function()
+    indexOutMenuIn:function(name)
     {
-        index.menuInAnim(index.indexOutAnim, null);
+        index.menuInAnim(index.indexOutAnim, null, name);
     },
     
     MenuOutIndexIn:function()
@@ -496,7 +496,8 @@ var index = {
         
         if(index.data.navStr.length==0)
         {
-            index.indexOutMenuIn();
+            var c = name.toLowerCase();
+            index.indexOutMenuIn(c);
             index.appendNavStr(name);
         }else if(index.data.navStr.length>0)
         {
