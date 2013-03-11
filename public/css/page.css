@@ -18,7 +18,7 @@ html{
 }
 /*
 @font-face {
-    font-family: Helvetica Neue Bold;
+    font-family: Helvetica Neue;
     src: url("../fonts/helveticaneueltstdblkcn.otf") format("opentype");
 }
 */
@@ -26,6 +26,7 @@ html{
     font-family: fortunatus;
     src: url("../fonts/fortunatus.otf") format("opentype");
 }
+
 
 body{
   

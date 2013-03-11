@@ -22,6 +22,8 @@ var index = {
         screenArea : 0,
         screenCanvas : 0,
         screenAnimCanvas : 0,
+        screenMenuCover :0,
+        screenMenuElements :0,
         logo : 0,
         logoWrap : 0
     },
@@ -51,6 +53,9 @@ var index = {
         index.dom.screenArea = $('#index-wrap .screen-index');
         index.dom.screenCanvas = $('#index-wrap .screen-index-back');
         index.dom.screenAnimCanvas = index.dom.screenCanvas.find('.bg-wrap');
+        index.dom.screenMenuCover = index.dom.screenAnimCanvas.find('.cover');
+        index.dom.screenMenuElements = $('#index-wrap .screen-index-float .menu-wrap .menu-element-wrap');
+        index.dom.screenMenuElements.hide();
         index.dom.textArea = index.dom.screenCanvas.find('.input-wrap ul');
         index.dom.logo = index.dom.screenArea.find('.screen-logo');
         index.dom.logoWrap = index.dom.screenArea.find('.screen-index-inner');
@@ -75,24 +80,28 @@ var index = {
     
     indexTipsInAnim : function()
     {
+        var animList = [new $.Deferred(),new $.Deferred()];
         index.dom.screenArea.find('.screen-index-tips').fadeIn(2000,
             function()
             {
-                index.indexInAnim();
+                $(this).fadeOut(function(){animList[0].resolve();});
+                index.indexInAnim(animList[1]);
+                $.when(animList[0], animList[1])
+                    .done(function(){
+                        index.initializeKeyboard();
+                    });
             }
         );
+        
     },
     
-    indexInAnim : function()
+    indexInAnim : function(signal)
     {
-        var indexOverlay = index.dom.screenArea.find('.screen-index-inner');
         var logo = index.dom.screenArea.find('.screen-logo');
-        var tips = index.dom.screenArea.find('.screen-index-tips');
-        var animList = [new $.Deferred(),
-            new $.Deferred(),new $.Deferred(),new $.Deferred()];
+        var animList = [new $.Deferred(),new $.Deferred()
+            ,new $.Deferred()];
         
-        tips.fadeOut(function(){animList[0].resolve();});
-        indexOverlay.animate(
+        index.dom.logoWrap.show().stop().animate(
                 {
                     "width": "175px",
                     "height": "175px",
@@ -101,12 +110,14 @@ var index = {
                 {
                     duration: 400,
                     easing : "easeOutExpo",
-                    complete:function(){animList[1].resolve();}
+                    complete:function(){
+                        animList[0].resolve();
+                    }
                 }
 
         );
         
-        logo.animate(
+        logo.stop().animate(
             {
                 "top" : "412px"
             },
@@ -115,25 +126,26 @@ var index = {
                 duration: 600,
                 queue: false,
                 complete:function(){
-                    animList[2].resolve();
+                    animList[1].resolve();
                 }
             }
-        ).fadeIn(function(){animList[3].resolve();});
+        ).fadeIn(function(){animList[2].resolve();});
         /* Do not bind keyboard action before in anim finished */
-        $.when(animList[0], animList[1], animList[2], animList[3])
-            .done(function(){index.initializeKeyboard();});
+        
+        $.when(animList[0], animList[1], animList[2])
+            .done(function(){if(signal!=null)signal.resolve();});
     },
     
-    menuInAnim :function()
+    indexOutAnim :function(signal)
     {
         var animList = [new $.Deferred(),
-            new $.Deferred(),new $.Deferred(),new $.Deferred()];
+            new $.Deferred(), new $.Deferred()];
         index.dom.logo.stop().animate(
             {
                 "top" : "380px"
             },
             {
-                duration: 400,
+                duration: 300,
                 queue: false,
                 easing : "easeInBack",
                 complete : function()
@@ -149,7 +161,7 @@ var index = {
                 "margin-top": "500px"
             },
             {
-                duration: 600,
+                duration: 400,
                 queue: false,
                 easing : "easeInExpo",
                 complete : function()
@@ -159,6 +171,16 @@ var index = {
                 }
             }
         );
+        $.when(animList[0], animList[1], animList[2])
+            .done(function(){if(signal!=null)signal.resolve();});
+    },
+    
+    menuInAnim :function(out, signal)
+    {
+        var animList = [new $.Deferred(), new $.Deferred()];
+        
+        if(out!=null)
+            out(animList[0]);
         /* Anim from right */
         index.dom.screenAnimCanvas.stop().animate(
             {
@@ -170,13 +192,63 @@ var index = {
                 easing : "easeOutExpo",
                 complete : function()
                 {
-                    animList[3].resolve();
+                    animList[1].resolve();
                 }
             }
         );
         /* navigate elements in */
-        $.when(animList[0], animList[1], animList[2], animList[3])
-            .done(function(){index.initializeKeyboard();})
+        $.when(animList[0], animList[1])
+            .done(
+            function(){
+                index.dom.screenMenuElements.
+                    animate({'margin-top': 0},{queue:false})
+                    .fadeIn();
+            }
+        );
+    },
+    
+    menuOutAnim :function(inAnim, signal)
+    {
+        var animList = [new $.Deferred(), new $.Deferred(), new $.Deferred()];
+        
+        
+        index.dom.screenMenuElements.
+            animate({'margin-top': 20},{queue:false, complete:function(){animList[0].resolve();}})
+            .fadeOut();
+        
+        /* Anim to right */
+        index.dom.screenAnimCanvas.stop().animate(
+            {
+                "left": 780
+            },
+            {
+                duration: 600,
+                queue: false,
+                easing : "easeInExpo",
+                complete : function()
+                {
+                    animList[1].resolve();
+                }
+            }
+        );
+        if(inAnim!=null)
+        {
+            $.when(animList[0],animList[1]).done(
+                function(){
+                    inAnim(null);
+                }
+            );
+        }
+    },
+    
+    indexOutMenuIn:function()
+    {
+        index.menuInAnim(index.indexOutAnim, null);
+    },
+    
+    MenuOutIndexIn:function()
+    {
+        index.menuOutAnim(index.indexInAnim, null);
     },
     
     initializeKeyboard : function()
@@ -314,7 +386,14 @@ var index = {
           if(!action)
           {
             index.bindKeyboardPress(key);
-            index.removeNavStr();
+            if(index.data.navStr.length>0)
+            {
+                index.removeNavStr();
+                if(index.data.navStr.length==0)
+                {
+                    index.MenuOutIndexIn();
+                }
+            }
           }
           else
           {
@@ -417,7 +496,7 @@ var index = {
         
         if(index.data.navStr.length==0)
         {
-            index.menuInAnim();
+            index.indexOutMenuIn();
             index.appendNavStr(name);
         }else if(index.data.navStr.length>0)
         {
@@ -440,10 +519,10 @@ var index = {
         if(name!="")
         {
             var c = name.toLowerCase();
-            if(index.data.navStr.length <=30)
+            if(index.data.navStr.length <=15)
             {
                 index.data.navStr = index.data.navStr + c;
-                $('<li>').html(c).css('vertical-align',30).addClass('in-use').
+                $('<li>').html(c).css('vertical-align',20).addClass('in-use').
                     appendTo(index.dom.textArea);
             }
         }

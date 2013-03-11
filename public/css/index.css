@@ -146,7 +146,7 @@ root {
     font-family: "fortunatus", 'Palatino Linotype',
         'Times New Roman', 'MS Serif';
     font-size: 36px;
-    color:#3c3c3c;
+    color: white;
     z-index: 10;
 }
 
@@ -157,11 +157,11 @@ root {
 
 .input-wrap li{
     display: inline;
-    background: white;
     padding-bottom: 10px;
 }
 
 .input-wrap li:first-child{
+    padding-left: 10px;
 }
 
 .input-wrap li:last-child{
@@ -183,6 +183,51 @@ root {
 .screen-back-widgets .bg-wrap.a{
     background:#7ad2ea;
 }
+
+.screen-back-widgets .bg-wrap.b{
+    background:#7ad2ea;
+}
+
+#index-wrap .screen-index-float{
+    position: absolute;
+    margin: 0 !important;
+    width: 780px;
+    height: 265px;
+    background: transparent;
+    z-index: 10;
+    -webkit-border-radius: 8px 8px 0 0;
+    -moz-border-radius: 8px 8px 0 0;
+    -ms-border-radius: 8px 8px 0 0;
+    -o-border-radius: 8px 8px 0 0;
+    border-radius: 8px 8px 0 0;
+    font-size: 0;
+}
+
+.screen-index-float .screen-front-widgets{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.screen-front-widgets .menu-wrap{
+    width: auto;
+    text-align: center;
+    margin-top: 110px;
+}
+
+.menu-wrap .menu-element-wrap{
+    display: inline-block;
+    margin: 20px 20px 0 20px;
+}
+
+.menu-element-wrap .menu-element-text{
+    font-size: 16px;
+    color: white;
+    font-family: "Times New Roman", Times, serif;
+}
+
 
 #index-wrap .key-board{
     position: absolute;
