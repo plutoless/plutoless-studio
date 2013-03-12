@@ -298,14 +298,26 @@ var index = {
     
     getKeyMapping : function()
     {
-        /*
+        
         index.data.keyMapping = {
-            P: $('.navigate-area .P').position().top,
-            B: $('.navigate-area .B').position().top,
-            C: $('.navigate-area .C').position().top,
-            G: $('.navigate-area .G').position().top,
-            F: $('.navigate-area .F').position().top
-        };*/
+            P: [
+                {name:'project',url:'project'},
+                {name:'post',url:'post'},
+                {name:'public',url:'public'}
+            ],
+            B: [
+                {name:'blog',url:''}
+            ],
+            C: [
+                {name:'contact',url:''}
+            ],
+            G: [
+                {name:'game',url:'game'}
+            ],
+            F: [
+                {name:'fightclub',url:''}
+            ]
+        };
         index.data.navMapping = {
             project : "projects",
             post : "post",

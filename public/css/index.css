@@ -185,27 +185,27 @@ root {
 }
 
 .screen-back-widgets .bg-wrap.b{
-    background:#9e9520;
+    background:#f1592a;
 }
 
 .screen-back-widgets .bg-wrap.c{
-    background:#e70034;
+    background:#fcb11b;
 }
 
 .screen-back-widgets .bg-wrap.d{
-    background:#87245a;
+    background:#8cc63f;
 }
 
 .screen-back-widgets .bg-wrap.e{
-    background:#ff00c0;
+    background:#bdd73c;
 }
 
 .screen-back-widgets .bg-wrap.f{
-    background:#2e369b;
+    background:#63c5b4;
 }
 
 .screen-back-widgets .bg-wrap.g{
-    background:#7676aa;
+    background:#fcb040;
 }
 
 .screen-back-widgets .bg-wrap.h{
@@ -241,7 +241,7 @@ root {
 }
 
 .screen-back-widgets .bg-wrap.p{
-    background:#cb3398;
+    background:#7ad2ea;
 }
 
 .screen-back-widgets .bg-wrap.q{
@@ -277,7 +277,7 @@ root {
 }
 
 .screen-back-widgets .bg-wrap.y{
-    background:#b7a66e;
+    background:#ed1c24;
 }
 
 .screen-back-widgets .bg-wrap.z{
@@ -322,6 +322,7 @@ root {
     font-size: 16px;
     color: white;
     font-family: "Times New Roman", Times, serif;
+    margin-top: 4px;
 }
 
 
