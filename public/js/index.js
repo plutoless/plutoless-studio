@@ -61,7 +61,7 @@ var index = {
         index.dom.logoWrap = index.dom.screenArea.find('.screen-index-inner');
         index.dom.keyboard = $('#index-wrap .key-board');
         
-        /*index.getKeyMapping();*/
+        index.getKeyMapping();
         
         /* Attach listener */
         $(window).resize(index.getKeyboardPos);
@@ -71,7 +71,8 @@ var index = {
         preload([
             baseUrl+'/public/images/logo.png',
             baseUrl+'/public/images/battery.png',
-            baseUrl+'/public/images/tips/tips_'+randTip+'.jpg'
+            baseUrl+'/public/images/tips/tips_'+randTip+'.jpg',
+            baseUrl+'/public/images/wallpaper/default.jpg'
         ], index.indexTipsInAnim);
         
         
@@ -182,7 +183,7 @@ var index = {
         if(out!=null)
             out(animList[0]);
         /* Anim from right */
-        index.dom.screenAnimCanvas.stop().attr('class','bg-wrap '+name).animate(
+        index.dom.screenAnimCanvas.stop().animate(
             {
                 "left": 0
             },
@@ -318,6 +319,7 @@ var index = {
                 {name:'fightclub',url:''}
             ]
         };
+        /*
         index.data.navMapping = {
             project : "projects",
             post : "post",
@@ -325,7 +327,7 @@ var index = {
             contact : "contact"
         };
         index.setKeyColors();
-        /*
+        
         $('#key-Q .key-element-content').addClass('color1');
         $('#key-W .key-element-content').addClass('color1');
         $('#key-T .key-element-content').addClass('color1');
