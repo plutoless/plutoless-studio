@@ -33,7 +33,15 @@ $keys3 = array("Z", "X", "C", "V", "B", "N", "M", "<", ">");
                 <ul class="screen-back-widgets">
                     
                     <li class="calendar-wrap">
-                        <?php echo $this->currentMonth;?>
+                        <div class="time">
+                            <?php echo $this->currentTime;?>
+                        </div>
+                        <div class="weekday">
+                            <?php echo $this->currentWeekday;?>
+                        </div>
+                        <div class="month">
+                            <?php echo $this->currentMonth;?>
+                        </div>
                     </li>
                     <!-- Everything beyond this layer goes after -->
                     <li class="bg-wrap a">
@@ -63,6 +71,10 @@ $keys3 = array("Z", "X", "C", "V", "B", "N", "M", "<", ">");
                         <div class="menu-element-wrap">
                             <div class="menu-element-pic"><img src="<?php echo $this->baseUrl().'/public/images/menu/project.png'; ?>"/></div>
                             <div class="menu-element-text">project</div>
+                        </div>
+                        <div class="menu-element-wrap">
+                            <div class="menu-element-pic"><img src="<?php echo $this->baseUrl().'/public/images/menu/public.png'; ?>"/></div>
+                            <div class="menu-element-text">public</div>
                         </div>
                     </li>
                 </ul>

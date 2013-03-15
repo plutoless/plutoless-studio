@@ -39,7 +39,9 @@ class IndexController extends Zend_Controller_Action
         $this->view->posts = $posts->fetchAll();
         $this->view->recentPost = $posts->getRecentPost();
         */
-        $this->view->currentMonth = date("F");
+        $this->view->currentMonth = date("d F");
+        $this->view->currentWeekday = date("l");
+        $this->view->currentTime = date("h:s");
         $this->view->rand = rand(2, 101);
     }
 

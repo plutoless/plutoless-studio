@@ -22,7 +22,7 @@ var index = {
         screenArea : 0,
         screenCanvas : 0,
         screenAnimCanvas : 0,
-        screenMenuCover :0,
+        screenMenuWrapper :0,
         screenMenuElements :0,
         logo : 0,
         logoWrap : 0
@@ -102,7 +102,7 @@ var index = {
         var animList = [new $.Deferred(),new $.Deferred()
             ,new $.Deferred()];
         
-        index.dom.logoWrap.show().stop().animate(
+        index.dom.logoWrap.stop(true, true).show().animate(
                 {
                     "width": "175px",
                     "height": "175px",
@@ -111,6 +111,7 @@ var index = {
                 {
                     duration: 400,
                     easing : "easeOutExpo",
+                    queue: false,
                     complete:function(){
                         animList[0].resolve();
                     }
@@ -118,7 +119,7 @@ var index = {
 
         );
         
-        logo.stop().animate(
+        logo.stop(true, true).animate(
             {
                 "top" : "412px"
             },
@@ -141,7 +142,7 @@ var index = {
     {
         var animList = [new $.Deferred(),
             new $.Deferred(), new $.Deferred()];
-        index.dom.logo.stop().animate(
+        index.dom.logo.stop(true, true).animate(
             {
                 "top" : "380px"
             },
@@ -155,7 +156,7 @@ var index = {
                 }
             }
         ).fadeOut({complete:function(){animList[1].resolve();}});
-        index.dom.logoWrap.stop().animate(
+        index.dom.logoWrap.stop(true, true).animate(
             {
                 "width": 0,
                 "height": 0,
@@ -183,10 +184,10 @@ var index = {
         if(out!=null)
             out(animList[0]);
         /* Anim from right */
-        /*
+        
         index.dom.screenAnimCanvas.stop().animate(
             {
-                "left": 0
+                "top": 0
             },
             {
                 duration: 600,
@@ -197,19 +198,24 @@ var index = {
                     animList[1].resolve();
                 }
             }
-        );*/
-        index.dom.screenAnimCanvas.stop().fadeIn(
-            {duration: 600,queue:false, complete:function(){animList[1].resolve();}})
+        );
+        /*
+        index.dom.screenAnimCanvas.stop(true, true).fadeIn(
+            {duration: 800,complete:function(){animList[1].resolve();}})*/
+        index.dom.screenMenuElements.stop(true, true).
+            animate({'margin-top': 0},{duration: 600, queue:false})
+            .fadeIn({duration: 600});
         /* navigate elements in */
+        /*
         $.when(animList[0], animList[1])
             .done(
             function(){
                 if(index.data.navStr!="")
-                  index.dom.screenMenuElements.stop().
+                  index.dom.screenMenuElements.stop(true, true).
                     animate({'margin-top': 0},{queue:false})
                     .fadeIn();
             }
-        );
+        );*/
     },
     
     menuOutAnim :function(inAnim, signal)
@@ -217,15 +223,15 @@ var index = {
         var animList = [new $.Deferred(), new $.Deferred(), new $.Deferred()];
         
         
-        index.dom.screenMenuElements.stop().
+        index.dom.screenMenuElements.stop(true, true).
             animate({'margin-top': 20},{queue:false, complete:function(){animList[0].resolve();}})
             .fadeOut();
         
         /* Anim to right */
-        /*
+        
         index.dom.screenAnimCanvas.stop().animate(
             {
-                "left": 780
+                "top": 265
             },
             {
                 duration: 600,
@@ -236,16 +242,18 @@ var index = {
                     animList[1].resolve();
                 }
             }
-        );*/
-        index.dom.screenAnimCanvas.stop().fadeOut(
-            {duration: 600,queue:false, complete:function(){animList[1].resolve();}})
+        );
+        /*
+        index.dom.screenAnimCanvas.stop(true, true).fadeOut(
+            {duration: 800, complete:function(){animList[1].resolve();}})*/
         if(inAnim!=null)
         {
+            /*
             $.when(animList[0],animList[1]).done(
-                function(){
-                    inAnim(null);
-                }
-            );
+                function(){*/
+                      inAnim(null);
+                /*}
+            );*/
         }
     },
     
@@ -309,21 +317,21 @@ var index = {
         
         index.data.keyMapping = {
             P: [
-                {name:'project',url:'project'},
-                {name:'post',url:'post'},
-                {name:'public',url:'public'}
+                {target:'project',url:'project'},
+                {target:'post',url:'post'},
+                {target:'public',url:'public'}
             ],
             B: [
-                {name:'blog',url:''}
+                {target:'blog',url:''}
             ],
             C: [
-                {name:'contact',url:''}
+                {target:'contact',url:''}
             ],
             G: [
-                {name:'game',url:'game'}
+                {target:'game',url:'game'}
             ],
             F: [
-                {name:'fightclub',url:''}
+                {target:'fightclub',url:''}
             ]
         };
         /*
@@ -508,15 +516,40 @@ var index = {
             object.removeClass('selected');
     },
     
+    generateMenuHTML : function(target)
+    {
+        return '<div class="menu-element-wrap">'+
+               '<div class="menu-element-pic"><img src="'+baseUrl+
+               '/public/images/menu/'+target+'.png"/></div>'+
+               '<div class="menu-element-text">'+target+'</div></div>';
+    },
+    
     bindKeyboardCharAnim : function(object)
     {
         var name  = object.attr("name");
         if(name==null)
             name="";
         
-        
+        /*
+         *
+         *
+         *<div class="menu-element-wrap">
+                            <div class="menu-element-pic"><img src="<?php echo $this->baseUrl().'/public/images/menu/project.png'; ?>"/></div>
+                            <div class="menu-element-text">project</div>
+                        </div>
+         *
+         */
         if(index.data.navStr.length==0)
         {
+            if(index.data.keyMapping[name]!=null)
+            {
+                for(var i = 0; i<index.data.keyMapping[name].length;i++)
+                {
+                    var html = 
+                        index.generateMenuHTML(index.data.keyMapping[name][i]['target']);
+                    
+                }
+            }
             var c = name.toLowerCase();
             index.indexOutMenuIn(c);
             index.appendNavStr(name);
@@ -544,7 +577,7 @@ var index = {
             if(index.data.navStr.length <=15)
             {
                 index.data.navStr = index.data.navStr + c;
-                $('<li>').html(c).css('vertical-align',20).addClass('in-use').
+                $('<li>').html(c).css('vertical-align',15).addClass('in-use').
                     appendTo(index.dom.textArea);
             }
         }

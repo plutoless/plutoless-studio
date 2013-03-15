@@ -102,10 +102,11 @@ root {
     margin: 0 !important;
     width: 780px;
     height: 265px;
-    /*background: #fe6a84;*/
-    background: url(../images/wallpaper/default.jpg) no-repeat center center;
+    background: #fe6a84;
+    /*
+    background: url(../images/wallpaper/default1.jpg) no-repeat center center;
     background-size: 780px auto;
-    background-position-y: -100px;  
+    background-position-y: -100px;  */
     z-index: -10;
     -webkit-border-radius: 8px 8px 0 0;
     -moz-border-radius: 8px 8px 0 0;
@@ -134,22 +135,22 @@ root {
 .screen-back-widgets .calendar-wrap{
     position: absolute;
     left: 20px;
-    top: 10px;
+    bottom: 10px;
     color:white;
-    font-size: 36px;
+    font-size: 28px;
     font-family: "Segoe Lt",Helvetica, serif;
     z-index: -1;
-    text-shadow: 1px 1px 1px rgba(50,50,50, 0.2);
 }
 
 .screen-back-widgets .input-wrap{
     display: inline;
     position: absolute;
     bottom: 0;
-    font-family: "Segoe Lt",Helvetica, serif;
-    font-size: 36px;
+    font-family: "Segoe",Helvetica, serif;
+    font-size: 24px;
     color: white;
     z-index: 10;
+    text-shadow: 1px 1px 1px rgba(0,0,0, 0.3);
 }
 
 .input-wrap ul{
@@ -174,16 +175,18 @@ root {
     width: 100%;
     height: 100%;
     /*left: 100%;*/
+    top: 100%;
     -webkit-border-radius: 8px 8px 0 0;
     -moz-border-radius: 8px 8px 0 0;
     -ms-border-radius: 8px 8px 0 0;
     -o-border-radius: 8px 8px 0 0;
     border-radius: 8px 8px 0 0;
     z-index: 5;
-    display: none;
+    background:#7ad2ea;
+    /*
     background: url(../images/wallpaper/default_b.jpg) no-repeat center center;
     background-size: 780px auto;
-    background-position-y: -100px;
+    background-position-y: -100px;*/
 }
 
 #index-wrap .screen-index-float{
@@ -212,19 +215,19 @@ root {
 .screen-front-widgets .menu-wrap{
     width: auto;
     text-align: center;
-    margin-top: 110px;
+    margin-top: 90px;
 }
 
 .menu-wrap .menu-element-wrap{
     display: inline-block;
-    margin: 20px 20px 0 20px;
+    margin: 20px 10px 0 10px;
 }
 
 .menu-element-wrap .menu-element-text{
     font-size: 14px;
     color: white;
+    margin-top:-5px;
     font-family: "Segoe",Helvetica, serif;
-    margin-top: 4px;
     text-shadow: 1px 1px 1px rgba(0,0,0, 0.3);
 }
 
