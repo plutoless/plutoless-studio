@@ -173,14 +173,17 @@ root {
     position: absolute;
     width: 100%;
     height: 100%;
-    left: 100%;
+    /*left: 100%;*/
     -webkit-border-radius: 8px 8px 0 0;
     -moz-border-radius: 8px 8px 0 0;
     -ms-border-radius: 8px 8px 0 0;
     -o-border-radius: 8px 8px 0 0;
     border-radius: 8px 8px 0 0;
     z-index: 5;
-    background: rgba(0,0,0, 0.6);
+    display: none;
+    background: url(../images/wallpaper/default_b.jpg) no-repeat center center;
+    background-size: 780px auto;
+    background-position-y: -100px;
 }
 
 #index-wrap .screen-index-float{
@@ -220,7 +223,7 @@ root {
 .menu-element-wrap .menu-element-text{
     font-size: 14px;
     color: white;
-    font-family: "Segoe Lt",Helvetica, serif;
+    font-family: "Segoe",Helvetica, serif;
     margin-top: 4px;
     text-shadow: 1px 1px 1px rgba(0,0,0, 0.3);
 }

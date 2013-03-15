@@ -18,8 +18,8 @@ html{
 }
 */
 @font-face {
-    font-family: opificio;
-    src: url("../fonts/opificio.otf") format("opentype");
+    font-family: Segoe;
+    src: url("../fonts/segoeregular.otf") format("opentype");
 }
 
 /*

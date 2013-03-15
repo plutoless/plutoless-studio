@@ -183,6 +183,7 @@ var index = {
         if(out!=null)
             out(animList[0]);
         /* Anim from right */
+        /*
         index.dom.screenAnimCanvas.stop().animate(
             {
                 "left": 0
@@ -196,12 +197,15 @@ var index = {
                     animList[1].resolve();
                 }
             }
-        );
+        );*/
+        index.dom.screenAnimCanvas.stop().fadeIn(
+            {duration: 600,queue:false, complete:function(){animList[1].resolve();}})
         /* navigate elements in */
         $.when(animList[0], animList[1])
             .done(
             function(){
-                index.dom.screenMenuElements.
+                if(index.data.navStr!="")
+                  index.dom.screenMenuElements.stop().
                     animate({'margin-top': 0},{queue:false})
                     .fadeIn();
             }
@@ -213,11 +217,12 @@ var index = {
         var animList = [new $.Deferred(), new $.Deferred(), new $.Deferred()];
         
         
-        index.dom.screenMenuElements.
+        index.dom.screenMenuElements.stop().
             animate({'margin-top': 20},{queue:false, complete:function(){animList[0].resolve();}})
             .fadeOut();
         
         /* Anim to right */
+        /*
         index.dom.screenAnimCanvas.stop().animate(
             {
                 "left": 780
@@ -231,7 +236,9 @@ var index = {
                     animList[1].resolve();
                 }
             }
-        );
+        );*/
+        index.dom.screenAnimCanvas.stop().fadeOut(
+            {duration: 600,queue:false, complete:function(){animList[1].resolve();}})
         if(inAnim!=null)
         {
             $.when(animList[0],animList[1]).done(
