@@ -41,7 +41,7 @@ class IndexController extends Zend_Controller_Action
         */
         $this->view->currentMonth = date("d F");
         $this->view->currentWeekday = date("l");
-        $this->view->currentTime = date("h:s");
+        $this->view->currentTime = date("H:i");
         $this->view->rand = rand(2, 101);
     }
 

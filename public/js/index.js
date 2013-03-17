@@ -24,6 +24,7 @@ var index = {
         screenAnimCanvas : 0,
         screenMenuWrapper :0,
         screenMenuElements :0,
+        subpageWrapper : 0,
         logo : 0,
         logoWrap : 0
     },
@@ -53,9 +54,9 @@ var index = {
         index.dom.screenArea = $('#index-wrap .screen-index');
         index.dom.screenCanvas = $('#index-wrap .screen-index-back');
         index.dom.screenAnimCanvas = index.dom.screenCanvas.find('.bg-wrap');
+        index.dom.subpageWrapper = index.dom.screenCanvas.find('.subpage-wrap');
         index.dom.screenMenuCover = index.dom.screenAnimCanvas.find('.cover');
-        index.dom.screenMenuElements = $('#index-wrap .screen-index-float .menu-wrap .menu-element-wrap');
-        index.dom.screenMenuElements.hide();
+        index.dom.screenMenuWrapper = $('#index-wrap .screen-index-float .menu-wrap');
         index.dom.textArea = index.dom.screenCanvas.find('.input-wrap ul');
         index.dom.logo = index.dom.screenArea.find('.screen-logo');
         index.dom.logoWrap = index.dom.screenArea.find('.screen-index-inner');
@@ -202,20 +203,17 @@ var index = {
         /*
         index.dom.screenAnimCanvas.stop(true, true).fadeIn(
             {duration: 800,complete:function(){animList[1].resolve();}})*/
-        index.dom.screenMenuElements.stop(true, true).
-            animate({'margin-top': 0},{duration: 600, queue:false})
-            .fadeIn({duration: 600});
         /* navigate elements in */
-        /*
+        
         $.when(animList[0], animList[1])
             .done(
             function(){
                 if(index.data.navStr!="")
-                  index.dom.screenMenuElements.stop(true, true).
-                    animate({'margin-top': 0},{queue:false})
+                  index.dom.screenMenuWrapper.stop(true, true).
+                    animate({'top': 70},{queue:false})
                     .fadeIn();
             }
-        );*/
+        );
     },
     
     menuOutAnim :function(inAnim, signal)
@@ -223,8 +221,8 @@ var index = {
         var animList = [new $.Deferred(), new $.Deferred(), new $.Deferred()];
         
         
-        index.dom.screenMenuElements.stop(true, true).
-            animate({'margin-top': 20},{queue:false, complete:function(){animList[0].resolve();}})
+        index.dom.screenMenuWrapper.stop(true, true).
+            animate({'top': 90},{queue:false, complete:function(){animList[0].resolve();}})
             .fadeOut();
         
         /* Anim to right */
@@ -248,12 +246,12 @@ var index = {
             {duration: 800, complete:function(){animList[1].resolve();}})*/
         if(inAnim!=null)
         {
-            /*
+            
             $.when(animList[0],animList[1]).done(
-                function(){*/
+                function(){
                       inAnim(null);
-                /*}
-            );*/
+                }
+            );
         }
     },
     
@@ -331,16 +329,18 @@ var index = {
                 {target:'game',url:'game'}
             ],
             F: [
-                {target:'fightclub',url:''}
+                {target:'fightclub',url:''},
+                {target:'fun',url:''}
             ]
         };
-        /*
+        
         index.data.navMapping = {
             project : "projects",
             post : "post",
             fun : "fun",
             contact : "contact"
         };
+        /*
         index.setKeyColors();
         
         $('#key-Q .key-element-content').addClass('color1');
@@ -436,14 +436,20 @@ var index = {
           /* ENTER */
           key = $('#key-enter .key-element-content');
           if(!action)
+          {
             index.bindKeyboardPress(key);
-          else
-            index.bindKeyboardRelease(key);
-          if(index.data.navMapping[index.data.navStr]!=null)
-              index.navigatePage(index.data.navMapping[index.data.navStr]);
+          }
           else
           {
-              /* TODO */
+            index.bindKeyboardRelease(key);
+            if(index.data.navMapping[index.data.navStr]!=null)
+            {
+                index.navigatePage(index.data.navMapping[index.data.navStr]);
+            }
+            else
+            {
+                /* TODO */
+            }
           }
           preventDefault = true;
         }
@@ -462,31 +468,22 @@ var index = {
         
         $(document).off();
         $(window).off();
-        var navElements = index.dom.navBar.find('.navigate-menu-wrap')
-        navElements.stop().animate(
-            {"opacity": 0},
+        index.dom.screenMenuWrapper.fadeOut(
             {
-                duration: 400,
-                step : function()
-                {
-                    index.dom.keyboard.css("opacity", $(this).css("opacity"));
-                },
+                duration: 600,
                 complete : function()
                 {
-                    index.dom.keyboard.hide();
-                    $(this).hide();
-                    var h = common.getWrapHeight();
-                    index.dom.navBar.animate(
+                    index.dom.subpageWrapper.animate(
                         {
-                            height: h
+                            "height": 265,
+                            "top": 0
                         },
                         {
                             duration : 800,
                             easing : "easeOutExpo",
                             complete : function()
                             {
-                                index.dom.navBar.find('.content-wrap')
-                                    .load(link, function()
+                                $(this).load(link, function()
                                 {
                                     $.ajaxSetup({cache: true});
                                     $.getScript('./public/js/post.js', 
@@ -543,12 +540,16 @@ var index = {
         {
             if(index.data.keyMapping[name]!=null)
             {
+                index.dom.screenMenuWrapper.html("");
                 for(var i = 0; i<index.data.keyMapping[name].length;i++)
                 {
                     var html = 
                         index.generateMenuHTML(index.data.keyMapping[name][i]['target']);
-                    
+                    $(html).appendTo(index.dom.screenMenuWrapper);
                 }
+            }else{
+                index.dom.screenMenuWrapper
+                .html('<div class="menu-message">No element for key '+name+'</div>');
             }
             var c = name.toLowerCase();
             index.indexOutMenuIn(c);
