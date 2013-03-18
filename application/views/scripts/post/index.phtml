@@ -1,4 +1,4 @@
-<div class="menu-column">
+<!--<div class="menu-column">
     <div class="menu-block">
         <ul>
             <?php foreach($this->postTypes as $type): ?>
@@ -8,9 +8,9 @@
             <?php endforeach; ?>
         </ul>
     </div>
-</div>
-<div class="center-column">
-    <div class="post-list-wrap">
+</div>-->
+<ul class="center-column">
+    <li class="post-list-wrap">
         <ul class="post-list">
             <?php foreach($this->pagePosts as $post) : ?>
             <li id="<?php echo $post->pid; ?>" class="post">
@@ -22,7 +22,8 @@
             </li>
             <?php endforeach; ?>
         </ul>
-    </div>
+    </li>
+    <!--
     <div class="post-control-wrap">
         <div class="control-key-wrap" name="prev">
             <div class="control-key-frame rounded2 shadow4">
@@ -39,9 +40,9 @@
                 Home
             </div>
         </div>
-    </div>
-</div>
-
+    </div>-->
+</ul>
+<!--
 <div class="menu-column">
     <div class="menu-block">
     <div class="return menu-content">
@@ -51,4 +52,4 @@
     <div class="refresh menu-content">
     </div>
     </div>
-</div>
+</div>-->

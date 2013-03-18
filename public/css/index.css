@@ -149,7 +149,7 @@ root {
     font-family: "Segoe",Helvetica, serif;
     font-size: 24px;
     color: white;
-    z-index: 10;
+    z-index: 6;
     text-shadow: 1px 1px 1px rgba(0,0,0, 0.3);
 }
 
@@ -201,6 +201,7 @@ root {
     -ms-border-radius: 8px 8px 0 0;
     -o-border-radius: 8px 8px 0 0;
     border-radius: 8px 8px 0 0;
+    background: #DAC9A6;
 }
 
 #index-wrap .screen-index-float{
