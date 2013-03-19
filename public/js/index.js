@@ -41,6 +41,7 @@ var index = {
         loadLock : false
     },
     
+    
     init : function()
     {
         common.init();
@@ -205,15 +206,15 @@ var index = {
             {duration: 800,complete:function(){animList[1].resolve();}})*/
         /* navigate elements in */
         
+        index.dom.screenMenuWrapper.stop(true, true).
+        animate({'top': 70},{queue:false})
+        .fadeIn({easing: "easeInExpo"});
+        /*
         $.when(animList[0], animList[1])
             .done(
             function(){
-                if(index.data.navStr!="")
-                  index.dom.screenMenuWrapper.stop(true, true).
-                    animate({'top': 70},{queue:false})
-                    .fadeIn();
             }
-        );
+        );*/
     },
     
     menuOutAnim :function(inAnim, signal)
@@ -246,12 +247,12 @@ var index = {
             {duration: 800, complete:function(){animList[1].resolve();}})*/
         if(inAnim!=null)
         {
-            
+            inAnim(null);
+            /*
             $.when(animList[0],animList[1]).done(
                 function(){
-                      inAnim(null);
                 }
-            );
+            );*/
         }
     },
     
@@ -485,7 +486,8 @@ var index = {
                             {
                                 $(this).load(link, function()
                                 {
-                                    $.ajaxSetup({cache: true});
+                                    /*$.ajaxSetup({cache: true});*/
+                                    $.ajaxSetup({cache: false});
                                     $.getScript('./public/js/post.js', 
                                         function(){
                                             post.init();

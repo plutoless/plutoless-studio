@@ -46,6 +46,7 @@
     top: 15px;
     overflow: hidden;
     padding:0;
+    white-space: nowrap;
 }
 
 .center-column .post-list{
@@ -103,6 +104,7 @@
   white-space: normal;
   vertical-align: top;
   overflow: auto;
+  color: #744848;
 }
 
 
@@ -118,7 +120,6 @@
   padding: 8px;
   line-height: 28px;
   text-transform: uppercase;
-  color: #383423;
   font-family: 'Helvetica Neue',"Microsoft Yahei",
         Helvetica, sans-serif;
 }
@@ -140,8 +141,6 @@
     margin: 0;
     padding: 0;
     border: 0;
-    
-    color: #383423;
     vertical-align: baseline;
     font-size: 14px;
     font-family: 'Helvetica Neue',"Microsoft Yahei",

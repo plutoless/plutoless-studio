@@ -7,7 +7,7 @@ $this->headScript()->appendFile($this->baseUrl().'/public/js/index.js');
 
 $keys = array("Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P");
 $keys2 = array("A", "S", "D", "F", "G", "H", "J", "K", "L");
-$keys3 = array("Z", "X", "C", "V", "B", "N", "M", "<", ">");
+$keys3 = array("Z", "X", "C", "V", "B", "N", "M");
 ?>
 <script>var randTip = "<?php echo $this->rand;?>"</script>
 <!--<div id="header"><img src="<?php echo $this->baseURL();?>/public/images/logo.png"></div>-->
@@ -140,7 +140,20 @@ $keys3 = array("Z", "X", "C", "V", "B", "N", "M", "<", ">");
                     </div>
                 </li>
                 <?php endforeach;?>
-
+                <li id="key-left-arrow" class="key-element-wrapper key-size-normal">
+                    <div class="key-element">
+                        <div class="key-element-content">
+                            <
+                        </div>
+                    </div>
+                </li>
+                <li id="key-right-arrow" class="key-element-wrapper key-size-normal">
+                    <div class="key-element">
+                        <div class="key-element-content">
+                            >
+                        </div>
+                    </div>
+                </li>
                 <li id="key-shift-right" class="key-element-wrapper key-size-shift-right">
                     <div class="key-element">
                         <div class="key-element-content key-right">
