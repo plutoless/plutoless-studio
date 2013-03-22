@@ -24,7 +24,7 @@ if(post==null)
             common.init();
             post.dom.contentWrap = index.dom.subpageWrapper;
             post.dom.mainColumn = post.dom.contentWrap
-                .find('.center-column');
+                .find('.post-seg-wrap');
             post.dom.postList = post.dom.contentWrap.find('.post-list-wrap');
             post.dom.posts = post.dom.postList.find('.post');
             post.dom.posts.jScrollPane();
