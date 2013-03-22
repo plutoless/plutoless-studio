@@ -41,9 +41,9 @@
 
 .post-seg-wrap .post-list-wrap{
     position: absolute;
-    width: 720px;
+    width: 760px;
     height: 235px;
-    left: 30px;
+    left: 20px;
     top: 15px;
     overflow: hidden;
     padding:0;
@@ -57,7 +57,6 @@
     padding: 0;
 }
 
-
 .post-list li{
   display: inline-block;
   text-align: left;
@@ -67,9 +66,32 @@
   vertical-align: top;
   overflow: auto;
   color: #333;
-  font-family: Georgia, sans-serif;
+  font-family: Georgia, "Microsoft Yahei", sans-serif;
 }
 
+.post-list li .post-left{
+    float: left;
+    width: 20%;
+    font-size: 12px;
+    color: #888;
+    line-height: 20px;
+    font-family: Courier, Helvetica, Arial, Sans-serif;
+}
+
+.post-left .place-holder{
+    width: 1px;
+    height: 20px;
+}
+
+.post-left .type{
+    background: #EEE;
+}
+
+.post-list li .post-right{
+    float: left;
+    width: 80%;
+    height:100%;
+}
 
 .post-seg-wrap .post-list .titleBar{
   width: 100%;
@@ -81,7 +103,6 @@
   font-size: 32px;
   padding: 8px;
   line-height: 28px;
-  text-transform: uppercase;
 }
 
 .post-seg-wrap .post-list .time{

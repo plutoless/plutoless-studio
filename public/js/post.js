@@ -26,7 +26,7 @@ if(post==null)
             post.dom.mainColumn = post.dom.contentWrap
                 .find('.post-seg-wrap');
             post.dom.postList = post.dom.contentWrap.find('.post-list-wrap');
-            post.dom.posts = post.dom.postList.find('.post');
+            post.dom.posts = post.dom.postList.find('.post .post-right');
             post.dom.posts.jScrollPane();
             post.dom.currentPost = post.dom.postList.find('.post').filter(':first');
             post.initializePostKeyboard();
