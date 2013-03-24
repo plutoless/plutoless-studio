@@ -471,13 +471,12 @@ var index = {
         $(window).off();
         index.dom.screenMenuWrapper.fadeOut(
             {
-                duration: 600,
+                duration: 300,
                 complete : function()
                 {
                     index.dom.subpageWrapper.animate(
                         {
-                            "height": 265,
-                            "top": 0
+                            "height": 265
                         },
                         {
                             duration : 800,

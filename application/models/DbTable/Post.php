@@ -10,7 +10,8 @@ class Application_Model_DbTable_Post extends Zend_Db_Table_Abstract
         $posts = Array();
         $posts = $this->fetchAll($this->select()->setIntegrityCheck(false)
                 ->from(array('p' => 'Post'),
-                        array('pid','title','content','ts','ptid','type'=>'t.title'))
+                        array('pid','title','content',
+                            'ts','ptid','type'=>'t.title','cover'))
                 ->joinLeft(array('t' => 'Type'), 
                         't.ptid = p.ptid',
                         array('ptype'=>'title'))

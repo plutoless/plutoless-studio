@@ -12,11 +12,13 @@ if(post==null)
             controlKeys : 0,
             postList : 0,
             posts : 0,
-            currentPost : 0
+            currentPost : 0,
+            currentPostSlider : 0
         },
 
         data :{
-            api : 0
+            api : new Array(),
+            scrollBy : 1
         },
 
         init : function()
@@ -26,9 +28,17 @@ if(post==null)
             post.dom.mainColumn = post.dom.contentWrap
                 .find('.post-seg-wrap');
             post.dom.postList = post.dom.contentWrap.find('.post-list-wrap');
-            post.dom.posts = post.dom.postList.find('.post .post-right');
-            post.dom.posts.jScrollPane();
-            post.dom.currentPost = post.dom.postList.find('.post').filter(':first');
+            post.dom.posts = post.dom.postList.find('.post');
+            for(var i=0; i<post.dom.posts.length; i++)
+            {
+                
+                post.dom.posts.eq(i).attr('sindex', i);
+                var element = post.dom.posts.eq(i).find('.post-right')
+                    .jScrollPane({animateScroll: true});
+                post.data.api[i] = element.data('jsp');
+            }
+            post.dom.currentPost = post.dom.posts.filter(':first');
+            post.dom.currentPostSlider = post.data.api[0];
             post.initializePostKeyboard();
             
             $(window).resize(index.getKeyboardPos);
@@ -84,6 +94,48 @@ if(post==null)
                 preventDefault = true;
             }
             
+            if(e.keyCode == 38 || e.keyCode == 87)
+            {
+                /* up arrow */
+                if(e.keyCode == 38)
+                  key = $('#key-up-arrow .key-element-content');
+                if(e.keyCode == 87)
+                  key = $('#key-W .key-element-content');
+                if(!action)
+                {
+                    index.bindKeyboardPress(key);
+                    post.scrollPostUp(post.dom.currentPostSlider);
+                    post.data.scrollBy++;
+                }
+                else
+                {
+                    index.bindKeyboardRelease(key);
+                    post.data.scrollBy = 1;
+                }
+                preventDefault = true;
+            }
+            
+            if(e.keyCode == 40 || e.keyCode == 83)
+            {
+                /* down arrow */
+                if(e.keyCode == 40)
+                  key = $('#key-down-arrow .key-element-content');
+                if(e.keyCode == 83)
+                  key = $('#key-S .key-element-content');
+                if(!action)
+                {
+                    index.bindKeyboardPress(key);
+                    post.scrollPostDown(post.dom.currentPostSlider);
+                    post.data.scrollBy++;
+                }
+                else
+                {
+                    index.bindKeyboardRelease(key);
+                    post.data.scrollBy = 1;
+                }
+                preventDefault = true;
+            }
+            
             if(preventDefault)
                 e.preventDefault();
         },
@@ -118,6 +170,8 @@ if(post==null)
                 currentObject.stop(true,true).animate({opacity: 0},animTime);
                 object.stop(true,true).animate({opacity: 1},animTime);
                 post.dom.currentPost = object;
+                var index = parseInt(object.attr('sindex'));
+                post.dom.currentPostSlider = post.data.api[index];
                 post.dom.postList.stop(true,true).animate(
                     {"scrollLeft": scrollLeft+left},
                     {
@@ -142,6 +196,8 @@ if(post==null)
                 currentObject.stop(true,true).animate({opacity: 0},animTime);
                 object.stop(true,true).animate({opacity: 1},animTime);
                 post.dom.currentPost = object;
+                var index = parseInt(object.attr('sindex'));
+                post.dom.currentPostSlider = post.data.api[index];
                 post.dom.postList.stop(true,true).animate(
                     {"scrollLeft": scrollLeft+left},
                     {
@@ -151,6 +207,22 @@ if(post==null)
                         }
                     }
                 );
+            }
+        },
+        
+        scrollPostDown : function(currentAPI)
+        {
+            if(currentAPI!=null)
+            {
+                currentAPI.scrollByY(50*post.data.scrollBy);
+            }
+        },
+        
+        scrollPostUp : function(currentAPI)
+        {
+            if(currentAPI!=null)
+            {
+                currentAPI.scrollByY(-50*post.data.scrollBy);
             }
         }
     }

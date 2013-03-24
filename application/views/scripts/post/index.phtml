@@ -22,9 +22,17 @@
                 </div>
                 <div class="post-right">
                     <div class="titleBar">
-                        <div class="title inline"><?php echo $this->escape($post->title);?></div>
+                        <div class="title inline">
+                            <?php echo $this->escape($post->title);?>
+                        </div>
                     </div>
-                    <div class="content"><?php echo nl2br($post->content);?></div>
+                    <div class="content">
+                        <?php if($post->cover!=null) :?>
+                            <img src="<?php echo $this->baseUrl().'/public/images/post/'.$post->cover.'.png'; ?>"/>
+                            <br>
+                        <?php endif;?>
+                        <?php echo nl2br($post->content);?>
+                    </div>
                 </div>
             </li>
             <?php endforeach; ?>
