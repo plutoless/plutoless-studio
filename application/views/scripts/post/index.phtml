@@ -11,32 +11,33 @@
 </div>-->
 <ul class="post-seg-wrap">
     <li class="post-list-wrap">
-        <ul class="post-list">
-            <?php foreach($this->pagePosts as $post) : ?>
-            <li id="<?php echo $post->pid; ?>" class="post">
-                <div class="post-left">
-                    <div class="place-holder"></div>
-                    <span><?php echo date("M d, Y", strtotime($this->escape($post->ts)));?></span><br><br>
-                    <span>Posted in:</span><br>
-                    <span class="type"><?php echo $post->type;?></span>
-                </div>
-                <div class="post-right">
-                    <div class="titleBar">
-                        <div class="title inline">
-                            <?php echo $this->escape($post->title);?>
-                        </div>
-                    </div>
-                    <div class="content">
+            <ul class="post-list">
+                <?php foreach($this->pagePosts as $post) : ?>
+                <li id="<?php echo $post->pid; ?>" class="post">
+                    <div class="cover">
                         <?php if($post->cover!=null) :?>
                             <img src="<?php echo $this->baseUrl().'/public/images/post/'.$post->cover.'.png'; ?>"/>
                             <br>
                         <?php endif;?>
-                        <?php echo nl2br($post->content);?>
                     </div>
-                </div>
-            </li>
-            <?php endforeach; ?>
-        </ul>
+                    <div class="post-left">
+                        <div class="place-holder"></div>
+                        <span><?php echo $post->type;?></span>
+                    </div>
+                    <div class="post-right">
+                        <div class="titleBar">
+                            <div class="title inline">
+                                <?php echo $this->escape($post->title);?>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <span><?php echo date("M d, Y", strtotime($this->escape($post->ts)));?></span><br><br>
+                            <?php echo nl2br($post->content);?>
+                        </div>
+                    </div>
+                </li>
+                <?php endforeach; ?>
+            </ul>
     </li>
 </ul>
 <!--

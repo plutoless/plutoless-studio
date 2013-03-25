@@ -38,7 +38,8 @@ var index = {
         busyCounter : 0,
         msgList : 0,
         sampleKey : 0,
-        loadLock : false
+        loadLock : false,
+        startup : true
     },
     
     
@@ -56,6 +57,7 @@ var index = {
         index.dom.screenCanvas = $('#index-wrap .screen-index-back');
         index.dom.screenAnimCanvas = index.dom.screenCanvas.find('.bg-wrap');
         index.dom.subpageWrapper = index.dom.screenCanvas.find('.subpage-wrap');
+        index.dom.subpageWrapperFront = $('#index-wrap .screen-index-float .subpage-wrap');
         index.dom.screenMenuCover = index.dom.screenAnimCanvas.find('.cover');
         index.dom.screenMenuWrapper = $('#index-wrap .screen-index-float .menu-wrap');
         index.dom.textArea = index.dom.screenCanvas.find('.input-wrap ul');
@@ -64,9 +66,7 @@ var index = {
         index.dom.keyboard = $('#index-wrap .key-board');
         
         index.getKeyMapping();
-        
-        /* Attach listener */
-        $(window).resize(index.getKeyboardPos);
+        index.getKeyboardPos();
         
         /* START ANIM */
         
@@ -83,16 +83,19 @@ var index = {
     
     indexTipsInAnim : function()
     {
-        var animList = [new $.Deferred(),new $.Deferred()];
-        index.dom.screenArea.find('.screen-index-tips').fadeIn(2000,
+        
+        index.initializeKeyboard();
+        /*var animList = [new $.Deferred(),new $.Deferred()];*/
+        index.dom.screenArea.find('.screen-index-tips').fadeIn(1000,
             function()
             {
+                /*
                 $(this).fadeOut(function(){animList[0].resolve();});
                 index.indexInAnim(animList[1]);
                 $.when(animList[0], animList[1])
                     .done(function(){
                         index.initializeKeyboard();
-                    });
+                    });*/
             }
         );
         
@@ -309,6 +312,9 @@ var index = {
         );
         $(document).keydown(function(e){index.bindKeyboardActions(e,false);});
         $(document).keyup(function(e){index.bindKeyboardActions(e,true)});
+        
+        /* Attach listener */
+        $(window).resize();
     },
     
     getKeyMapping : function()
@@ -388,6 +394,14 @@ var index = {
     {
         var preventDefault = false;
         var key = 0;
+        
+        if(index.data.startup)
+        {
+            index.data.startup = false;
+            index.dom.screenArea.find('.screen-index-tips').fadeOut();
+            index.indexInAnim(null);
+            return;
+        }
         
         if(e.keyCode >=65 && e.keyCode <=90)
         {
@@ -479,10 +493,11 @@ var index = {
                             "height": 265
                         },
                         {
-                            duration : 800,
+                            duration : 600,
                             easing : "easeOutExpo",
                             complete : function()
                             {
+                                common.showLoading($(this));
                                 $(this).load(link, function()
                                 {
                                     /*$.ajaxSetup({cache: true});*/
@@ -492,6 +507,7 @@ var index = {
                                             post.init();
                                         });
                                     $.ajaxSetup({cache: false});
+                                    index.data.loadLock = false;
                                 });
                             }
                         }
@@ -593,6 +609,11 @@ var index = {
             .fadeOut({duration: 200,complete:function(){$(this).remove();},queue:false});
     },
     
+    clearNavStr : function()
+    {
+        index.data.navStr = "";
+        index.dom.textArea.find('li.in-use').remove();
+    },
     
     getMessage : function()
     {

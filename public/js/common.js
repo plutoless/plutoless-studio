@@ -22,10 +22,35 @@ var common = {
         var pH = parentObject.height();
         var oH = object.height();
         object.css("margin-top", (pH-oH)/2);
+    },
+    
+    backToIndex : function()
+    {
+        $(document).off();
+        $(window).off();
+        index.dom.subpageWrapper.animate(
+           {height: 0},
+           {
+               duration: 600,
+               easing: "easeOutExpo",
+               complete: function(){
+                   $(this).html("");
+               }
+           }
+        );
+        index.clearNavStr();
+        index.initializeKeyboard();
+        index.MenuOutIndexIn();
+    },
+    
+    showLoading: function(area)
+    {
+        var h = area.height();
+        var w = area.width();
+        var loadingHtml = $('<div>').css('width', w).css('height',h).addClass('loading');
+        area.html(loadingHtml);
     }
     
-    
-
 }
 
 function sendAjaxCall(url,type,data,callback){

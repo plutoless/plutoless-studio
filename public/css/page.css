@@ -196,3 +196,15 @@ ul{
     background: white;
     margin: 1px;
 }
+
+.screen-top-rounded{
+    -webkit-border-radius: 8px 8px 0 0;
+    -moz-border-radius: 8px 8px 0 0;
+    -ms-border-radius: 8px 8px 0 0;
+    -o-border-radius: 8px 8px 0 0;
+    border-radius: 8px 8px 0 0;
+}
+
+.loading{
+    background: url(../images/loading.gif) no-repeat center center;
+}

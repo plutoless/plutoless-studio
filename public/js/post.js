@@ -33,7 +33,7 @@ if(post==null)
             {
                 
                 post.dom.posts.eq(i).attr('sindex', i);
-                var element = post.dom.posts.eq(i).find('.post-right')
+                var element = post.dom.posts.eq(i)
                     .jScrollPane({animateScroll: true});
                 post.data.api[i] = element.data('jsp');
             }
@@ -42,6 +42,9 @@ if(post==null)
             post.initializePostKeyboard();
             
             $(window).resize(index.getKeyboardPos);
+            
+            /* ALL FINISHED, FADE IN */
+            post.dom.mainColumn.animate({opacity:1});
         },
         
         initializePostKeyboard : function()
@@ -136,6 +139,20 @@ if(post==null)
                 preventDefault = true;
             }
             
+            if(e.keyCode == 8)
+            {
+                /* BACKSPACE */
+                key = $('#key-backspace .key-element-content');
+
+                if(!action)
+                {
+                    index.bindKeyboardPress(key);
+                    common.backToIndex();
+                    index.bindKeyboardRelease(key);
+                }
+                preventDefault = true;
+            }
+            
             if(preventDefault)
                 e.preventDefault();
         },
@@ -166,9 +183,10 @@ if(post==null)
             {
                 var left = object.position().left;
                 var scrollLeft = post.dom.postList.scrollLeft();
+                /*
                 object.css("opacity", 0);
                 currentObject.stop(true,true).animate({opacity: 0},animTime);
-                object.stop(true,true).animate({opacity: 1},animTime);
+                object.stop(true,true).animate({opacity: 1},animTime);*/
                 post.dom.currentPost = object;
                 var index = parseInt(object.attr('sindex'));
                 post.dom.currentPostSlider = post.data.api[index];
@@ -192,9 +210,9 @@ if(post==null)
             {
                 var left = object.position().left;
                 var scrollLeft = post.dom.postList.scrollLeft();
-                object.css("opacity", 0);
+                /*object.css("opacity", 0);
                 currentObject.stop(true,true).animate({opacity: 0},animTime);
-                object.stop(true,true).animate({opacity: 1},animTime);
+                object.stop(true,true).animate({opacity: 1},animTime);*/
                 post.dom.currentPost = object;
                 var index = parseInt(object.attr('sindex'));
                 post.dom.currentPostSlider = post.data.api[index];
