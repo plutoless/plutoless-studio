@@ -51,6 +51,14 @@ if(post==null)
         {
             $(document).keydown(function(e){post.bindKeyboardActions(e,false);});
             $(document).keyup(function(e){post.bindKeyboardActions(e,true)});
+            var hints = [
+                    {'key':'W','val':'Scroll Up'},
+                    {'key':'S','val':'Scroll Down'},
+                    {'key':'D','val':'Next'},
+                    {'key':'A','val':'Prev'},
+                    {'key':'backspace','val':'Home'}
+            ];
+            common.generateHints(hints);
         },
 
         bindKeyboardActions : function(e, action)

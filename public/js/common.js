@@ -28,6 +28,7 @@ var common = {
     {
         $(document).off();
         $(window).off();
+        common.clearHints();
         index.dom.subpageWrapper.animate(
            {height: 0},
            {
@@ -49,8 +50,30 @@ var common = {
         var w = area.width();
         var loadingHtml = $('<div>').css('width', w).css('height',h).addClass('loading');
         area.html(loadingHtml);
-    }
+    },
     
+    generateHints:function(hints)
+    {
+        for(var i = 0; i<hints.length; i++)
+        {
+            var k = hints[i]['key'];
+            var v = hints[i]['val'];
+            var key = $('#key-'+k);
+            if(key!=undefined)
+            {
+                var keyLeft = key.offset().left;
+                var keyTop = key.offset().top;
+                var keyWidth = key.width();
+                $('<div>').addClass('key-hint').css('left',keyLeft)
+                    .css('width',keyWidth).css('top', keyTop-6)
+                    .html(v).appendTo($('#key-hint-wrap'));
+            }
+        }
+    },
+    
+    clearHints:function(){
+        $('#key-hint-wrap').html('');
+    }
 }
 
 function sendAjaxCall(url,type,data,callback){
