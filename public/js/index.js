@@ -106,7 +106,6 @@ var index = {
         var logo = index.dom.screenArea.find('.screen-logo');
         var animList = [new $.Deferred(),new $.Deferred()
             ,new $.Deferred()];
-        
         index.dom.logoWrap.stop(true, true).show().animate(
                 {
                     "width": "175px",
@@ -398,7 +397,7 @@ var index = {
         if(index.data.startup)
         {
             index.data.startup = false;
-            index.dom.screenArea.find('.screen-index-tips').fadeOut();
+            index.dom.screenArea.find('.screen-index-tips').stop(true,true).fadeOut();
             index.indexInAnim(null);
             return;
         }

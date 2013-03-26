@@ -18,7 +18,14 @@ if(post==null)
 
         data :{
             api : new Array(),
-            scrollBy : 1
+            scrollBy : 1,
+            hints : [
+                    {'key':'W','val':'Scroll Up'},
+                    {'key':'S','val':'Scroll Down'},
+                    {'key':'D','val':'Next'},
+                    {'key':'A','val':'Prev'},
+                    {'key':'backspace','val':'Home'}
+            ]
         },
 
         init : function()
@@ -41,7 +48,7 @@ if(post==null)
             post.dom.currentPostSlider = post.data.api[0];
             post.initializePostKeyboard();
             
-            $(window).resize(index.getKeyboardPos);
+            $(window).resize(post.getKeyboardPos);
             
             /* ALL FINISHED, FADE IN */
             post.dom.mainColumn.animate({opacity:1});
@@ -51,14 +58,12 @@ if(post==null)
         {
             $(document).keydown(function(e){post.bindKeyboardActions(e,false);});
             $(document).keyup(function(e){post.bindKeyboardActions(e,true)});
-            var hints = [
-                    {'key':'W','val':'Scroll Up'},
-                    {'key':'S','val':'Scroll Down'},
-                    {'key':'D','val':'Next'},
-                    {'key':'A','val':'Prev'},
-                    {'key':'backspace','val':'Home'}
-            ];
-            common.generateHints(hints);
+            post.getKeyboardPos();
+        },
+
+        getKeyboardPos : function(){
+            index.getKeyboardPos();
+            common.generateHints(post.data.hints);
         },
 
         bindKeyboardActions : function(e, action)

@@ -71,6 +71,7 @@ var common = {
         }
     },
     
+    
     clearHints:function(){
         $('#key-hint-wrap').html('');
     }
