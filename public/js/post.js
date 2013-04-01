@@ -63,6 +63,7 @@ if(post==null)
 
         getKeyboardPos : function(){
             index.getKeyboardPos();
+            common.clearHints();
             common.generateHints(post.data.hints);
         },
 

@@ -1,34 +1,3 @@
-
-
-
-.menu-column .return{
-  background-color: green;
-}
-
-.menu-column .refresh{
-  background-color: yellow;
-}
-
-
-.menu-column{
-  float: left;
-  width: 22%;
-  overflow: auto;
-}
-
-.menu-column .menu-block{
-  position: relative;
-  width: 40px;
-  height: auto;
-}
-
-.menu-block .menu-content{
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-}
-
 .post-seg-wrap{
   position: relative;
   width: 100%;
@@ -50,20 +19,9 @@
 }
 
 
-.post-list-wrap .header-place-holder{
-    left: 0;
-    top: 0;
-    width: 780px;
-    height: 8px;
-    background: tomato;
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
-}
-
 .post-seg-wrap .post-list{
     left: 0;
-    top: 8px;
+    top: 0;
     width: 780px;
     height: 265px;
     font-size: 0;

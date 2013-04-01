@@ -321,7 +321,7 @@ var index = {
         
         index.data.keyMapping = {
             P: [
-                {target:'project',url:'project'},
+                {target:'project',url:'projects'},
                 {target:'post',url:'post'},
                 {target:'public',url:'public'}
             ],
@@ -501,10 +501,15 @@ var index = {
                                 {
                                     /*$.ajaxSetup({cache: true});*/
                                     $.ajaxSetup({cache: false});
-                                    $.getScript('./public/js/post.js', 
+                                    if(link=="post")
+                                      $.getScript('./public/js/post.js', 
                                         function(){
                                             post.init();
                                         });
+                                    if(link=="projects")
+                                    {
+
+                                    }
                                     $.ajaxSetup({cache: false});
                                     index.data.loadLock = false;
                                 });

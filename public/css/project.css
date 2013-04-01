@@ -1,0 +1,52 @@
+/* 
+    Document   : project
+    Created on : 29-Mar-2013, 18:30:05
+    Author     : plutoless
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.project-seg-wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    background: #eeeceb;
+}
+
+
+.project-seg-wrap .project-list-wrap{
+    position: absolute;
+    width: 780px;
+    height: 265px;
+    overflow: hidden;
+    padding:0;
+    white-space: nowrap;
+}
+
+.project-list-wrap .project-list{
+    left: 0;
+    top: 0;
+    width: 780px;
+    height: 265px;
+    font-size: 0;
+    padding: 0;
+}
+
+.project-list .project{
+    width: 100%;
+    height: 100%;
+}
+
+.project .preview{
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.preview img{
+}

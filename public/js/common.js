@@ -54,6 +54,7 @@ var common = {
     
     generateHints:function(hints)
     {
+        common.clearHints();
         for(var i = 0; i<hints.length; i++)
         {
             var k = hints[i]['key'];
