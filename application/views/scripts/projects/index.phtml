@@ -2,11 +2,25 @@
 <ul class="project-seg-wrap">
     <li class="project-list-wrap">
         <ul class="project-list">
-            <li class="project">
-                <div class="preview">
-                    <img src="<?php echo $this->baseURL();?>/public/images/project/1.png"/>
+            <?php foreach($this->projects as $project) : ?>
+            <li class="project-wrap">
+                <div style="width: <?php echo $project->width;?>px; height: <?php echo $project->height;?>px;" class="project"
+                     id="<?php echo $project->prid;?>">
+                    <p class="photo">
+                        <img src="<?php echo $this->baseURL()
+                                .'/public/images/project/'
+                                .$project->photo.'.png';?>"/>
+                    </p>
+                    <p class="title">
+                        <span class="caption"><?php echo $project->caption;?></span>
+                        <br>
+                        <?php echo $project->title;?>
+                    </p>
+                    <p class="data"><?php echo $project->data;?></p>
                 </div>
             </li>
+            <?php endforeach; ?>
+            <li class="place-holder"></li>
         </ul>
     </li>
 </ul>

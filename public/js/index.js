@@ -508,7 +508,10 @@ var index = {
                                         });
                                     if(link=="projects")
                                     {
-
+                                      $.getScript('./public/js/project.js', 
+                                        function(){
+                                            project.init();
+                                        });
                                     }
                                     $.ajaxSetup({cache: false});
                                     index.data.loadLock = false;
