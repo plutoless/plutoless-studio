@@ -62,13 +62,30 @@ root {
     text-align: center;
     font-size: 24px;
     display: none;
-    font-family: "fortunatus",Helvetica, serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
+}
+
+.screen-index .screen-index-tips .avatar-wrap{
+    position: relative;
+}
+
+.avatar-wrap .msg-box{
+    
 }
 
 .screen-index-tips .news{
-    font-size: 16px;
-    font-family: "fortunatus",Helvetica, serif;
+    font-size: 11px;
+    font-family: "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
+    padding: 0;
+    height: 21px;
+    overflow: hidden;
 }
+
+.screen-index-tips .news li{
+    height: 21px;
+}
+
+
 
 .screen-index .screen-index-inner{
     width: 1000px;

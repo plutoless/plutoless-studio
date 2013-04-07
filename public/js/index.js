@@ -26,7 +26,10 @@ var index = {
         screenMenuElements :0,
         subpageWrapper : 0,
         logo : 0,
-        logoWrap : 0
+        logoWrap : 0,
+        newsArea : 0,
+        newsContent : 0,
+        newsBuf : 0
     },
     
     data : {
@@ -36,6 +39,7 @@ var index = {
         navStr : "",
         idleCounter : 0,
         busyCounter : 0,
+        newsCount : 0,
         msgList : 0,
         sampleKey : 0,
         loadLock : false,
@@ -46,7 +50,6 @@ var index = {
     init : function()
     {
         common.init();
-        
         index.dom.mainContent = $('#content');
         
         
@@ -85,6 +88,7 @@ var index = {
     {
         
         index.initializeKeyboard();
+        index.initializeNews();
         /*var animList = [new $.Deferred(),new $.Deferred()];*/
         index.dom.screenArea.find('.screen-index-tips').fadeIn(1000,
             function()
@@ -266,6 +270,41 @@ var index = {
     MenuOutIndexIn:function()
     {
         index.menuOutAnim(index.indexInAnim, null);
+    },
+    
+    initializeNews : function()
+    {
+        index.dom.newsArea = $('#index-wrap .screen-index-tips .news');
+        index.dom.newsContent = index.dom.newsArea.find('.news-area');
+        index.dom.newsBuf = index.dom.newsArea.find('.news-buf');
+        setTimeout(index.getNextNews, 3000);
+    },
+    
+    getNextNews : function()
+    {
+        /* only do this when at startup screen */
+        if(index.data.startup)
+        {
+          if(index.data.newsCount+1 >= newsList.length)
+              index.data.newsCount = 0;
+          else
+              index.data.newsCount++;
+          var newsStr = newsList[index.data.newsCount];
+          var newsH = index.dom.newsArea.height();
+          index.dom.newsBuf.html(newsStr);
+          index.dom.newsArea.animate(
+            {'scrollTop':newsH},
+            {
+                complete: function()
+                {
+                    var buf = index.dom.newsBuf.contents();
+                    index.dom.newsContent.html(buf);
+                    index.dom.newsArea.scrollTop(0);
+                }
+            }
+          );
+          setTimeout(index.getNextNews, 3000);
+        }
     },
     
     initializeKeyboard : function()
