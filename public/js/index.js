@@ -52,10 +52,7 @@ var index = {
         common.init();
         index.dom.mainContent = $('#content');
         
-        
         index.getKeyboardPos();
-        /*
-        index.getMessage();*/
         index.dom.screenArea = $('#index-wrap .screen-index');
         index.dom.screenCanvas = $('#index-wrap .screen-index-back');
         index.dom.screenAnimCanvas = index.dom.screenCanvas.find('.bg-wrap');
@@ -67,9 +64,11 @@ var index = {
         index.dom.logo = index.dom.screenArea.find('.screen-logo');
         index.dom.logoWrap = index.dom.screenArea.find('.screen-index-inner');
         index.dom.keyboard = $('#index-wrap .key-board');
+        index.dom.msgBox = index.dom.screenArea.find('.screen-index-tips .msg-box');
         
         index.getKeyMapping();
         index.getKeyboardPos();
+        index.getMessage();
         
         /* START ANIM */
         
@@ -682,14 +681,17 @@ var index = {
     
     dynamicMessage : function()
     {
-      var rmsg = Math.floor(Math.random()*index.data.msgList.length);
-      if(index.data.msgList[rmsg].content!=null)
-        index.showMessage(index.data.msgList[rmsg].content);
-      
-      /* self call after random time */
-      setTimeout(function() {
-        index.dynamicMessage();
-      }, 5000);
+      if(index.data.startup)
+      {
+        var rmsg = Math.floor(Math.random()*index.data.msgList.length);
+        if(index.data.msgList[rmsg].content!=null)
+            index.showMessage(index.data.msgList[rmsg].content);
+
+        /* self call after random time */
+        setTimeout(function() {
+            index.dynamicMessage();
+        }, 5000);
+      }
     }
 
 }

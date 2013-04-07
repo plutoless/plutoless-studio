@@ -70,7 +70,39 @@ root {
 }
 
 .avatar-wrap .msg-box{
-    
+    position:absolute;
+    min-width: 32px;
+    width: auto;
+    max-width: 250px;
+    z-index: 0;
+    text-align: center;
+    word-wrap: break-word;
+    background-color: #ff6860;
+    height: auto;
+    left: 540px;
+    bottom: 70px;
+}
+
+.avatar-wrap .msg-box-tri{
+    position: absolute;
+    width: 0; 
+    height: 0; 
+    border-top: 10px solid transparent;
+    border-bottom: 0px solid transparent;
+    border-right:10px solid #ff6860;
+    left: 532px;
+    bottom: 77px;
+    z-index: 1;
+}
+
+.avatar-wrap .msg-box span{
+    text-align: left;
+    display: block;
+    white-space: pre;
+    padding: 7px 15px;
+    color: white;
+    font-size: 11px;
+    font-family: "Helvetica Neue", Helvetica, "Microsoft Yahei", Arial, Geneva, sans-serif;
 }
 
 .screen-index-tips .news{
