@@ -52,7 +52,6 @@ var index = {
         common.init();
         index.dom.mainContent = $('#content');
         
-        index.getKeyboardPos();
         index.dom.screenArea = $('#index-wrap .screen-index');
         index.dom.screenCanvas = $('#index-wrap .screen-index-back');
         index.dom.screenAnimCanvas = index.dom.screenCanvas.find('.bg-wrap');
@@ -65,6 +64,10 @@ var index = {
         index.dom.logoWrap = index.dom.screenArea.find('.screen-index-inner');
         index.dom.keyboard = $('#index-wrap .key-board');
         index.dom.msgBox = index.dom.screenArea.find('.screen-index-tips .msg-box');
+        index.dom.msgBoxWrapper = index.dom.screenArea.find('.screen-index-tips .msg-box-wrap');
+        
+        
+        common.dom.msgInputWrap = $('#index-wrap .screen-index-float .msg-input-wrap');
         
         index.getKeyMapping();
         index.getKeyboardPos();
@@ -422,88 +425,66 @@ var index = {
       index.dom.mainContent.css("margin-top", (winH-boardH)/2);
     },
     
-    bindKeydownActions : function(e)
-    {
-        
-    },
-    
     bindKeyboardActions : function(e, action)
     {
         var preventDefault = false;
         var key = 0;
+        var type = "";
         
-        if(index.data.startup)
+        if(common.commonKeyBindOverride(e, action))
         {
-            index.data.startup = false;
-            index.dom.screenArea.find('.screen-index-tips').stop(true,true).fadeOut();
-            index.indexInAnim(null);
+            /* if return true, stop further binding */
             return;
         }
+        
         
         if(e.keyCode >=65 && e.keyCode <=90)
         {
           /* IT'S CHAR CODE */
           var c = String.fromCharCode(e.keyCode).toUpperCase();
           key = $('#key-'+c+' .key-element-content');
-          if(!action)
-          {
-            index.bindKeyboardPress(key);
-            index.bindKeyboardCharAnim(key);
-          }
-          else
-          {
-            index.bindKeyboardRelease(key);
-            index.dom.textArea.find('li').
-                animate({'vertical-align':0},{duration:800,easing:"easeOutBounce"});
-          }
-          preventDefault = true;
+          type = "char";
         }
         
         if(e.keyCode == 8)
         {
           /* BACKSPACE */
           key = $('#key-backspace .key-element-content');
-          
-          if(!action)
-          {
-            index.bindKeyboardPress(key);
-            if(index.data.navStr.length>0)
-            {
-                index.removeNavStr();
-                if(index.data.navStr.length==0)
-                {
-                    index.MenuOutIndexIn();
-                }
-            }
-          }
-          else
-          {
-            index.bindKeyboardRelease(key);
-          }
-          preventDefault = true;
+          type = "backspace";
         }
         
         if(e.keyCode == 13)
         {
           /* ENTER */
           key = $('#key-enter .key-element-content');
-          if(!action)
-          {
-            index.bindKeyboardPress(key);
-          }
-          else
-          {
-            index.bindKeyboardRelease(key);
-            if(index.data.navMapping[index.data.navStr]!=null)
-            {
-                index.navigatePage(index.data.navMapping[index.data.navStr]);
-            }
-            else
-            {
-                /* TODO */
-            }
-          }
-          preventDefault = true;
+          type = "enter";
+        }
+        
+        /* override all */
+        if(index.data.startup)
+        {
+            type = "startup";
+        }
+        
+        if(common.data.inmsg)
+        {
+            type = "inmsg";
+        }
+        
+        if(!common.data.inmsg)
+            preventDefault = true;
+        
+        if(!action)
+        {
+          index.bindKeyboardPress(key);
+          if(preventDefault)
+            index.bindKeyboardPressActions(type, key);
+        }
+        else
+        {
+          index.bindKeyboardRelease(key);
+          if(preventDefault)
+            index.bindKeyboardReleaseActions(type, key);
         }
         
         if(preventDefault)
@@ -569,10 +550,62 @@ var index = {
             object.addClass('selected');
     },
     
+    bindKeyboardPressActions : function(type, key)
+    {
+        if(type==null)
+            return;
+        if(type=="char")
+        {
+            index.bindKeyboardCharAnim(key);
+        }
+        if(type=="backspace")
+        {
+            if(index.data.navStr.length>0)
+            {
+                index.removeNavStr();
+                if(index.data.navStr.length==0)
+                {
+                    index.MenuOutIndexIn();
+                }
+            }
+        }
+        if(type=="startup")
+        {
+            index.data.startup = false;
+            index.dom.screenArea.find('.screen-index-tips').stop(true,true).fadeOut();
+            index.indexInAnim(null);        
+        }
+    },
+    
     bindKeyboardRelease : function(object)
     {
         if(object.hasClass('selected'))
             object.removeClass('selected');
+    },
+    
+    bindKeyboardReleaseActions : function(type, key)
+    {
+        if(type==null)
+            return;
+        if(type=="char")
+        {
+            index.dom.textArea.find('li').
+                animate({'vertical-align':0},{duration:800,easing:"easeOutBounce"});
+        }
+        if(type=="backspace")
+        {
+        }
+        if(type=="enter")
+        {
+            if(index.data.navMapping[index.data.navStr]!=null)
+            {
+                index.navigatePage(index.data.navMapping[index.data.navStr]);
+            }
+            else
+            {
+                /* TODO */
+            }
+        }
     },
     
     generateMenuHTML : function(target)
@@ -675,8 +708,8 @@ var index = {
     showMessage : function(str)
     {
         var msgBox = index.dom.msgBox.find('.text');
-        msgBox.fadeOut(function(){msgBox.html(str);});
-        msgBox.fadeIn();
+        index.dom.msgBoxWrapper.fadeOut(function(){msgBox.html(str);});
+        index.dom.msgBoxWrapper.fadeIn();
     },
     
     dynamicMessage : function()

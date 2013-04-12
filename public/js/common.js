@@ -1,6 +1,11 @@
 var common = {
     
     dom : {
+      msgInputWrap : 0
+    },
+
+    data : {
+      inmsg: false
     },
 
     init : function()
@@ -15,6 +20,56 @@ var common = {
         marginV = 0;
         var result = $(window).height()-headerH-marginV-50;
         return (result>469)?result:469;
+    },
+    
+    /* if return true, stop further key binding */
+    commonKeyBindOverride : function(e, action)
+    {
+        var preventDefault = false;
+        var key = 0;
+        
+        if(e.keyCode == 17)
+        {
+          /* IT'S CTRL(MSG) key */
+          /*
+          key = $('#key-messages .key-element-content');
+          if(!action)
+          {
+            index.bindKeyboardPress(key);
+            common.data.inmsg = !common.data.inmsg;
+            if(common.data.inmsg)
+            {
+              common.dom.msgInputWrap.stop().animate(
+                {'bottom': 0},
+                {
+                    complete:function(){
+                        common.dom.msgInputWrap.find('textarea').focus();
+                    }
+                }
+              );
+              
+            }
+            else
+            {
+              common.dom.msgInputWrap.stop().animate(
+                {'bottom': -40},
+                {
+                    complete:function(){
+                        common.dom.msgInputWrap.find('textarea').blur();
+                    }
+                }
+              );*/
+              /*common.dom.msgInputWrap.find('textarea').blur();*/
+            /*}
+          }
+          else
+          {
+            index.bindKeyboardRelease(key);
+          }*/
+            preventDefault = true;
+        }
+        
+        return preventDefault;
     },
     
     verticalCenter : function(object, parentObject)
