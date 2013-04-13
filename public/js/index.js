@@ -329,27 +329,32 @@ var index = {
         index.dom.keyboardElements.mousedown(
             function()
             {
+                var that = $(this);
+                var thatKeycode = parseInt(that.data('keycode'));
                 $(this).addClass("selected");
+                if(thatKeycode!=NaN)
+                {
+                    var event = new Object();
+                    event.keyCode = thatKeycode;
+                    index.bindKeyboardActions(event, false);
+                }
             }
         );
         index.dom.keyboardElements.mouseup(
             function()
             {
+                var that = $(this);
+                var thatKeycode = parseInt(that.data('keycode'));
                 $(this).removeClass("selected");
+                if(thatKeycode!=NaN)
+                {
+                    var event = new Object();
+                    event.keyCode = thatKeycode;
+                    index.bindKeyboardActions(event, true);
+                }
             }
         );    
         
-        
-        index.dom.keyboardElements.click(
-        /*
-            function()
-            {
-                if($(this).attr("name")!=null)
-                {
-                    index.bindKeyboardMenuAnim($(this));
-                }
-            }*/
-        );
         $(document).keydown(function(e){index.bindKeyboardActions(e,false);});
         $(document).keyup(function(e){index.bindKeyboardActions(e,true)});
         
@@ -437,7 +442,6 @@ var index = {
             return;
         }
         
-        
         if(e.keyCode >=65 && e.keyCode <=90)
         {
           /* IT'S CHAR CODE */
@@ -501,6 +505,8 @@ var index = {
         
         $(document).off();
         $(window).off();
+        index.dom.keyboardElements.off();
+        index.dom.keyboardElements.attr("class","key-element-content");
         index.dom.screenMenuWrapper.fadeOut(
             {
                 duration: 300,

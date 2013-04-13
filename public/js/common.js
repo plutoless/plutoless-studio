@@ -22,6 +22,7 @@ var common = {
         return (result>469)?result:469;
     },
     
+    
     /* if return true, stop further key binding */
     commonKeyBindOverride : function(e, action)
     {
@@ -83,6 +84,8 @@ var common = {
     {
         $(document).off();
         $(window).off();
+        index.dom.keyboardElements.off();
+        index.dom.keyboardElements.attr("class","key-element-content");
         common.clearHints();
         index.dom.subpageWrapper.animate(
            {height: 0},

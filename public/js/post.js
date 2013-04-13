@@ -56,6 +56,47 @@ if(post==null)
         
         initializePostKeyboard : function()
         {
+            index.dom.keyboardElements.hover(
+                function()
+                {
+                    $(this).addClass("hover");
+                },
+                function()
+                {
+                    $(this).removeClass("hover");
+                }
+
+            ).css("cursor","pointer");
+
+            index.dom.keyboardElements.mousedown(
+                function()
+                {
+                    var that = $(this);
+                    var thatKeycode = parseInt(that.data('keycode'));
+                    $(this).addClass("selected");
+                    if(thatKeycode!=NaN)
+                    {
+                        var event = new Object();
+                        event.keyCode = thatKeycode;
+                        post.bindKeyboardActions(event, false);
+                    }
+                }
+            );
+            index.dom.keyboardElements.mouseup(
+                function()
+                {
+                    var that = $(this);
+                    var thatKeycode = parseInt(that.data('keycode'));
+                    $(this).removeClass("selected");
+                    if(thatKeycode!=NaN)
+                    {
+                        var event = new Object();
+                        event.keyCode = thatKeycode;
+                        post.bindKeyboardActions(event, true);
+                    }
+                }
+            );    
+            
             $(document).keydown(function(e){post.bindKeyboardActions(e,false);});
             $(document).keyup(function(e){post.bindKeyboardActions(e,true)});
             post.getKeyboardPos();
@@ -71,6 +112,7 @@ if(post==null)
         {
             var preventDefault = false;
             var key = 0;
+            var type = "";
 
             if(e.keyCode == 37 || e.keyCode == 65)
             {
@@ -79,16 +121,7 @@ if(post==null)
                   key = $('#key-left-arrow .key-element-content');
                 if(e.keyCode == 65)
                   key = $('#key-A .key-element-content');
-                if(!action)
-                {
-                    index.bindKeyboardPress(key);
-                    post.prevPost(post.dom.currentPost);
-                }
-                else
-                {
-                    index.bindKeyboardRelease(key);
-                }
-                preventDefault = true;
+                type = "prev";
             }
             
             if(e.keyCode == 39 || e.keyCode == 68)
@@ -98,17 +131,7 @@ if(post==null)
                   key = $('#key-right-arrow .key-element-content');
                 if(e.keyCode == 68)
                   key = $('#key-D .key-element-content');
-                
-                if(!action)
-                {
-                    index.bindKeyboardPress(key);
-                    post.nextPost(post.dom.currentPost);
-                }
-                else
-                {
-                    index.bindKeyboardRelease(key);
-                }
-                preventDefault = true;
+                type = "next";
             }
             
             if(e.keyCode == 38 || e.keyCode == 87)
@@ -118,18 +141,7 @@ if(post==null)
                   key = $('#key-up-arrow .key-element-content');
                 if(e.keyCode == 87)
                   key = $('#key-W .key-element-content');
-                if(!action)
-                {
-                    index.bindKeyboardPress(key);
-                    post.scrollPostUp(post.dom.currentPostSlider);
-                    post.data.scrollBy++;
-                }
-                else
-                {
-                    index.bindKeyboardRelease(key);
-                    post.data.scrollBy = 1;
-                }
-                preventDefault = true;
+                type = "up";
             }
             
             if(e.keyCode == 40 || e.keyCode == 83)
@@ -139,54 +151,76 @@ if(post==null)
                   key = $('#key-down-arrow .key-element-content');
                 if(e.keyCode == 83)
                   key = $('#key-S .key-element-content');
-                if(!action)
-                {
-                    index.bindKeyboardPress(key);
-                    post.scrollPostDown(post.dom.currentPostSlider);
-                    post.data.scrollBy++;
-                }
-                else
-                {
-                    index.bindKeyboardRelease(key);
-                    post.data.scrollBy = 1;
-                }
-                preventDefault = true;
+                type = "down";
             }
             
             if(e.keyCode == 8)
             {
                 /* BACKSPACE */
                 key = $('#key-backspace .key-element-content');
-
-                if(!action)
-                {
-                    index.bindKeyboardPress(key);
-                    common.backToIndex();
-                    index.bindKeyboardRelease(key);
-                }
-                preventDefault = true;
+                type = "return";
             }
+            if(!common.data.inmsg)
+                preventDefault = true;
+        
+            if(!action)
+            {
+                index.bindKeyboardPress(key);
+                if(preventDefault)
+                    post.bindKeyboardPressActions(type, key);
+            }
+            else
+            {
+                index.bindKeyboardRelease(key);
+                if(preventDefault)
+                    post.bindKeyboardReleaseActions(type, key);
+            }
+            
             
             if(preventDefault)
                 e.preventDefault();
         },
 
-        getControlKeyBindings : function()
+        bindKeyboardPressActions : function(type, key)
         {
-            post.dom.controlKeys.click(
-                function()
-                {
-                    var name = $(this).attr('name');
-                    if(name=="next")
-                    {
-                        post.nextPost(post.dom.currentPost);
-                    }
-                    if(name=="prev")
-                    {
-                        post.prevPost(post.dom.currentPost);
-                    }
-                }
-            );
+            if(type==null)
+                return;
+            if(type=="prev")
+            {
+                post.prevPost(post.dom.currentPost);
+            }
+            if(type=="next")
+            {
+                post.nextPost(post.dom.currentPost);
+            }
+            if(type=="up")
+            {
+                post.scrollPostUp(post.dom.currentPostSlider);
+                post.data.scrollBy++;
+            }
+            if(type=="down")
+            {
+                post.scrollPostDown(post.dom.currentPostSlider);
+                post.data.scrollBy++;
+            }
+            if(type=="return")
+            {
+                common.backToIndex();
+            }
+        },
+        
+        bindKeyboardReleaseActions : function(type, key)
+        {
+            if(type==null)
+                return;
+            if(type=="up")
+            {
+                post.data.scrollBy = 1;
+            }
+            if(type=="down")
+            {
+                post.data.scrollBy = 1;
+            }
         },
 
         prevPost : function(currentObject)

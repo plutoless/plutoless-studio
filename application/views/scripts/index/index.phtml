@@ -5,11 +5,54 @@ $this->headTitle($this->title);
 $this->headLink()->prependStylesheet($this->baseUrl().'/public/css/index.css');
 $this->headScript()->appendFile($this->baseUrl().'/public/js/index.js');
 
-$keys = array("Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P");
-$keys2 = array("A", "S", "D", "F", "G", "H", "J", "K", "L");
-$keys3 = array("Z", "X", "C", "V", "B", "N", "M");
+$keys = array(
+    /* key board construct array */
+    array("id"=>"tab", "keycode"=>"9", "keysize"=>"tab", "alias"=>"Tab"),
+    array("id"=>"Q", "keycode"=>"81"), 
+    array("id"=>"W", "keycode"=>"87"), 
+    array("id"=>"E", "keycode"=>"69"), 
+    array("id"=>"R", "keycode"=>"82"),
+    array("id"=>"T", "keycode"=>"84"),
+    array("id"=>"Y", "keycode"=>"89"),
+    array("id"=>"U", "keycode"=>"85"),
+    array("id"=>"I", "keycode"=>"73"),
+    array("id"=>"O", "keycode"=>"79"),
+    array("id"=>"P", "keycode"=>"80"),
+    array("id"=>"backspace", "keycode"=>"8", "keysize"=>"backspace", "alias"=>"BS"),
+    
+    array("id"=>"caps", "keycode"=>"20", "keysize"=>"caps", "alias"=>"Caps"),
+    array("id"=>"A", "keycode"=>"65"), 
+    array("id"=>"S", "keycode"=>"83"), 
+    array("id"=>"D", "keycode"=>"68"), 
+    array("id"=>"F", "keycode"=>"70"),
+    array("id"=>"G", "keycode"=>"71"),
+    array("id"=>"H", "keycode"=>"72"),
+    array("id"=>"J", "keycode"=>"74"),
+    array("id"=>"K", "keycode"=>"75"),
+    array("id"=>"L", "keycode"=>"76"),
+    array("id"=>"enter", "keycode"=>"13", "keysize"=>"enter", "alias"=>"Enter"),
+    
+    array("id"=>"shift-left", "keycode"=>"16", "keysize"=>"shift-left", "alias"=>"Shift"),
+    array("id"=>"Z", "keycode"=>"90"), 
+    array("id"=>"X", "keycode"=>"88"), 
+    array("id"=>"C", "keycode"=>"67"), 
+    array("id"=>"V", "keycode"=>"86"),
+    array("id"=>"B", "keycode"=>"66"),
+    array("id"=>"N", "keycode"=>"78"),
+    array("id"=>"M", "keycode"=>"77"),
+    array("id"=>"left-arrow", "keycode"=>"37", "alias"=>"<"),
+    array("id"=>"right-arrow", "keycode"=>"39", "alias"=>">"),
+    array("id"=>"shift-right", "keycode"=>"16", "keysize"=>"shift-right", "alias"=>"Shift"),
+    
+    array("id"=>"ctrl", "keycode"=>"17", "keysize"=>"control", "alias"=>"Ctrl"),
+    array("id"=>"option", "keycode"=>"18", "keysize"=>"option", "alias"=>"Option"),
+    array("id"=>"command", "keycode"=>"31", "keysize"=>"command", "alias"=>"Cmd"),
+    array("id"=>"space", "keycode"=>"32", "keysize"=>"space", "alias"=>"Space"), 
+    array("id"=>"message", "keycode"=>"17", "keysize"=>"message", "alias"=>"Message"),
+);
 
 $news = array(
+    "13/04/2013 The website support mouse input now.",
     "07/04/2013 Index page Msg Box on live.Input not allowed for now.",
     "05/04/2013 Dev Updates available on live.",
     "04/04/2013 Project page on live.",
@@ -44,10 +87,12 @@ $news = array(
                         <img src="<?php echo $this->baseUrl()
                                 .'/public/images/tips/tips_'
                                 .$this->rand.'.jpg'; ?>">
-                        <div class="msg-box rounded">
-                            <span class="text">test message</span>
+                        <div class="msg-box-wrap">
+                            <div class="msg-box rounded">
+                                <span class="text">test message</span>
+                            </div>
+                            <div class="msg-box-tri"></div>
                         </div>
-                        <div class="msg-box-tri"></div>
                     </div>
                     <div style="margin-top:-10px;">
                         Press Any Key<br>
@@ -112,136 +157,26 @@ $news = array(
         </div>
         <div class="key-board">       
             <ul>
-                <li id="key-tab" class="key-element-wrapper key-size-tab">
-                    <div class="key-element">
-                        <div class="key-element-content">
-                            Tab
-                        </div>
-                    </div>
-                </li>
                 <?php foreach($keys AS $key): ?>
-                <li id="key-<?php echo $key;?>" class="key-element-wrapper key-size-normal">
+                <li id="key-<?php echo $key['id'];?>"
+                    class="key-element-wrapper key-size-<?php echo isset($key['keysize'])?$key['keysize']:"normal"; ?>">
                     <div class="key-element">
                         <div class="key-element-content"
-                            name="<?php echo $key;?>">
-                            <?php echo $key;?>
+                            name="<?php echo $key['id'];?>"
+                            data-keycode="<?php echo $key['keycode'];?>">
+                            <?php echo isset($key['alias'])?$key['alias']:$key['id'];?>
                         </div>
                     </div>
                 </li>
                 <?php endforeach;?>
-
-                <li id="key-backspace" class="key-element-wrapper key-size-backspace">
-                    <div class="key-element">
-                        <div class="key-element-content key-right">
-                            <-
-                        </div>
-                    </div>
-                </li>
-                <li id="key-caps" class="key-element-wrapper key-size-caps">
-                    <div class="key-element">
-                        <div class="key-element-content">
-                            Caps
-                        </div>
-                    </div>
-                </li>
-                <?php foreach($keys2 AS $key): ?>
-                <li id="key-<?php echo $key;?>" class="key-element-wrapper key-size-normal">
-                    <div class="key-element">
-                        <div class="key-element-content"
-                            name="<?php echo $key;?>">
-                            <?php echo $key;?>
-                        </div>
-                    </div>
-                </li>
-                <?php endforeach;?>
-
-                <li id="key-enter" class="key-element-wrapper key-size-enter">
-                    <div class="key-element">
-                        <div class="key-element-content key-right">
-                            Enter
-                        </div>
-                    </div>
-                </li>
-                <li id="key-shift-left" class="key-element-wrapper key-size-shift-left">
-                    <div class="key-element">
-                        <div class="key-element-content">
-                            Shift
-                        </div>
-                    </div>
-                </li>
-                <?php foreach($keys3 AS $key): ?>
-                <li id="key-<?php echo $key;?>" class="key-element-wrapper key-size-normal">
-                    <div class="key-element">
-                        <div class="key-element-content"
-                            name="<?php echo $key;?>">
-                            <?php echo $key;?>
-                        </div>
-                    </div>
-                </li>
-                <?php endforeach;?>
-                <li id="key-left-arrow" class="key-element-wrapper key-size-normal">
-                    <div class="key-element">
-                        <div class="key-element-content">
-                            <
-                        </div>
-                    </div>
-                </li>
-                <li id="key-right-arrow" class="key-element-wrapper key-size-normal">
-                    <div class="key-element">
-                        <div class="key-element-content">
-                            >
-                        </div>
-                    </div>
-                </li>
-                <li id="key-shift-right" class="key-element-wrapper key-size-shift-right">
-                    <div class="key-element">
-                        <div class="key-element-content key-right">
-                            Shift
-                        </div>
-                    </div>
-                </li>
-
-                <li id="key-ctrl" class="key-element-wrapper key-size-control">
-                    <div class="key-element">
-                        <div class="key-element-content key-left-bottom">
-                            Ctrl
-                        </div>
-                    </div>
-                </li>
-
-                <li id="key-option" class="key-element-wrapper key-size-option">
-                    <div class="key-element">
-                        <div class="key-element-content key-bottom">
-                            Option
-                        </div>
-                    </div>
-                </li>
-
-                <li id="key-command" class="key-element-wrapper key-size-command">
-                    <div class="key-element">
-                        <div class="key-element-content key-bottom">
-                            Cmd
-                        </div>
-                    </div>
-                </li>
-                <li id="key-space" class="key-element-wrapper key-size-space">
-                    <div class="key-element">
-                        <div class="key-element-content key-bottom">
-                            Space
-                        </div>
-                    </div>
-                </li>
-                <li id="key-messages" class="key-element-wrapper key-size-message">
-                    <div class="key-element">
-                        <div class="key-element-content key-right-bottom">
-                            Message
-                        </div>
-                    </div>
-                </li>
             </ul>
         </div>
     </div>
 </div>
 <div id="key-hint-wrap">
+    
+</div>
+
+<div id="dialogs-wrap">
     
 </div>

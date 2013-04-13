@@ -50,6 +50,46 @@ if(project==null)
         
         initializeProjectKeyboard : function()
         {
+            index.dom.keyboardElements.hover(
+                function()
+                {
+                    $(this).addClass("hover");
+                },
+                function()
+                {
+                    $(this).removeClass("hover");
+                }
+
+            ).css("cursor","pointer");
+
+            index.dom.keyboardElements.mousedown(
+                function()
+                {
+                    var that = $(this);
+                    var thatKeycode = parseInt(that.data('keycode'));
+                    $(this).addClass("selected");
+                    if(thatKeycode!=NaN)
+                    {
+                        var event = new Object();
+                        event.keyCode = thatKeycode;
+                        project.bindKeyboardActions(event, false);
+                    }
+                }
+            );
+            index.dom.keyboardElements.mouseup(
+                function()
+                {
+                    var that = $(this);
+                    var thatKeycode = parseInt(that.data('keycode'));
+                    $(this).removeClass("selected");
+                    if(thatKeycode!=NaN)
+                    {
+                        var event = new Object();
+                        event.keyCode = thatKeycode;
+                        project.bindKeyboardActions(event, true);
+                    }
+                }
+            );
             $(document).keydown(function(e){project.bindKeyboardActions(e,false);});
             $(document).keyup(function(e){project.bindKeyboardActions(e,true)});
             project.getKeyboardPos();
@@ -65,6 +105,7 @@ if(project==null)
         {
             var preventDefault = false;
             var key = 0;
+            var type = "";
 
             if(e.keyCode == 37 || e.keyCode == 65)
             {
@@ -73,16 +114,7 @@ if(project==null)
                   key = $('#key-left-arrow .key-element-content');
                 if(e.keyCode == 65)
                   key = $('#key-A .key-element-content');
-                if(!action)
-                {
-                    index.bindKeyboardPress(key);
-                    project.prevProject(project.dom.currentProject);
-                }
-                else
-                {
-                    index.bindKeyboardRelease(key);
-                }
-                preventDefault = true;
+                type = "prev";
             }
             
             if(e.keyCode == 39 || e.keyCode == 68)
@@ -92,35 +124,58 @@ if(project==null)
                   key = $('#key-right-arrow .key-element-content');
                 if(e.keyCode == 68)
                   key = $('#key-D .key-element-content');
-                
-                if(!action)
-                {
-                    index.bindKeyboardPress(key);
-                    project.nextProject(project.dom.currentProject);
-                }
-                else
-                {
-                    index.bindKeyboardRelease(key);
-                }
-                preventDefault = true;
+                type = "next";
             }
             
             if(e.keyCode == 8)
             {
                 /* BACKSPACE */
                 key = $('#key-backspace .key-element-content');
-
-                if(!action)
-                {
-                    index.bindKeyboardPress(key);
-                    common.backToIndex();
-                    index.bindKeyboardRelease(key);
-                }
+                type = "return";
+            }
+            
+            if(!common.data.inmsg)
                 preventDefault = true;
+        
+            if(!action)
+            {
+                index.bindKeyboardPress(key);
+                if(preventDefault)
+                    project.bindKeyboardPressActions(type, key);
+            }
+            else
+            {
+                index.bindKeyboardRelease(key);
+                if(preventDefault)
+                    project.bindKeyboardReleaseActions(type, key);
             }
             
             if(preventDefault)
                 e.preventDefault();
+        },
+        
+        bindKeyboardPressActions : function(type, key)
+        {
+            if(type==null)
+                return;
+            if(type=="prev")
+            {
+                project.prevProject(project.dom.currentProject);
+            }
+            if(type=="next")
+            {
+                project.nextProject(project.dom.currentProject);
+            }
+            if(type=="return")
+            {
+                common.backToIndex();
+            }
+        },
+        
+        bindKeyboardReleaseActions : function(type, key)
+        {
+            if(type==null)
+                return;
         },
         
         nextProject : function(currentObject)
